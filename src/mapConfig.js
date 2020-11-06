@@ -1,13 +1,18 @@
 let config = {
     fillOpacity: 0.4,
+    // colorScale: ['#6FAFBF', '#EDD13B', '#D51D1D','#CA3A2D'],
     colorScale: ['#6FAFBF', '#EDD13B', '#D51D1D'],
+    // colorScale: ['#163780', '#84AA80', '#EDD058', '#CA3A2D'],
     areaThreshold: 1,
+    // claros
     // style: 'mapbox://styles/branigan/cjz37rcb003ib1cr3s8rnkt2d',
-    style: 'mapbox://styles/haxzie/ck0cctlg503xe1co6hmx1kunx',
-
-    // style: 'mapbox://styles/haxzie/ck0aovhaa389j1cpdls6va2f1',
     // style: 'mapbox://styles/haxzie/ck0cctlg503xe1co6hmx1kunx',
-    // style: 'mapbox://styles/haxzie/cjxg35uth252i1cmu2r0gomx7',
+
+    // áreas verdes
+    // style: 'mapbox://styles/haxzie/ck0aovhaa389j1cpdls6va2f1',
+    style: 'mapbox://styles/haxzie/cjxg35uth252i1cmu2r0gomx7',
+
+    // obscuros
     // style: 'mapbox://styles/haxzie/ck0cc2cdn01241eohsj4fcz5p',
     // style: 'mapbox://styles/tugaarredondo/ckfowiqg00b6k19nxugunq2ww',
 

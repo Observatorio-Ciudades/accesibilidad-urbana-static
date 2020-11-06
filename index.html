@@ -33,6 +33,7 @@
             </div>
         </div>
         <div id="map"></div>
+        <div id="satMap" class="fade-out"></div>
         <div class="box-full" id="portada">
             <div class="main-col">
                 <h1 id="main-title">Ciudades accesibles en tiempos de pandemia</h1>
@@ -215,12 +216,87 @@
                     </p>
                 </div>
             </div>
-            <div class="row h3-dash step">
+            <div class="row" id="h3-dash">
                 <div class="filter-ctrl">
-                    <input id="filter-input" type="text" name="filter" placeholder="Filter by name" />
+                    <!-- <input id="filter-input" type="text" name="filter" placeholder="Filter by name" /> -->
+                    <div class="h3-dash-select-cont">
+                        <p>Buscar:</p>
+                        <select id = "h3-dash-hexes" class="h3-dash-select">
+                            <option value = "1">Acceso a farmacias</option>
+                            <option value = "2">Acceso a hospitales</option>
+                            <option value = "3">Acceso a supermercados</option>
+                            <option value = "4">Densidad poblacional</option>
+                            <option value = "5">Marginación</option>
+                        </select>
+                    </div>
+
+                    <div class="h3-dash-select-cont">
+                        <p>en:</p>
+                        <select id = "h3-dash-cities" class="h3-dash-select">
+                            <option value = "1">Aguascalientes</option>
+                            <option value = "2">Cuernavaca</option>
+                            <option value = "3">Guadalajara</option>
+                            <option value = "4">Mérida</option>
+                            <option value = "5">Mexicali</option>
+                            <option value = "6">Ciudad de México</option>
+                            <option value = "7">Monterrey</option>
+                            <option value = "8">Puebla</option>
+                            <option value = "9">Querétaro</option>
+                            <option value = "10">Saltillo</option>
+                            <option value = "11">San Luis Potosí</option>
+                        </select>
+                    </div>
+
+
                 </div>
             </div>
         </article>
+        <div class="about">
+            <div class="main-col">
+                <h>Metodología</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                    incididunt ut
+                    labore et
+                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                    aliquip ex
+                    ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+                    dolore eu
+                    fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                    deserunt
+                    mollit anim id est laborum.
+                </p>
+
+                <h2>Sobre el Observatorio de Ciudades</h2>
+                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+                    dolore eu
+                    fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                    deserunt
+                    mollit anim id est laborum.
+                </p>
+
+                <h2>Sobre el Observatorio de Ciudades</h2>
+                <ul>
+                    <li>Persona. Rol en el equipo.</li>
+                    <li>Persona. Rol en el equipo.</li>
+                    <li>Persona. Rol en el equipo.</li>
+                    <li>Persona. Rol en el equipo.</li>
+                    <li>Persona. Rol en el equipo.</li>
+                    <li>Persona. Rol en el equipo.</li>
+                    <li>Persona. Rol en el equipo.</li>
+                    <li>Persona. Rol en el equipo.</li>
+                </ul>
+
+                <h2>Agradecimientos</h2>
+                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                    aliquip ex
+                    ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+                    dolore eu
+                    fugiat nulla pariatur. 
+                </p>
+
+
+            </div>
+        </div>
 
         <script src="./src/mapConfig.js"></script>
         <script src="./src/d3Paths.js"></script>
