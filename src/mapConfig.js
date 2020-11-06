@@ -5,12 +5,12 @@ let config = {
     // colorScale: ['#163780', '#84AA80', '#EDD058', '#CA3A2D'],
     areaThreshold: 1,
     // claros
-    // style: 'mapbox://styles/branigan/cjz37rcb003ib1cr3s8rnkt2d',
+    style: 'mapbox://styles/branigan/cjz37rcb003ib1cr3s8rnkt2d',
     // style: 'mapbox://styles/haxzie/ck0cctlg503xe1co6hmx1kunx',
 
     // áreas verdes
     // style: 'mapbox://styles/haxzie/ck0aovhaa389j1cpdls6va2f1',
-    style: 'mapbox://styles/haxzie/cjxg35uth252i1cmu2r0gomx7',
+    // style: 'mapbox://styles/haxzie/cjxg35uth252i1cmu2r0gomx7',
 
     // obscuros
     // style: 'mapbox://styles/haxzie/ck0cc2cdn01241eohsj4fcz5p',
@@ -33,7 +33,7 @@ let config = {
             description: '',
             location: {
                 center: [-103.3928603,  20.720328],
-                zoom: 16,
+                zoom: 16.5,
                 pitch: 0,
                 bearing: 0,
                 speed: 0.8, 
@@ -51,13 +51,14 @@ let config = {
         },
         {
             id: 'pathA',
-            title: 'Zapoaslzcxdfljlkjpan, Jalisco',
+            title: '',
             full: false, 
-            image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/2015-06-19_Glacier_National_Park_%28U.S.%29_8633.jpg/800px-2015-06-19_Glacier_National_Park_%28U.S.%29_8633.jpg',
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            image: '',
+            description: '',
             location: {
-                center: [-103.3943851,  20.7213538],
-                zoom: 17,
+                center: [-103.3928603,  20.720328],
+                // center: [-103.393551,  20.7213038],
+                zoom: 17.5,
                 pitch: 0,
                 bearing: 0,
                 speed: 0.8,
@@ -70,8 +71,7 @@ let config = {
                 {
                     layer: 'h3-hexes-layer',
                     opacity: 1
-                }
-                ,
+                },
                 {
                     layer: 'points',
                     opacity: 1
@@ -83,12 +83,12 @@ let config = {
         },
         {
             id: 'pathB',
-            title: 'Zapoaslzcxdfljlkjpan, Jalisco',
+            title: '',
             full: false, 
-            image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/2015-06-19_Glacier_National_Park_%28U.S.%29_8633.jpg/800px-2015-06-19_Glacier_National_Park_%28U.S.%29_8633.jpg',
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            image: '',
+            description: '',
             location: {
-                center: [-103.3980482, 20.7191641],
+                center: [-103.3963082, 20.7182341],
                 zoom: 16,
                 pitch: 0,
                 bearing: 0,
@@ -115,7 +115,7 @@ let config = {
             image: '',
             description: '',
             location: {
-                center: [-103.3964488,  20.7200531],
+                center: [-103.3964488,  20.7180531],
                 zoom: 15,
                 pitch: 0,
                 bearing: 0,
@@ -271,7 +271,7 @@ let config = {
                 zoom: 14,
                 pitch: 0,
                 bearing: 0,
-                speed: 5,
+                speed: 3,
                 curve: 1,
                 easing: function (t) {
                     return t;
@@ -297,13 +297,14 @@ let config = {
             title: '​',
             full: false, 
             image: '',
-            description: 'En el área de estudio conviven la ​vivienda popular de la década de 1970, vivienda social en formato de macromanzana de la década de 1980, y un desarrollo de reciente urbanización que aglomera varios conjuntos cerrados de vivienda privada en baja densidad y zonas comerciales y de servicios. El uso predominante en las zonas populares es el habitacional de alta densidad con usos de suelo mixto en las calles principales. Mientras que el equipamiento de escala central ocupa la mayor extensión de suelo como el hospital, teatro, un museo para niños y centros comerciales. La zona no cuenta con ningún espacio público y las áreas verdes son de carácter privado.<br><br>Zona Real<br>Municipio: Zapopan, Jalisco<br>Colonias: Los Girasoles, Jardines de Santa Margarita, La Tuzania Eijdal, Santa Margarita Poniente, La Mora, as Bóvedas, Puerta del Valle, Tramo de Valle Real<br>Extensión: 243 hectáreas<br>Población: 30, 253 habitantes<br>Densidad bruta: 124.49 habitantes / hectárea',
+            // description: 'En el área de estudio conviven la ​vivienda popular de la década de 1970, vivienda social en formato de macromanzana de la década de 1980, y un desarrollo de reciente urbanización que aglomera varios conjuntos cerrados de vivienda privada en baja densidad y zonas comerciales y de servicios. El uso predominante en las zonas populares es el habitacional de alta densidad con usos de suelo mixto en las calles principales. Mientras que el equipamiento de escala central ocupa la mayor extensión de suelo como el hospital, teatro, un museo para niños y centros comerciales. La zona no cuenta con ningún espacio público y las áreas verdes son de carácter privado.<br><br>Zona Real<br>Municipio: Zapopan, Jalisco<br>Colonias: Los Girasoles, Jardines de Santa Margarita, La Tuzania Eijdal, Santa Margarita Poniente, La Mora, as Bóvedas, Puerta del Valle, Tramo de Valle Real<br>Extensión: 243 hectáreas<br>Población: 30, 253 habitantes<br>Densidad bruta: 124.49 habitantes / hectárea',
+            description: 'En el área de estudio conviven la ​vivienda popular de la década de 1970, vivienda social en formato de macromanzana de la década de 1980, y un desarrollo de reciente urbanización que aglomera varios conjuntos cerrados de vivienda privada en baja densidad y zonas comerciales y de servicios. El uso predominante en las zonas populares es el habitacional de alta densidad con usos de suelo mixto en las calles principales. Mientras que el equipamiento de escala central ocupa la mayor extensión de suelo como el hospital, teatro, un museo para niños y centros comerciales. La zona no cuenta con ningún espacio público y las áreas verdes son de carácter privado.',
             location: {
                 center: [-103.3943851,  20.7213538],
                 zoom: 16,
                 pitch: 0,
                 bearing: 0,
-                speed: 5,
+                speed: 2,
                 curve: 0.8,
                 easing: function (t) {
                     return t;
@@ -335,7 +336,7 @@ let config = {
                 zoom: 12,
                 pitch: 0,
                 bearing: 0,
-                speed: 5,
+                speed: 2,
                 curve: 0.8,
                 easing: function (t) {
                     return t;
@@ -367,7 +368,7 @@ let config = {
                 zoom: 12,
                 pitch: 0,
                 bearing: 0,
-                speed: 5,
+                speed: 2,
                 curve: 0.8,
                 easing: function (t) {
                     return t;

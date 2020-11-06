@@ -21,6 +21,7 @@ function init() {
     let hexesLoaded = false;
     let hexesGenerated = false;
     let satOn = false;
+    let hexLayers = [];
 
 
     let points = {
@@ -62,18 +63,21 @@ function init() {
         ]
     };
 
-    loadHexData("Guadalajara");
+    loadHexData("Guadalajara","min_supermercados");
 
-    function loadHexData(city) {
-        let data = d3.csv(`data/csv-hexes/${city}_data.csv`).then(function(csv) {
+    function loadHexData(city, serv) {
+        // let data = d3.csv(`data/csv-hexes/${city}_data.csv`).then(function(csv) {
+        d3.csv(`data/csv-hexes/${city}_data.csv`).then(function(csv) {
             console.log(csv);
             console.log("holaaaaaaaa"); 
             let csvRaw = csv;
-            let csvFilter = csvRaw.filter(hex => hex.min_supermercados > 0);
+            // let csvFilter = csvRaw.filter(hex => hex.min_supermercados > 0);
+            let csvFilter = csvRaw.filter(hex => hex[serv] > 0);
             console.log(csvFilter); // Hello, world!
             
             for (let i = 0; i<csvFilter.length; i++){
-                csvLayer[csvFilter[i].hex_id_9] =  csvFilter[i].min_supermercados/100;
+                // csvLayer[csvFilter[i].hex_id_9] =  csvFilter[i].min_supermercados/100;
+                csvLayer[csvFilter[i].hex_id_9] =  csvFilter[i][serv]/100;
                 // console.log("hex values:");
                 // console.log(csvLayer[csvFilter[i].hex_id_9]);
             }
@@ -81,6 +85,12 @@ function init() {
             // console.log(csvLayer);
             
             hexesLoaded = true;
+
+            let newHexObj = {
+                city: city,
+                supermercados: csvLayer
+            }
+            hexLayers.push(newHexObj);
             
             const layer = {};
             let h3Resolution = 9;
@@ -326,7 +336,9 @@ function init() {
             //     map.setPaintProperty(layer.layer, prop, layer.opacity);
             // });
                 // renderHexesCsv(map, csvLayer);
-                renderHexes(map, csvLayer);
+                // renderHexes(map, csvLayer);
+                renderHexes(map, hexLayers[0].supermercados, 'Guadalajara');
+                // renderHexes(map, hexLayers[0], 'Guadalajara');
                 hexesGenerated = true;      
         }
     }
@@ -350,7 +362,7 @@ function init() {
             'type': 'symbol',
             'source': 'points',
             'layout': {
-                'icon-size': 5,
+                'icon-size': 4,
                 'text-field': ['get', 'description'],
                 'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
                 // 'text-radial-offset': 0.5,
@@ -360,18 +372,19 @@ function init() {
         });
     }
   
-    function renderHexes(map, hexagons) {
+    function renderHexes(map, hexagons, city) {
         // Transform the current hexagon map into a GeoJSON object
-        const geojson = geojson2h3.h3SetToFeatureCollection(
+        let geojson = geojson2h3.h3SetToFeatureCollection(
             Object.keys(hexagons),
-            hex => ({value: hexagons[hex], city:"Gdl"})
+            hex => ({value: hexagons[hex], city:city})
         );
         console.log("drawing hexes");
         console.log(geojson);
         
         
-        let sourceId = 'h3-hexes';
-        let layerId = `${sourceId}-layer`;
+        let sourceId = `${city}-hex-source`;
+        // let sourceId = 'h3-hexes';
+        let layerId = `${city}-layer`;
         let source = map.getSource(sourceId);
         let layerCheck = map.getLayer(layerId);
         
@@ -542,22 +555,44 @@ function init() {
                   }, animationStep);
               }
 
-            map.addLayer({
-                'id': pathName,
-                'type': 'line',
-                'source': pathName,
-                // 'layout': {
-                //     'icon-size': 10
-                //     // 'line-join': 'round',
-                //     // 'line-cap': 'round'
-                // },
-                'paint': {
-                    'line-color': pathColScale(val),
-                    'line-width': 5,
-                    'line-opacity': 0.75
-                    // 'line-dasharray': [2, 1]
-                }
-            });
+            if (pathName == "pathA") {
+                map.addLayer({
+                    'id': pathName,
+                    'type': 'line',
+                    'source': pathName,
+                    // 'layout': {
+                    //     'icon-size': 10
+                    //     // 'line-join': 'round',
+                    //     // 'line-cap': 'round'
+                    // },
+                    'paint': {
+                        // 'line-color': pathColScale(val),
+                        'line-color': '#6FAFBF',
+                        'line-width': 5,
+                        'line-opacity': 0.75
+                        // 'line-dasharray': [2, 1]
+                    }
+                });
+            } else {
+                map.addLayer({
+                    'id': pathName,
+                    'type': 'line',
+                    'source': pathName,
+                    // 'layout': {
+                    //     'icon-size': 10
+                    //     // 'line-join': 'round',
+                    //     // 'line-cap': 'round'
+                    // },
+                    'paint': {
+                        // 'line-color': pathColScale(val),
+                        'line-color': '#EBC639',
+                        'line-width': 5,
+                        'line-opacity': 0.75
+                        // 'line-dasharray': [2, 1]
+                    }
+                });
+            }
+
         })
     }
   
@@ -719,6 +754,7 @@ function init() {
                     map.setLayoutProperty('pathA', 'visibility', 'none');
                     map.setLayoutProperty('pathB', 'visibility', 'none');
                     map.setLayoutProperty('poi-labels', 'visibility', 'none');
+                    loadHexData("Monterrey","min_supermercados");
                     break;
                 case 6:
                     map.setLayoutProperty('pathA', 'visibility', 'none');
@@ -727,6 +763,9 @@ function init() {
                     let chapterMtyA = config.chapters.find(chap => chap.id === response.element.id);
                     map.flyTo(chapterMtyA.location);
                     satMap.flyTo(chapterMtyA.location);
+                    if (hexLayers[1]) {
+                        renderHexes(map, hexLayers[1].supermercados, 'Monterrey');
+                    }
 
                     if (satOn) {
                         setSatOpacity();
@@ -734,7 +773,7 @@ function init() {
                     break;
                 case 7:
                     let chapterMtyB = config.chapters.find(chap => chap.id === response.element.id);
-                    map.setLayoutProperty('h3-hexes-layer', 'visibility', 'none');
+                    // map.setLayoutProperty('h3-hexes-layer', 'visibility', 'none');
                     // map.setStyle("mapbox://styles/mapbox/satellite-v9");
                     setSatOpacity();
                     map.flyTo(chapterMtyB.location);
@@ -744,7 +783,7 @@ function init() {
                     map.setLayoutProperty('pathA', 'visibility', 'none');
                     map.setLayoutProperty('pathB', 'visibility', 'none');
                     map.setLayoutProperty('poi-labels', 'visibility', 'none');
-                    map.setLayoutProperty('h3-hexes-layer', 'visibility', 'none');
+                    // map.setLayoutProperty('h3-hexes-layer', 'visibility', 'none');
                     
 
 
@@ -776,6 +815,7 @@ function init() {
                     }
                     let chapterGdlB = config.chapters.find(chap => chap.id === response.element.id);
                     map.flyTo(chapterGdlB.location);
+                    satMap.flyTo(chapterGdlB.location);
                     map.setLayoutProperty('pathA', 'visibility', 'none');
                     map.setLayoutProperty('pathB', 'visibility', 'none');
                     map.setLayoutProperty('poi-labels', 'visibility', 'none');
@@ -822,6 +862,7 @@ function init() {
                         }
                         map.jumpTo(currLocation);
                         satMap.jumpTo(currLocation);
+                        
                         // const result = document.querySelector('.result');
                         // result.textContent = `You like ${event.target.value}`;
                       });
