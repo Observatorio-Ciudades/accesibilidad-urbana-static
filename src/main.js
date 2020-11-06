@@ -202,6 +202,11 @@ function init() {
         //     image.src = record.image;
         //     chapter.appendChild(image);
         // }
+        if (config.chapters[i].title) {
+            let title = document.createElement('h3');
+            title.innerText = config.chapters[i].title;
+            chapter.appendChild(title);
+        }
   
         if (config.chapters[i].description ) {
             let story = document.createElement('p');
@@ -209,11 +214,7 @@ function init() {
             chapter.appendChild(story);
         }
   
-        if (config.chapters[i].title) {
-            let title = document.createElement('h3');
-            title.innerText = config.chapters[i].title;
-            chapter.appendChild(title);
-        }
+
 
         if (!config.chapters[i].full) {
             container.setAttribute('id', config.chapters[i].id);
@@ -749,30 +750,56 @@ function init() {
 
                     break;
                 case 8:
-                    let chapterSatMty = config.chapters.find(chap => chap.id === response.element.id);
-                    map.flyTo(chapterSatMty.location);
-                    satMap.flyTo(chapterSatMty.location);
+                    let chapterMtyC = config.chapters.find(chap => chap.id === response.element.id);
+                    map.flyTo(chapterMtyC.location);
+                    satMap.flyTo(chapterMtyC.location);
 
-                    map.setLayoutProperty('pathA', 'visibility', 'none');
-                    map.setLayoutProperty('pathB', 'visibility', 'none');
-                    map.setLayoutProperty('poi-labels', 'visibility', 'none');
-
-                    break;
-                case 9:
-                    map.setLayoutProperty('pathA', 'visibility', 'none');
-                    map.setLayoutProperty('pathB', 'visibility', 'none');
-                    map.setLayoutProperty('poi-labels', 'visibility', 'none');
-                    break;
-                case 10:
                     map.setLayoutProperty('pathA', 'visibility', 'none');
                     map.setLayoutProperty('pathB', 'visibility', 'none');
                     map.setLayoutProperty('poi-labels', 'visibility', 'none');
                     if (satOn) {
                         setSatOpacity();
                     }
-                    break;
 
+                    break;
+                case 9:
+                    let chapterGdlA = config.chapters.find(chap => chap.id === response.element.id);
+                    map.flyTo(chapterGdlA.location);
+                    satMap.flyTo(chapterGdlA.location);
+                    map.setLayoutProperty('pathA', 'visibility', 'none');
+                    map.setLayoutProperty('pathB', 'visibility', 'none');
+                    map.setLayoutProperty('poi-labels', 'visibility', 'none');
+                    break;
+                case 10:
+                    if (!satOn) {
+                        setSatOpacity();
+                    }
+                    let chapterGdlB = config.chapters.find(chap => chap.id === response.element.id);
+                    map.flyTo(chapterGdlB.location);
+                    map.setLayoutProperty('pathA', 'visibility', 'none');
+                    map.setLayoutProperty('pathB', 'visibility', 'none');
+                    map.setLayoutProperty('poi-labels', 'visibility', 'none');
+                    break;
                 case 11:
+                    if (satOn) {
+                        setSatOpacity();
+                    }
+                    let chapterGdlC = config.chapters.find(chap => chap.id === response.element.id);
+                    map.flyTo(chapterGdlC.location);
+                    satMap.flyTo(chapterGdlC.location);
+                    map.setLayoutProperty('pathA', 'visibility', 'none');
+                    map.setLayoutProperty('pathB', 'visibility', 'none');
+                    map.setLayoutProperty('poi-labels', 'visibility', 'none');
+                    break;
+                case 12:
+                    // let chapterGdlC = config.chapters.find(chap => chap.id === response.element.id);
+                    // map.flyTo(chapterGdlC.location);
+                    // satMap.flyTo(chapterGdlC.location);
+                    // map.setLayoutProperty('pathA', 'visibility', 'none');
+                    // map.setLayoutProperty('pathB', 'visibility', 'none');
+                    // map.setLayoutProperty('poi-labels', 'visibility', 'none');
+                    break;
+                case 13:
                     if (!chartsOn) {
                         loadD3();
                     }

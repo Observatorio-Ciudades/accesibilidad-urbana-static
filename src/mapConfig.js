@@ -170,7 +170,7 @@ let config = {
             description: 'El polígono Campana-Altamira es una zona de grandes contrastes, a pesar de su ubicación central en la ciudad, conectada a vialidades principales y a menos de 2 kilómetros del Tecnológico de Monterrey y la zona comercial de Valle Oriente, sus pobladores viven con grandes carencias en el acceso a servicios básicos y calidad de vida.<br><br>La topografía es una de las condiciones más relevantes en la zona, ya que configura la estructura urbana, haciendo difícil y costosa la provisión de servicios básicos, generando un sistema discontinuo de calles y aumentando las posibilidades de riesgos de deslaves, inundaciones y fuertes escorrentías durante la temporada de lluvias.',
             location: {
                 center: [-100.3784997,  25.6989061],
-                zoom: 11,
+                zoom: 10.5,
                 pitch: 0,
                 bearing: 0
             },
@@ -193,7 +193,7 @@ let config = {
             location: {
                 center: [-100.3784997,  25.6989061],
                 zoom: 15,
-                pitch: 0,
+                pitch: 50,
                 bearing: 0.00
             },
             onChapterEnter: [                
@@ -217,9 +217,8 @@ let config = {
             description: 'El proceso de ocupación informal de la zona, aunado a la topografía con más de 40 grados de pendiente en las partes altas del cerro han condicionado la estructura y calidad de la red vial de la zona compuesta principalmente por calles, andadores, veredas y escalinatas. Esta red vial deficiente impide a los habitantes desplazarse al interior del polígono para acceder a servicios básicos de alimento, escuela y salud, y también hacia otros puntos de la ciudad donde se amplían las opciones de trabajo.<br><br>En promedio los habitantes dedican 72 minutos para subir y bajar de los cerros, y los costos de la canasta básica es hasta 32% más costoso en comparación con el otras partes de la ciudad.',
             location: {
                 center: [-100.3784997,  25.6989061],
-                // center: [-103.4629855,  20.7200189],
                 zoom: 15,
-                pitch: 0,
+                pitch: 50,
                 bearing: 0.00
             },
             onChapterEnter: [                
@@ -242,18 +241,11 @@ let config = {
             image: '',
             description: 'El 85 % de los viajes en la zona son a pie, y de estos el 40% se realizan a la escuela, por lo que la calidad de calles y escalinatas es necesaria para mejorar la accesibilidad de la población a servicios básicos.',
             location: {
-                // center: [-100.3958758, 25.6776897],
-                // center: [-122.200759, 37.792401],
-                // center: [-103.6,  20.6],
                 center: [-100.3784997,  25.6989061],
-                zoom: 16,
-                pitch: 50,
-                bearing: 0.00,
-                speed: 0.5,
-                curve: 0.75,
-                easing: function (t) {
-                    return t;
-                }
+                // center: [-103.4629855,  20.7200189],
+                zoom: 13,
+                pitch: 0,
+                bearing: 0.00
             },
             onChapterEnter: [                
                 // {
@@ -267,6 +259,134 @@ let config = {
                 //     opacity: 0
                 // }
             ]
-        }
+        },
+        {
+            id: 'gdlA',
+            title: '​Zona Real, Zapopan.',
+            full: false, 
+            image: '',
+            description: 'El área de enfoque, ubicada al poniente de la ciudad y a una distancia aproximada de 10 km del centro metropolitano es producto de etapas diversas de urbanización y ofertas diversificadas. Presenta una traza urbana discontinua y heterogénea en las que se puede encontrar tanto vivienda popular, vivienda social, como fraccionamientos cerrados de alta plusvalía. Se ubican en la zona exterior del Anillo Periférico y solo cuentan con una arteria vial sin las características de diseño para absorber el desarrollo de la zona.',
+            location: {
+                center: [-103.3943851,  20.7213538],
+                zoom: 14,
+                pitch: 0,
+                bearing: 0,
+                speed: 5,
+                curve: 1,
+                easing: function (t) {
+                    return t;
+                }
+            },
+            onChapterEnter: [
+                {
+                    layer: 'h3-hexes-layer',
+                    opacity: 1
+                }
+                ,
+                {
+                    layer: 'points',
+                    opacity: 1
+                }
+            ],
+            onChapterExit: [
+
+            ]
+        },
+        {
+            id: 'gdlB',
+            title: '​',
+            full: false, 
+            image: '',
+            description: 'En el área de estudio conviven la ​vivienda popular de la década de 1970, vivienda social en formato de macromanzana de la década de 1980, y un desarrollo de reciente urbanización que aglomera varios conjuntos cerrados de vivienda privada en baja densidad y zonas comerciales y de servicios. El uso predominante en las zonas populares es el habitacional de alta densidad con usos de suelo mixto en las calles principales. Mientras que el equipamiento de escala central ocupa la mayor extensión de suelo como el hospital, teatro, un museo para niños y centros comerciales. La zona no cuenta con ningún espacio público y las áreas verdes son de carácter privado.<br><br>Zona Real<br>Municipio: Zapopan, Jalisco<br>Colonias: Los Girasoles, Jardines de Santa Margarita, La Tuzania Eijdal, Santa Margarita Poniente, La Mora, as Bóvedas, Puerta del Valle, Tramo de Valle Real<br>Extensión: 243 hectáreas<br>Población: 30, 253 habitantes<br>Densidad bruta: 124.49 habitantes / hectárea',
+            location: {
+                center: [-103.3943851,  20.7213538],
+                zoom: 16,
+                pitch: 0,
+                bearing: 0,
+                speed: 5,
+                curve: 0.8,
+                easing: function (t) {
+                    return t;
+                }
+            },
+            onChapterEnter: [
+                {
+                    layer: 'h3-hexes-layer',
+                    opacity: 1
+                }
+                ,
+                {
+                    layer: 'points',
+                    opacity: 1
+                }
+            ],
+            onChapterExit: [
+
+            ]
+        },
+        {
+            id: 'gdlC',
+            title: '​',
+            full: true, 
+            image: '',
+            description: 'La zona es producto de un crecimiento discontinuo, sin la infraestructura correspondiente y con iniciativas inmobiliarias desarticuladas que obedecen a lógicas muy distintas, además de contar con equipamientos de gran escala de tipo cultural, salud, administrativo y educativo, como el campus del Tec de Monterrey a 3 kilómetros al poniente. ​Los diferentes fragmentos funcionales, socioeconómicos y morfológicos no permiten la continuidad de la traza vial saturando las tres avenidas que estructuran la zona. L​ a zona se compone de tres distintas formas urbanas que producen una red de calles discontinua:<br><br>1. Manzanas rectangulares de 1 hectárea, con una red de calles continua y parcelas de aproximadamente 120m2. Con una densidad de 335 habitantes/ha<br>2. Macromanzanas de 19 hectáreas, subdivididas por andadores peatonales y calles locales, con parcelas de 100m2 o bloques de vivienda de 4 niveles y con una densidad de 300 habitantes/ha<br>3. Fraccionamientos cerrados de tamaño medio con un solo acceso controlado de 8-15 hectáreas aproximadamente y tamaño de parcela entre 250-300m2 con una densidad de 85 habitantes/ha<br>4. Macro lotes con alta capacidad de estacionamientos para equipamiento y zonas comerciales.',
+            location: {
+                center: [-103.3943851,  20.7213538],
+                zoom: 12,
+                pitch: 0,
+                bearing: 0,
+                speed: 5,
+                curve: 0.8,
+                easing: function (t) {
+                    return t;
+                }
+            },
+            onChapterEnter: [
+                {
+                    layer: 'h3-hexes-layer',
+                    opacity: 1
+                }
+                ,
+                {
+                    layer: 'points',
+                    opacity: 1
+                }
+            ],
+            onChapterExit: [
+
+            ]
+        },
+        {
+            id: 'gdlD',
+            title: '​',
+            full: false, 
+            image: '',
+            description: '​Las zonas de mayor densidad poblacional y con una red de calles abierta son las zonas con niveles de marginación medio pero con mayor accesibilidad a satisfactores de escala barrial como tiendas de alimentos y farmacias.<br><br>En los sectores residenciales de baja densidad y en estructura cerrada con un solo acceso vehícular la accesibilidad a satisfactores implica distancias superiores a 1km como son tiendas de alimentos y farmacias.',
+            location: {
+                center: [-103.3943851,  20.7213538],
+                zoom: 12,
+                pitch: 0,
+                bearing: 0,
+                speed: 5,
+                curve: 0.8,
+                easing: function (t) {
+                    return t;
+                }
+            },
+            onChapterEnter: [
+                {
+                    layer: 'h3-hexes-layer',
+                    opacity: 1
+                }
+                ,
+                {
+                    layer: 'points',
+                    opacity: 1
+                }
+            ],
+            onChapterExit: [
+
+            ]
+        },
     ]
 };
