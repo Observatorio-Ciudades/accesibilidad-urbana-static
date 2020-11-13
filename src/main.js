@@ -840,6 +840,7 @@ function init() {
                     // map.setLayoutProperty('poi-labels', 'visibility', 'none');
                     break;
                 case 13:
+                case 14:
                     if (!chartsOn) {
                         loadD3();
                     }
@@ -854,8 +855,24 @@ function init() {
                     let selectHex = document.getElementById("h3-dash-hexes");
 
                     selectCity.addEventListener('change', (event) => {
-                        console.log(`Selected ${selectCity.value}`);
-                        console.log(`Selected ${event.target.value}`);
+                        let currSelCity = event.target.value;
+                        // let currSelHex = event.target.value;
+                        // console.log(`Selected ${selectCity.value}`);
+                        // console.log(`Selected ${event.target.value}`);
+                        console.log(`Selected ${currSelCity}`);
+
+                        // switch (currSelCity) {
+                        //     case "1":
+                        //         // console.log("Selected Aguascalientes");
+                        //         // loadHexData("Aguascalientes","min_supermercados");
+                        //         // if (hexLayers[2]) {
+                        //         // renderHexes(map, hexLayers[2].supermercados, 'Aguascalientes');
+                        //         // }
+                        //         changeCityHexes("Aguascalientes", "min_supermercados");
+                        //         break;
+                        //     default:
+
+                        // }
                         currLocation.center = cityCoords[event.target.value-1].center;
                         if (event.target.value-1 == 5) {
                             currLocation.zoom = 10;
@@ -926,6 +943,13 @@ function init() {
   
             });
     });
+
+    // async function changeCityHexes(city, hexes) {
+    //     console.log("Selected Aguascalientes");
+    //     loadHexData(city, hexes);
+    //     console.log(await hexLayers);
+    //     renderHexes(map, await hexLayers[2].supermercados, city);
+    // }
     
   
     // setup resize event
