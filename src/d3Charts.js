@@ -138,16 +138,19 @@ let xAxis = d3.axisBottom().scale(x0)
                             // .tickValues(groupData.map(d=>d.key));
                             .tickValues(groupData.map(d=>d.key));
 
-let yAxis = d3.axisLeft().scale(y);
+let yAxis = d3.axisLeft().scale(y)
+    .tickValues([0,0.25,0.5, 0.75,1]);
+
 
 // const color = d3.scaleOrdinal(d3.schemeCategory10);
 const color = d3.scaleOrdinal()
     //  .range(['#0C3383', '#EDD13B', '#D51D1D', '#E3DCFF']);
-     .range(["#9d6e5d",
-     "#5498ad",
-     "#7d7b54",
-     "#3b605c",
-     "#66977f"]);
+     .range(['#00FDFB', '#FED300','#FEA700']);
+    //  .range(["#9d6e5d",
+    //  "#5498ad",
+    //  "#7d7b54",
+    //  "#3b605c",
+    //  "#66977f"]);
 
 let svg = d3.select("#d3-b")
 

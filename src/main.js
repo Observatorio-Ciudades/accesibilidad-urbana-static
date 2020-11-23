@@ -77,7 +77,7 @@ function init() {
             
             for (let i = 0; i<csvFilter.length; i++){
                 // csvLayer[csvFilter[i].hex_id_9] =  csvFilter[i].min_supermercados/100;
-                csvLayer[csvFilter[i].hex_id_9] =  csvFilter[i][serv]/100;
+                csvLayer[csvFilter[i].hex_id_9] =  csvFilter[i][serv]/60;
                 // console.log("hex values:");
                 // console.log(csvLayer[csvFilter[i].hex_id_9]);
             }
@@ -189,7 +189,8 @@ function init() {
     for (let i = 5; i < config.chapters.length; i++) {
         let features = document.createElement('div');
         features.setAttribute('class', 'features');
-        let container = document.createElement('div');
+        // let container = document.createElement('div');
+        let container = document.getElementById(config.chapters[i].id);
         let chapter = document.createElement('div');
   
         if (i%2 != 0) {
@@ -205,14 +206,33 @@ function init() {
             features.classList.remove('lefty');
             features.classList.remove('righty');
             features.classList.add('full-chapter');
+
+
+
+            // chapter.classList.remove('marco');
+            console.log('full chapter on')
+            let imgContainer = document.createElement('div')
+            imgContainer.classList.add('img-container');
+            // let imgSlots = [];
+
+
+
+            // if (Array.isArray(config.chapters[i].image)) {
+            //     for (let j = 0; j < config.chapters[i].image.length; i++)  {
+            //         imgSlots[j] = document.createElement('div');
+            //         imgSlots[j].classList.add('img-slot');
+            //         let image = new Image();
+            //         image.src = config.chapters[i].image[j];
+            //         imgSlots[j].appendChild(image);
+            //         imgContainer.appendChild(imgSlots[j]);
+            //     }
+            //     chapter.appendChild(imgContainer);
+            //     // imgContainer.parentElement.classList.remove('marco');
+            // }
         }
   
-        // if (record.image) {
-        //     let image = new Image();
-        //     image.src = record.image;
-        //     chapter.appendChild(image);
-        // }
-        if (config.chapters[i].title) {
+        // if (config.chapters[i].title && config.chapters[i].title != "") {
+        if (config.chapters[i].id == 'mtyA' || config.chapters[i].id == 'gdlA' || config.chapters[i].id == 'qroA' || config.chapters[i].id == 'cdmxA') {
             let title = document.createElement('h3');
             title.innerText = config.chapters[i].title;
             chapter.appendChild(title);
@@ -223,14 +243,44 @@ function init() {
             story.innerHTML = config.chapters[i].description;
             chapter.appendChild(story);
         }
-  
+        
+        // if (config.chapters[i].image != '') {
+        // if (Array.isArray(config.chapters[i].image)) {
+        //     chapter.classList.remove('marco');
+        //     console.log('full chapter on')
+        //     let imgContainer = document.createElement('div')
+        //     imgContainer.classList.add('img-container');
+        //     let imgSlots = [];
+        //     for (let j = 0; j < config.chapters[i].image.length; i++)  {
+        //         imgSlots[j] = document.createElement('div');
+        //         imgSlots[j].classList.add('img-slot');
+        //         let image = new Image();
+        //         image.src = config.chapters[i].image[j];
+        //         imgSlots[j].appendChild(image);
+        //         imgContainer.appendChild(imgSlots[j]);
+        //     }
+        //     chapter.appendChild(imgContainer);
+        //     // imgContainer.parentElement.classList.remove('marco');
+        // }
 
+        // container.setAttribute('id', config.chapters[i].id);
+        container.classList.add('step');
 
-        if (!config.chapters[i].full) {
-            container.setAttribute('id', config.chapters[i].id);
-            container.classList.add('step');
-        } else {
+        // if (!config.chapters[i].full) {
+        //     // container.setAttribute('id', config.chapters[i].id);
+        //     // container.classList.add('step');
+        // } else {
+        //     // container.setAttribute('id', config.chapters[i].id);
+        //     container.classList.add('row');
+        //     // container.classList.add('step');
+
+        // }
+
+        if (config.chapters[i].full) {
+            // container.setAttribute('id', config.chapters[i].id);
             container.classList.add('row');
+            // container.classList.add('step');
+
         }
   
 
@@ -374,6 +424,9 @@ function init() {
   
     function renderHexes(map, hexagons, city) {
         // Transform the current hexagon map into a GeoJSON object
+        // d3.schemeSpectral[7];
+        // let hexColScale = d3.scaleDiverging([0.6, 0.30, 0.15, 0.1, 0.05], d3.interpolateSpectral);
+
         let geojson = geojson2h3.h3SetToFeatureCollection(
             Object.keys(hexagons),
             hex => ({value: hexagons[hex], city:city})
@@ -414,9 +467,16 @@ function init() {
             stops: [  
                 [0.05, config.colorScale[0]],
                 [0.10, config.colorScale[1]],
-                [0.30, config.colorScale[2]],
-                // [0.40, config.colorScale[3]]
-            ]
+                [0.15, config.colorScale[2]],
+                [0.30, config.colorScale[3]],
+                [0.60, config.colorScale[4]]
+                // [0.05, hexColScale(0.05)],
+                // [0.10, hexColScale(0.10)],
+                // [0.15, hexColScale(0.15)],
+                // [0.30, hexColScale(0.30)],
+                // [0.60, hexColScale(0.60)]
+            ],
+            type: 'exponential'
         });            
         // map.setPaintProperty(layerId, 'fill-color', 'rgba(255,0,0,255)');
         map.setPaintProperty(layerId, 'fill-opacity', config.fillOpacity);
@@ -511,6 +571,7 @@ function init() {
     function renderPaths(dataset, pathName, val) {
         let pathsData;
         let pathsCoords = [];
+        
 
         let pathColScale = d3.scaleQuantile()
         // let pathColScale = d3.scaleQuantize()
@@ -567,7 +628,8 @@ function init() {
                     // },
                     'paint': {
                         // 'line-color': pathColScale(val),
-                        'line-color': '#6FAFBF',
+                        // 'line-color': '#6FAFBF',
+                        'line-color': '#94F9F7',
                         'line-width': 5,
                         'line-opacity': 0.75
                         // 'line-dasharray': [2, 1]
@@ -585,7 +647,8 @@ function init() {
                     // },
                     'paint': {
                         // 'line-color': pathColScale(val),
-                        'line-color': '#EBC639',
+                        // 'line-color': '#EBC639',
+                        'line-color': '#F9E492',
                         'line-width': 5,
                         'line-opacity': 0.75
                         // 'line-dasharray': [2, 1]
@@ -790,6 +853,8 @@ function init() {
                     break;
                 case 8:
                     let chapterMtyC = config.chapters.find(chap => chap.id === response.element.id);
+                    console.log("mtyc debug step", response.element.id)
+                    console.log("mtyc bug chapter", chapterMtyC.id)
                     map.flyTo(chapterMtyC.location);
                     satMap.flyTo(chapterMtyC.location);
 
@@ -802,6 +867,19 @@ function init() {
 
                     break;
                 case 9:
+                    let chapterMtyD = config.chapters.find(chap => chap.id === response.element.id);
+                    map.flyTo(chapterMtyD.location);
+                    satMap.flyTo(chapterMtyD.location);
+
+                    map.setLayoutProperty('pathA', 'visibility', 'none');
+                    map.setLayoutProperty('pathB', 'visibility', 'none');
+                    map.setLayoutProperty('poi-labels', 'visibility', 'none');
+                    // if (satOn) {
+                    //     setSatOpacity();
+                    // }
+
+                    break;
+                case 10:
                     let chapterGdlA = config.chapters.find(chap => chap.id === response.element.id);
                     map.flyTo(chapterGdlA.location);
                     satMap.flyTo(chapterGdlA.location);
@@ -809,7 +887,7 @@ function init() {
                     map.setLayoutProperty('pathB', 'visibility', 'none');
                     map.setLayoutProperty('poi-labels', 'visibility', 'none');
                     break;
-                case 10:
+                case 11:
                     if (!satOn) {
                         setSatOpacity();
                     }
@@ -820,7 +898,7 @@ function init() {
                     map.setLayoutProperty('pathB', 'visibility', 'none');
                     map.setLayoutProperty('poi-labels', 'visibility', 'none');
                     break;
-                case 11:
+                case 12:
                     if (satOn) {
                         setSatOpacity();
                     }
@@ -830,17 +908,127 @@ function init() {
                     map.setLayoutProperty('pathA', 'visibility', 'none');
                     map.setLayoutProperty('pathB', 'visibility', 'none');
                     map.setLayoutProperty('poi-labels', 'visibility', 'none');
-                    break;
-                case 12:
-                    // let chapterGdlC = config.chapters.find(chap => chap.id === response.element.id);
-                    // map.flyTo(chapterGdlC.location);
-                    // satMap.flyTo(chapterGdlC.location);
-                    // map.setLayoutProperty('pathA', 'visibility', 'none');
-                    // map.setLayoutProperty('pathB', 'visibility', 'none');
-                    // map.setLayoutProperty('poi-labels', 'visibility', 'none');
+                    loadHexData("Querétaro","min_supermercados");
+                    if (satOn) {
+                        setSatOpacity();
+                    }
                     break;
                 case 13:
+                    let chapterGdlD = config.chapters.find(chap => chap.id === response.element.id);
+                    map.flyTo(chapterGdlD.location);
+                    satMap.flyTo(chapterGdlD.location);
+
+                    map.setLayoutProperty('pathA', 'visibility', 'none');
+                    map.setLayoutProperty('pathB', 'visibility', 'none');
+                    map.setLayoutProperty('poi-labels', 'visibility', 'none');
+                    // if (satOn) {
+                    //     setSatOpacity();
+                    // }
+
+                    break;
                 case 14:
+                    let chapterQroA = config.chapters.find(chap => chap.id === response.element.id);
+                    map.flyTo(chapterQroA.location);
+                    satMap.flyTo(chapterQroA.location);
+                    map.setLayoutProperty('pathA', 'visibility', 'none');
+                    map.setLayoutProperty('pathB', 'visibility', 'none');
+                    map.setLayoutProperty('poi-labels', 'visibility', 'none');
+                    if (hexLayers[2]) {
+                        renderHexes(map, hexLayers[2].supermercados, 'Querétaro');
+                    }
+
+                    if (satOn) {
+                        setSatOpacity();
+                    }
+                    break;
+                case 15:
+                    if (!satOn) {
+                        setSatOpacity();
+                    }
+                    let chapterQroB = config.chapters.find(chap => chap.id === response.element.id);
+                    map.flyTo(chapterQroB.location);
+                    satMap.flyTo(chapterQroB.location);
+                    map.setLayoutProperty('pathA', 'visibility', 'none');
+                    map.setLayoutProperty('pathB', 'visibility', 'none');
+                    map.setLayoutProperty('poi-labels', 'visibility', 'none');
+                    break;
+                case 16:
+                    if (satOn) {
+                        setSatOpacity();
+                    }
+                    let chapterQroC = config.chapters.find(chap => chap.id === response.element.id);
+                    map.flyTo(chapterQroC.location);
+                    satMap.flyTo(chapterQroC.location);
+                    map.setLayoutProperty('pathA', 'visibility', 'none');
+                    map.setLayoutProperty('pathB', 'visibility', 'none');
+                    map.setLayoutProperty('poi-labels', 'visibility', 'none');
+                    loadHexData("Mexico","min_supermercados");
+                    break;
+                case 17:
+                    let chapterQroD = config.chapters.find(chap => chap.id === response.element.id);
+                    map.flyTo(chapterQroD.location);
+                    satMap.flyTo(chapterQroD.location);
+
+                    map.setLayoutProperty('pathA', 'visibility', 'none');
+                    map.setLayoutProperty('pathB', 'visibility', 'none');
+                    map.setLayoutProperty('poi-labels', 'visibility', 'none');
+                    // if (satOn) {
+                    //     setSatOpacity();
+                    // }
+
+                    break;
+                case 18:
+                    let chapterCDMXA = config.chapters.find(chap => chap.id === response.element.id);
+                    map.flyTo(chapterCDMXA.location);
+                    satMap.flyTo(chapterCDMXA.location);
+                    map.setLayoutProperty('pathA', 'visibility', 'none');
+                    map.setLayoutProperty('pathB', 'visibility', 'none');
+                    map.setLayoutProperty('poi-labels', 'visibility', 'none');
+                    if (hexLayers[3]) {
+                        renderHexes(map, hexLayers[3].supermercados, 'Mexico');
+                    }
+
+                    if (satOn) {
+                        setSatOpacity();
+                    }
+                    break;
+                case 19:
+                    if (!satOn) {
+                        setSatOpacity();
+                    }
+                    let chapterCDMXB = config.chapters.find(chap => chap.id === response.element.id);
+                    map.flyTo(chapterCDMXB.location);
+                    satMap.flyTo(chapterCDMXB.location);
+                    map.setLayoutProperty('pathA', 'visibility', 'none');
+                    map.setLayoutProperty('pathB', 'visibility', 'none');
+                    map.setLayoutProperty('poi-labels', 'visibility', 'none');
+                    break;
+                case 20:
+                    if (satOn) {
+                        setSatOpacity();
+                    }
+                    let chapterCDMXC = config.chapters.find(chap => chap.id === response.element.id);
+                    map.flyTo(chapterCDMXC.location);
+                    satMap.flyTo(chapterCDMXC.location);
+                    map.setLayoutProperty('pathA', 'visibility', 'none');
+                    map.setLayoutProperty('pathB', 'visibility', 'none');
+                    map.setLayoutProperty('poi-labels', 'visibility', 'none');
+                    break;
+                case 21:
+                    let chapterCDMXD = config.chapters.find(chap => chap.id === response.element.id);
+                    map.flyTo(chapterCDMXD.location);
+                    satMap.flyTo(chapterCDMXD.location);
+
+                    map.setLayoutProperty('pathA', 'visibility', 'none');
+                    map.setLayoutProperty('pathB', 'visibility', 'none');
+                    map.setLayoutProperty('poi-labels', 'visibility', 'none');
+                    // if (satOn) {
+                    //     setSatOpacity();
+                    // }
+                    break;
+                case 22:
+                    break;
+                case 23:
                     if (!chartsOn) {
                         loadD3();
                     }
