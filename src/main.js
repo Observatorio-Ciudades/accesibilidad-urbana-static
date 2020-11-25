@@ -1,12 +1,16 @@
-function init() {
+window.onbeforeunload = function () {
+    window.scrollTo(0, 0);
+  }
 
+function init() {
+    
     let cityCoords = [
         { name: "Aguascalientes", center: [-102.291,21.881]},
         { name: "Cuernavaca", center: [-99.234,18.918]},
         { name: "Guadalajara", center: [-103.344,20.6736]},
         { name: "Mérida", center: [-89.6216,20.9677]},
         { name: "Mexicali", center: [-115.446,32.6469]},
-        { name: "Ciudad de México", center: [-99.1269,19.4978]},
+        { name: "CDMX", center: [-99.1269,19.2891]},
         { name: "Monterrey", center: [-100.309,25.6714]},
         { name: "Puebla", center: [-98.2062,19.0413]},
         { name: "Querétaro", center: [-100.392,20.5931]},
@@ -14,10 +18,8 @@ function init() {
         { name: "San Luis Potosí", center: [-100.97916,22.1498]}
     ];
 
-
-    console.log("holiii");
-    let csvLayer = {};
-    let mapLayers;
+    // let csvLayer = {};
+    // let mapLayers;
     let hexesLoaded = false;
     let hexesGenerated = false;
     let satOn = false;
@@ -66,18 +68,20 @@ function init() {
     loadHexData("Guadalajara","min_supermercados");
 
     function loadHexData(city, serv) {
+        let csvLayer = {};
         // let data = d3.csv(`data/csv-hexes/${city}_data.csv`).then(function(csv) {
         d3.csv(`data/csv-hexes/${city}_data.csv`).then(function(csv) {
-            console.log(csv);
-            console.log("holaaaaaaaa"); 
+
+            console.log("loading new hex data..."); 
+            // console.log(csv);
             let csvRaw = csv;
             // let csvFilter = csvRaw.filter(hex => hex.min_supermercados > 0);
             let csvFilter = csvRaw.filter(hex => hex[serv] > 0);
-            console.log(csvFilter); // Hello, world!
+            console.log(csvFilter); 
             
             for (let i = 0; i<csvFilter.length; i++){
                 // csvLayer[csvFilter[i].hex_id_9] =  csvFilter[i].min_supermercados/100;
-                csvLayer[csvFilter[i].hex_id_9] =  csvFilter[i][serv]/60;
+                csvLayer[csvFilter[i].hex_id_9] =  csvFilter[i][serv]/100;
                 // console.log("hex values:");
                 // console.log(csvLayer[csvFilter[i].hex_id_9]);
             }
@@ -86,32 +90,17 @@ function init() {
             
             hexesLoaded = true;
 
-            let newHexObj = {
-                city: city,
-                supermercados: csvLayer
-            }
+            // let newHexObj = {
+            //     city: city,
+            //     supermercados: csvLayer
+            // }
+            let newHexObj = {}
+            newHexObj["city"] = city;
+            newHexObj[serv] = csvLayer;
             hexLayers.push(newHexObj);
-            
-            const layer = {};
-            let h3Resolution = 9;
-            
-        //    function createDataLayer() {
-        //         json.forEach(({lat, lng}) => {
-        //         const h3Index = h3.geoToH3(lat, lng, h3Resolution);
-        //         layer[h3Index] = (layer[h3Index] || 0) + 1;
-        //         });
-        //         return normalizeLayer(layer);
-        //     }
-            
-        //     function combineLayers() {
-        //         const combined = {};
-        //         mapLayers.forEach(({hexagons, weight}) => {
-        //             Object.keys(hexagons).forEach(hex => {
-        //             combined[hex] = (combined[hex] || 0) + hexagons[hex] * weight;
-        //             });
-        //         });
-        //         return normalizeLayer(combined);
-        //     }
+            console.log("new hex object:")
+            console.log(newHexObj)
+        
             });
     }
   
@@ -387,7 +376,7 @@ function init() {
             // });
                 // renderHexesCsv(map, csvLayer);
                 // renderHexes(map, csvLayer);
-                renderHexes(map, hexLayers[0].supermercados, 'Guadalajara');
+                renderHexes(map, hexLayers[0].min_supermercados, 'Guadalajara');
                 // renderHexes(map, hexLayers[0], 'Guadalajara');
                 hexesGenerated = true;      
         }
@@ -801,9 +790,12 @@ function init() {
                     preOutroPathsChapter = config.chapters.find(chap => chap.id === response.element.id);
                     map.flyTo(preOutroPathsChapter.location);
 
-                    if (!hexesGenerated) {
-                        preOutroPathsChapter.onChapterEnter.forEach(setH3Opacity);
-                        hexesGenerated = true;
+                    // if (!hexesGenerated) {
+                    //     preOutroPathsChapter.onChapterEnter.forEach(setH3Opacity);
+                    //     hexesGenerated = true;
+                    // }
+                    if (hexesLoaded) {
+                        renderHexes(map, hexLayers[0].min_supermercados, 'Guadalajara');  
                     }
                     console.log("h3 hexes map on");
                     console.log(map);
@@ -827,7 +819,7 @@ function init() {
                     map.flyTo(chapterMtyA.location);
                     satMap.flyTo(chapterMtyA.location);
                     if (hexLayers[1]) {
-                        renderHexes(map, hexLayers[1].supermercados, 'Monterrey');
+                        renderHexes(map, hexLayers[1].min_supermercados, 'Monterrey');
                     }
 
                     if (satOn) {
@@ -908,7 +900,7 @@ function init() {
                     map.setLayoutProperty('pathA', 'visibility', 'none');
                     map.setLayoutProperty('pathB', 'visibility', 'none');
                     map.setLayoutProperty('poi-labels', 'visibility', 'none');
-                    loadHexData("Querétaro","min_supermercados");
+                    loadHexData("Queretaro","min_supermercados");
                     if (satOn) {
                         setSatOpacity();
                     }
@@ -934,7 +926,7 @@ function init() {
                     map.setLayoutProperty('pathB', 'visibility', 'none');
                     map.setLayoutProperty('poi-labels', 'visibility', 'none');
                     if (hexLayers[2]) {
-                        renderHexes(map, hexLayers[2].supermercados, 'Querétaro');
+                        renderHexes(map, hexLayers[2].min_supermercados, 'Querétaro');
                     }
 
                     if (satOn) {
@@ -962,9 +954,10 @@ function init() {
                     map.setLayoutProperty('pathA', 'visibility', 'none');
                     map.setLayoutProperty('pathB', 'visibility', 'none');
                     map.setLayoutProperty('poi-labels', 'visibility', 'none');
-                    loadHexData("Mexico","min_supermercados");
+                    loadHexData("CDMX","min_supermercados");
                     break;
                 case 17:
+                    // console.log(loaded, hexLayers[3]);
                     let chapterQroD = config.chapters.find(chap => chap.id === response.element.id);
                     map.flyTo(chapterQroD.location);
                     satMap.flyTo(chapterQroD.location);
@@ -984,9 +977,9 @@ function init() {
                     map.setLayoutProperty('pathA', 'visibility', 'none');
                     map.setLayoutProperty('pathB', 'visibility', 'none');
                     map.setLayoutProperty('poi-labels', 'visibility', 'none');
-                    if (hexLayers[3]) {
-                        renderHexes(map, hexLayers[3].supermercados, 'Mexico');
-                    }
+                    // if (hexLayers[3]) {
+                        renderHexes(map, hexLayers[3].min_supermercados, 'CDMX');
+                    // }
 
                     if (satOn) {
                         setSatOpacity();
@@ -1037,17 +1030,89 @@ function init() {
                     satMap.flyTo(currLocation);
                     // satMap.scrollZoom.enable();
                     // map.addControl(new mapboxgl.NavigationControl());
-
-                    
+                    break;
+                case 24:
+                    let currSelServ = 2;
                     let selectCity = document.getElementById("h3-dash-cities");
                     let selectHex = document.getElementById("h3-dash-hexes");
 
                     selectCity.addEventListener('change', (event) => {
                         let currSelCity = event.target.value;
+                        let currSelServLabel = "min_supermercados";
+
                         // let currSelHex = event.target.value;
-                        // console.log(`Selected ${selectCity.value}`);
-                        // console.log(`Selected ${event.target.value}`);
-                        console.log(`Selected ${currSelCity}`);
+                        console.log(`Selected ${selectCity.value}`);
+                        console.log(`Selected ${event.target.value}`);
+                        // console.log(`Selected ${selectCity.options[currSelCity-1].text}`);
+                        let currSelCityLabel = selectCity.options[currSelCity-1].text.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                        console.log(currSelCityLabel);
+                        
+                        let currHexesLoaded = false; 
+                        for (let k = 0; k < hexLayers.length; k++) {
+                            if (hexLayers[k].city == currSelCity) {
+                                console.log("already loaded");
+                                currHexesLoaded = true;
+                            } else {
+                                currHexesLoaded = false; 
+                            }
+                        }
+
+                        
+
+
+                        selectHex.addEventListener('change', (event) => {
+                            currSelServ = event.target.value;
+
+                            currSelServLabel;
+                            switch(currSelServ) {
+                                case 1:
+                                    currSelServLabel = "min_farmacias";
+                                    break;
+                                case 2:
+                                    currSelServLabel = "min_hospitales";
+                                    break;
+                                case 3:
+                                    currSelServLabel = "min_supermercados";
+                                    break;
+                                case 4:
+                                    currSelServLabel = "min_pobtot";
+                                    break;
+                                default:                                    
+                            }
+                        
+                            // if (!currHexesLoaded) {
+                            // console.log("loading selected hexes...")
+                    
+                            // let myObject = hexLayers.filter(function(element) {
+                            //     return element.city === 'Guadalajara';
+                            // })
+
+
+                            console.log("loading selected hexes...")
+                            loadHexData(currSelCityLabel,currSelServLabel);
+
+                            for (let k = 0; k < hexLayers.length; k++) {
+                                if (hexLayers[k].city == currSelCityLabel) {
+                                    console.log(`rendering hexes for ${hexLayers[k].city}, ${currSelServLabel}`);
+                                    renderHexes(map,hexLayers[k][currSelServLabel],currSelCityLabel);
+                                } else {
+                                }
+                            }
+                            // console.log("ready to draw hexes:");     // Prints name to console
+                            // console.log(myObject.city, currSelServLabel);     // Prints name to console
+                            // loadHexData(currSelCityLabel,currSelServLabel)
+                                // .then(renderHexes(map,hexLayers[]));
+                                // bucar valor de ciudad y serv por método find, liberar orden index
+                                // https://stackoverflow.com/questions/9907419/how-to-get-a-key-in-a-javascript-object-by-its-value
+                                // loadHexData(currSelCityLabel,"min_supermercados");
+                            // }
+                        })
+
+
+
+
+
+               
 
                         // switch (currSelCity) {
                         //     case "1":
@@ -1072,14 +1137,14 @@ function init() {
                         // result.textContent = `You like ${event.target.value}`;
                       });
 
-                    map.on('click', function(e) {
-                        map.scrollZoom.enable();
-                        map.addControl(new mapboxgl.NavigationControl());
+                    // map.on('click', function(e) {
+                    //     map.scrollZoom.enable();
+                    //     map.addControl(new mapboxgl.NavigationControl());
 
-                        // The event object (e) contains information like the
-                        // coordinates of the point on the map that was clicked.
-                        console.log('A click event has occurred at ' + e.lngLat);
-                    });
+                    //     // The event object (e) contains information like the
+                    //     // coordinates of the point on the map that was clicked.
+                    //     console.log('A click event has occurred at ' + e.lngLat);
+                    // });
                     break;
 
                 // case 12:

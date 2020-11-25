@@ -130,7 +130,10 @@ height = 480 - margin.top - margin.bottom;
 
 let x0  = d3.scaleBand().rangeRound([0, width], .5);
 let x1  = d3.scaleBand();
-let y   = d3.scaleLinear().rangeRound([height, 0]);
+// let y   = d3.scaleLinear().rangeRound([height, 0]);
+let y   = d3.scaleLinear()
+  .domain([0, 1])
+  .range([height, 0])
 
 let xAxis = d3.axisBottom().scale(x0)
                             // .tickFormat(d3.timeFormat("Week %V"))
@@ -138,14 +141,29 @@ let xAxis = d3.axisBottom().scale(x0)
                             // .tickValues(groupData.map(d=>d.key));
                             .tickValues(groupData.map(d=>d.key));
 
-let yAxis = d3.axisLeft().scale(y)
-    .tickValues([0,0.25,0.5, 0.75,1]);
+let yAxis = d3.axisLeft()
+  // .ticks(3)
+  .scale(y);
+
+  yAxis.tickValues([0,0.25,0.5, 0.75,1]);
+
 
 
 // const color = d3.scaleOrdinal(d3.schemeCategory10);
 const color = d3.scaleOrdinal()
     //  .range(['#0C3383', '#EDD13B', '#D51D1D', '#E3DCFF']);
-     .range(['#00FDFB', '#FED300','#FEA700']);
+    //  .range(['#00FDFB', '#FED300','#FEA700']);
+    //  .range(
+    //   ["#b3a744",
+    //     "#ca653e",
+    //     "#63b76b"
+    //   ]     
+      .range(
+      ["#4ae0ee",
+      "#f1c062",
+      "#EF9284"
+      ]
+     );
     //  .range(["#9d6e5d",
     //  "#5498ad",
     //  "#7d7b54",
@@ -178,13 +196,14 @@ svg.append("g")
   .attr("class", "y axis")
   .style('opacity','0')
   .call(yAxis)
-    .append("text")
-        .attr("transform", "rotate(-90)")
-        .attr("y", 6)
-        .attr("dy", ".71em")
-        .style("text-anchor", "end")
-        .style('font-weight','bold')
-        .text("Value");
+    // .append("text")
+    //     .attr("transform", "rotate(-90)")
+    //     .attr("y", 6)
+    //     .attr("dy", ".71em")
+    //     .style("text-anchor", "end")
+    //     .style('font-weight','bold')
+    //     .style('fill', 'white')
+    //     .text("Value");
 
 svg.select('.y').transition().duration(500).delay(1300).style('opacity','1');
 
@@ -203,12 +222,12 @@ let slice = svg.selectAll(".slice")
           .style("opacity","0.75")
           .attr("y", function(d) { return y(0); })
           .attr("height", function(d) { return height - y(0); })
-        .on("mouseover", function(d) {
-            d3.select(this).style("fill", d3.rgb(color(d.grpName)).darker(2));
-        })
-        .on("mouseout", function(d) {
-            d3.select(this).style("fill", color(d.grpName));
-        });
+        // .on("mouseover", function(d) {
+        //     d3.select(this).style("fill", d3.rgb(color(d.grpName)).darker(2));
+        // })
+        // .on("mouseout", function(d) {
+        //     d3.select(this).style("fill", color(d.grpName));
+        // });
 
 
 slice.selectAll("rect")
@@ -237,9 +256,13 @@ legend.append("text")
   .attr("y", 9)
   .attr("dy", ".35em")
   .style("text-anchor", "end")
+  .style('fill', 'white')
+  .style('font-family', 'Arimo')
+  .style('letter-spacing', '-0.01em')
+  .style('font-size', '18px')
   .text(function(d) {return d; });
 
-legend.transition().duration(500).delay(function(d,i){ return 1300 + 100 * i; }).style("opacity","1");
+legend.transition().duration(500).delay(function(d,i){ return 1300 + 200 * i; }).style("opacity","1");
 
 //  });
   function responsivefy(svg) {

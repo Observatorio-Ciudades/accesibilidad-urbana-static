@@ -29,7 +29,8 @@
         <link href='lib/mapbox-gl.css' rel='stylesheet' />
         <script src="lib/intersection-observer.js"></script>
         <script src="lib/scrollama.js"></script>
-        <script src="lib/d3-v5-min.js"></script>
+        <!-- <script src="lib/d3-v5-min.js"></script> -->
+        <script src="https://d3js.org/d3.v6.min.js"></script>
         <script src="lib/d3-selection-multi.js"></script>
         <script src="lib/d3-color.js"></script>
         <script src="lib/d3-interpolate.js"></script>
@@ -311,7 +312,7 @@
                         <select id = "h3-dash-hexes" class="h3-dash-select">
                             <option value = "1">Ver acceso a farmacias</option>
                             <option value = "2">Ver acceso a hospitales</option>
-                            <option value = "3">Ver acceso a supermercados</option>
+                            <option value = "3" selected>Ver acceso a supermercados</option>
                             <option value = "4">Ver Densidad poblacional</option>
                             <!-- <option value = "5">Ver marginación</option> -->
                         </select>
@@ -320,17 +321,17 @@
                     <div class="h3-dash-select-cont">
                         <!-- <p>en:</p> -->
                         <select id = "h3-dash-cities" class="h3-dash-select" value="3">
-                            <option value = "1">en Aguascalientes</option>
-                            <option value = "2">en Cuernavaca</option>
-                            <option value = "3" selected>en Guadalajara</option>
-                            <option value = "4">en Mérida</option>
-                            <option value = "5">en Mexicali</option>
-                            <option value = "6">en Ciudad de México</option>
-                            <option value = "7">en Monterrey</option>
-                            <option value = "8">en Puebla</option>
-                            <option value = "9">en Querétaro</option>
-                            <option value = "10">en Saltillo</option>
-                            <option value = "11">en San Luis Potosí</option>
+                            <option value = "1">Aguascalientes</option>
+                            <option value = "2">Cuernavaca</option>
+                            <option value = "3" selected>Guadalajara</option>
+                            <option value = "4">Mérida</option>
+                            <option value = "5">Mexicali</option>
+                            <option value = "6">CDMX</option>
+                            <option value = "7">Monterrey</option>
+                            <option value = "8">Puebla</option>
+                            <option value = "9">Querétaro</option>
+                            <option value = "10">Saltillo</option>
+                            <option value = "11">San Luis Potosí</option>
                         </select>
                     </div>
 

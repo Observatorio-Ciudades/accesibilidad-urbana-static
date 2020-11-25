@@ -196,7 +196,7 @@ let config = {
             description: 'La zona comenzó a urbanizarse con asentamientos informales durante la década de 1960 con migrantes originarios de zonas rurales del estado de Nuevo León y de otras partes del país, que llegaron en busca de oportunidades de empleo principalmente en la construcción e industria.<br><br>El uso de suelo en la parte de los lomeríos es predominantemente habitacional, con viviendas construidas progresivamente por los habitantes. El 33% de las viviendas en la zona tienen una situación irregular en cuanto a la tenencia de propiedad.<br><br>En las partes bajas del polígono, se encuentran las calles que conectan la zona con avenidas principales de la ciudad, y en torno a las cuales se concentran los comercios, servicios y equipamientos educativos y de salud, por lo que las personas que viven en los cerros tienen que desplazarse hasta las partes bajas para acceder a estos servicios.',
             location: {
                 center: [-100.3784997,  25.6989061],
-                zoom: 15,
+                zoom: 14,
                 pitch: 50,
                 bearing: 0.00
             },
@@ -305,7 +305,7 @@ let config = {
             description: 'En el área de estudio conviven la ​vivienda popular de la década de 1970, vivienda social en formato de macromanzana de la década de 1980, y un desarrollo de reciente urbanización que aglomera varios conjuntos cerrados de vivienda privada en baja densidad y zonas comerciales y de servicios. El uso predominante en las zonas populares es el habitacional de alta densidad con usos de suelo mixto en las calles principales. Mientras que el equipamiento de escala central ocupa la mayor extensión de suelo como el hospital, teatro, un museo para niños y centros comerciales. La zona no cuenta con ningún espacio público y las áreas verdes son de carácter privado.',
             location: {
                 center: [-103.44416667,  20.72305556],
-                zoom: 16,
+                zoom: 15,
                 pitch: 0,
                 bearing: 0,
                 speed: 2,
@@ -466,7 +466,7 @@ let config = {
             description: 'En su mayor área, la zona histórica está caracterizada por una retícula rectangular, también se puede identificar una sección con una retícula de plato roto, en el área dónde vivían los pueblos indígenas. El centro histórico tiene una gran diversidad de calles, en su mayoría son angostas y algunas de ellas que han sido diseñadas dando preferencia al peatón, convirtiéndolas en andadores peatonales. \n El centro histórico de la ciudad está dotado de comercios y servicios,sirviendo a una población que no reside en esta zona, ya que el 26.82 % de los inmuebles del centro histórico no tienen ningún uso ni actividad, se encuentran en completo abandono.',
             location: {
                 center: [-100.3942692,  20.5898449],
-                zoom: 15,
+                zoom: 14,
                 pitch: 0,
                 bearing: 0,
                 speed: 2,
@@ -563,7 +563,7 @@ let config = {
             description: 'En el área de estudio existen 27 equipamientos educativos, desde nivel preescolar hasta universitario, tanto públicos como privados lo cual constituye una importante población jóven que se traslada a esta zona debido al impacto regional que tienen los equipamientos de educación media superior y superior. Sin embargo, la población de la zona tiene un nivel de escolaridad promedio correspondiente a 11.4 años y solamente el 51.22% de la población mayor de 18 años cuenta con educación pos-básica.\nEn la zona se concentran más de 650 unidades económicas de gran y pequeña escala, el 45.46% de su población es económicamente activa, la mayoría son hombres.',
             location: {
                 center: [-99.14000000, 19.28916667],
-                zoom: 17,
+                zoom: 16,
                 pitch: 0,
                 bearing: 0,
                 speed: 2,
@@ -627,7 +627,7 @@ let config = {
             description: 'Narrativa de las condiciones de accesibilidad / Distancia a los satisfactores...',
             location: {
                 center: [-99.14000000, 19.28916667],
-                zoom: 15,
+                zoom: 13,
                 pitch: 0,
                 bearing: 0,
                 speed: 2,

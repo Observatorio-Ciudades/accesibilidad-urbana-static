@@ -298,6 +298,7 @@ p {
   justify-content: center;
   flex-wrap: wrap;
   width: 70%;
+  padding-bottom: 2em;
 }
 
 #mtyC > .img-container > .img-slot {
@@ -354,10 +355,17 @@ p {
 
 .axis path,
 .axis line {
-  font: 10px sans-serif;
+  font: 12px Arimo sans-serif;
   fill: none;
-  stroke: #000;
+  stroke: white;
   shape-rendering: crispEdges;
+}
+
+.axis text {
+  font-size: 12px;
+  font-family: 'Arimo', sans-serif;
+  fill: white;
+  stroke: none;
 }
 
 .x.axis path {
@@ -369,7 +377,7 @@ p {
   /* background: #81CDE0; */
   background: #1A1919;
   margin: 0;
-  padding: 1em 0 2em 0;
+  padding: 1em 0 4em 0;
 
 }
 
