@@ -18,6 +18,11 @@ function init() {
         { name: "San Luis Potosí", center: [-100.97916,22.1498]}
     ];
 
+    let currSelCityLabel = "Guadalajara"
+    let currSelCity = 3;
+    let currSelServ = 3;
+    let currSelServLabel = "min_supermercados";
+
     // let csvLayer = {};
     // let mapLayers;
     let hexesLoaded = false;
@@ -67,7 +72,7 @@ function init() {
 
     loadHexData("Guadalajara","min_supermercados");
 
-    function loadHexData(city, serv) {
+    async function loadHexData(city, serv) {
         let csvLayer = {};
         // let data = d3.csv(`data/csv-hexes/${city}_data.csv`).then(function(csv) {
         d3.csv(`data/csv-hexes/${city}_data.csv`).then(function(csv) {
@@ -367,20 +372,20 @@ function init() {
     //     return layerTypes[layerType];
     // }
 
-    function setH3Opacity() {
-        if (hexesLoaded) {
+    // function setH3Opacity() {
+    //     if (hexesLoaded) {
             
-            //     let paintProps = getLayerPaintType(layer.layer);
-            //     paintProps.forEach(function (prop) {
-            //     map.setPaintProperty(layer.layer, prop, layer.opacity);
-            // });
-                // renderHexesCsv(map, csvLayer);
-                // renderHexes(map, csvLayer);
-                renderHexes(map, hexLayers[0].min_supermercados, 'Guadalajara');
-                // renderHexes(map, hexLayers[0], 'Guadalajara');
-                hexesGenerated = true;      
-        }
-    }
+    //         //     let paintProps = getLayerPaintType(layer.layer);
+    //         //     paintProps.forEach(function (prop) {
+    //         //     map.setPaintProperty(layer.layer, prop, layer.opacity);
+    //         // });
+    //             // renderHexesCsv(map, csvLayer);
+    //             // renderHexes(map, csvLayer);
+    //             renderHexes(map, hexLayers[0].min_supermercados, 'Guadalajara');
+    //             // renderHexes(map, hexLayers[0], 'Guadalajara');
+    //             hexesGenerated = true;      
+    //     }
+    // }
 
 
     // let layerIDs = []; // Will contain a list used to filter against.
@@ -411,13 +416,13 @@ function init() {
         });
     }
   
-    function renderHexes(map, hexagons, city) {
+    async function renderHexes(map, hexagons, city) {
         // Transform the current hexagon map into a GeoJSON object
         // d3.schemeSpectral[7];
         // let hexColScale = d3.scaleDiverging([0.6, 0.30, 0.15, 0.1, 0.05], d3.interpolateSpectral);
 
         let geojson = geojson2h3.h3SetToFeatureCollection(
-            Object.keys(hexagons),
+            await Object.keys(hexagons),
             hex => ({value: hexagons[hex], city:city})
         );
         console.log("drawing hexes");
@@ -977,9 +982,9 @@ function init() {
                     map.setLayoutProperty('pathA', 'visibility', 'none');
                     map.setLayoutProperty('pathB', 'visibility', 'none');
                     map.setLayoutProperty('poi-labels', 'visibility', 'none');
-                    // if (hexLayers[3]) {
+                    if (hexLayers[3]) {
                         renderHexes(map, hexLayers[3].min_supermercados, 'CDMX');
-                    // }
+                    }
 
                     if (satOn) {
                         setSatOpacity();
@@ -1032,87 +1037,28 @@ function init() {
                     // map.addControl(new mapboxgl.NavigationControl());
                     break;
                 case 24:
-                    let currSelServ = 2;
                     let selectCity = document.getElementById("h3-dash-cities");
                     let selectHex = document.getElementById("h3-dash-hexes");
 
                     selectCity.addEventListener('change', (event) => {
-                        let currSelCity = event.target.value;
-                        let currSelServLabel = "min_supermercados";
-
+                        currSelCity = event.target.value;
                         // let currSelHex = event.target.value;
                         console.log(`Selected ${selectCity.value}`);
                         console.log(`Selected ${event.target.value}`);
                         // console.log(`Selected ${selectCity.options[currSelCity-1].text}`);
-                        let currSelCityLabel = selectCity.options[currSelCity-1].text.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                        currSelCityLabel = selectCity.options[currSelCity-1].text.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
                         console.log(currSelCityLabel);
                         
                         let currHexesLoaded = false; 
-                        for (let k = 0; k < hexLayers.length; k++) {
-                            if (hexLayers[k].city == currSelCity) {
-                                console.log("already loaded");
-                                currHexesLoaded = true;
-                            } else {
-                                currHexesLoaded = false; 
-                            }
-                        }
+                        // for (let k = 0; k < hexLayers.length; k++) {
+                        //     if (hexLayers[k].city == currSelCity) {
+                        //         console.log("already loaded");
+                        //         currHexesLoaded = true;
+                        //     } else {
+                        //         currHexesLoaded = false; 
+                        //     }
+                        // }
 
-                        
-
-
-                        selectHex.addEventListener('change', (event) => {
-                            currSelServ = event.target.value;
-
-                            currSelServLabel;
-                            switch(currSelServ) {
-                                case 1:
-                                    currSelServLabel = "min_farmacias";
-                                    break;
-                                case 2:
-                                    currSelServLabel = "min_hospitales";
-                                    break;
-                                case 3:
-                                    currSelServLabel = "min_supermercados";
-                                    break;
-                                case 4:
-                                    currSelServLabel = "min_pobtot";
-                                    break;
-                                default:                                    
-                            }
-                        
-                            // if (!currHexesLoaded) {
-                            // console.log("loading selected hexes...")
-                    
-                            // let myObject = hexLayers.filter(function(element) {
-                            //     return element.city === 'Guadalajara';
-                            // })
-
-
-                            console.log("loading selected hexes...")
-                            loadHexData(currSelCityLabel,currSelServLabel);
-
-                            for (let k = 0; k < hexLayers.length; k++) {
-                                if (hexLayers[k].city == currSelCityLabel) {
-                                    console.log(`rendering hexes for ${hexLayers[k].city}, ${currSelServLabel}`);
-                                    renderHexes(map,hexLayers[k][currSelServLabel],currSelCityLabel);
-                                } else {
-                                }
-                            }
-                            // console.log("ready to draw hexes:");     // Prints name to console
-                            // console.log(myObject.city, currSelServLabel);     // Prints name to console
-                            // loadHexData(currSelCityLabel,currSelServLabel)
-                                // .then(renderHexes(map,hexLayers[]));
-                                // bucar valor de ciudad y serv por método find, liberar orden index
-                                // https://stackoverflow.com/questions/9907419/how-to-get-a-key-in-a-javascript-object-by-its-value
-                                // loadHexData(currSelCityLabel,"min_supermercados");
-                            // }
-                        })
-
-
-
-
-
-               
 
                         // switch (currSelCity) {
                         //     case "1":
@@ -1135,7 +1081,81 @@ function init() {
                         
                         // const result = document.querySelector('.result');
                         // result.textContent = `You like ${event.target.value}`;
+                        loadHexData(currSelCityLabel,currSelServLabel);
+                        changeHexes();
+                            // for (let k = 0; k < hexLayers.length; k++) {
+                            //     if (hexLayers[k].city == currSelCityLabel) {
+                            //         let currObj = hexLayers.find(obj => obj.city == currSelCityLabel);
+                            //         console.log(`fetching ${currObj.city}`);
+
+                            //         // console.log(`rendering hexes for ${hexLayers[k].city}, ${currSelServLabel}`);
+                            //         // console.log(`rendering hexes of ${hexLayers[k]}`);
+                            //         // console.log(`rendering hexes of ${hexLayers[k][currSelServLabel]}`);
+    
+                            //         // if (hexLayers[k][currSelServLabel]) {
+                            //         // renderHexes(map, hexLayers[k].min_supermercados, currSelCityLabel);
+                            //         // renderHexes(map, hexLayers[k][currSelServLabel], currSelCityLabel);
+                            //         // }
+    
+    
+                            //         // renderHexes(map,hexLayers[k][currSelServLabel],currSelCityLabel);
+                            //     // } else {
+                            //     }
+                            // }
+
+
                       });
+
+                      selectHex.addEventListener('change', (event) => {
+                        currSelServ = event.target.value;
+                        console.log(`selected serv option ${currSelServ}`);
+
+                        switch(currSelServ) {
+                            case "1":
+                                currSelServLabel = "min_farmacias";
+                                break;
+                            case "2":
+                                currSelServLabel = "min_hospitales";
+                                break;
+                            case "3":
+                                currSelServLabel = "min_supermercados";
+                                break;
+                            case "4":
+                                currSelServLabel = "min_pobtot";
+                                break;
+                            default:                                    
+                        }
+
+                        
+                    
+                        // if (!currHexesLoaded) {
+                        // console.log("loading selected hexes...")
+                
+                        // let myObject = hexLayers.filter(function(element) {
+                        //     return element.city === 'Guadalajara';
+                        // })
+
+
+                        console.log("loading selected hexes...")
+                        loadHexData(currSelCityLabel,currSelServLabel);
+                        changeHexes();
+
+                        // for (let k = 0; k < hexLayers.length; k++) {
+                        //     if (hexLayers[k].city == currSelCityLabel) {
+                        //         console.log(`rendering hexes for ${hexLayers[k].city}, ${currSelServLabel}`);
+                        //         renderHexes(map,hexLayers[k][currSelServLabel],currSelCityLabel);
+                        //     } else {
+                        //     }
+                        // }
+                        // console.log("ready to draw hexes:");     // Prints name to console
+                        // console.log(myObject.city, currSelServLabel);     // Prints name to console
+                        // loadHexData(currSelCityLabel,currSelServLabel)
+                            // .then(renderHexes(map,hexLayers[]));
+                            // bucar valor de ciudad y serv por método find, liberar orden index
+                            // https://stackoverflow.com/questions/9907419/how-to-get-a-key-in-a-javascript-object-by-its-value
+                            // loadHexData(currSelCityLabel,"min_supermercados");
+                        // }
+                    })
 
                     // map.on('click', function(e) {
                     //     map.scrollZoom.enable();
@@ -1203,6 +1223,30 @@ function init() {
     //     console.log(await hexLayers);
     //     renderHexes(map, await hexLayers[2].supermercados, city);
     // }
+
+    async function changeHexes() {
+        for (let k = 0; k < hexLayers.length; k++) {
+            if (await hexLayers[k].city == currSelCityLabel) {
+                let currObj = hexLayers.find(obj => obj.city == currSelCityLabel);
+                console.log(`fetching ${currObj.city}`);
+                renderHexes(map,hexLayers[k][currSelServLabel],currSelCityLabel);
+
+
+                // console.log(`rendering hexes for ${hexLayers[k].city}, ${currSelServLabel}`);
+                // console.log(`rendering hexes of ${hexLayers[k]}`);
+                // console.log(`rendering hexes of ${hexLayers[k][currSelServLabel]}`);
+
+                // if (hexLayers[k][currSelServLabel]) {
+                // renderHexes(map, hexLayers[k].min_supermercados, currSelCityLabel);
+                // renderHexes(map, hexLayers[k][currSelServLabel], currSelCityLabel);
+                // }
+
+
+                // renderHexes(map,hexLayers[k][currSelServLabel],currSelCityLabel);
+            // } else {
+            }
+        }
+    }
     
   
     // setup resize event
