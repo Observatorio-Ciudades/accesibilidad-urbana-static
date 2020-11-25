@@ -23,10 +23,7 @@ function init() {
     let currSelServ = 3;
     let currSelServLabel = "min_supermercados";
 
-    // let csvLayer = {};
-    // let mapLayers;
     let hexesLoaded = false;
-    let hexesGenerated = false;
     let satOn = false;
     let hexLayers = [];
 
@@ -74,7 +71,6 @@ function init() {
 
     async function loadHexData(city, serv) {
         let csvLayer = {};
-        // let data = d3.csv(`data/csv-hexes/${city}_data.csv`).then(function(csv) {
         d3.csv(`data/csv-hexes/${city}_data.csv`).then(function(csv) {
 
             console.log("loading new hex data..."); 
@@ -87,99 +83,34 @@ function init() {
             for (let i = 0; i<csvFilter.length; i++){
                 // csvLayer[csvFilter[i].hex_id_9] =  csvFilter[i].min_supermercados/100;
                 csvLayer[csvFilter[i].hex_id_9] =  csvFilter[i][serv]/100;
-                // console.log("hex values:");
-                // console.log(csvLayer[csvFilter[i].hex_id_9]);
             }
-            // console.log("csvLayer"); 
-            // console.log(csvLayer);
             
             hexesLoaded = true;
 
-            // let newHexObj = {
-            //     city: city,
-            //     supermercados: csvLayer
-            // }
             let newHexObj = {}
             newHexObj["city"] = city;
             newHexObj[serv] = csvLayer;
             hexLayers.push(newHexObj);
             console.log("new hex object:")
             console.log(newHexObj)
-        
             });
     }
   
-
   
-  
-    function normalizeLayer(layer, baseAtZero = false) {
-        const hexagons = Object.keys(layer);
-        // Pass one, get max
-        const max = hexagons.reduce((max, hex) => Math.max(max, layer[hex]), -Infinity);
-        const min = baseAtZero ? hexagons.reduce((min, hex) => Math.min(min, layer[hex]), Infinity) : 0;
-        // Pass two, normalize
-        hexagons.forEach(hex => {
-            layer[hex] = (layer[hex] - min) / (max - min); 
-        });
-        return layer;
-    }
-  
-    let layerTypes = {
-        'fill': ['fill-opacity'],
-        'line': ['line-opacity'],
-        'circle': ['circle-opacity', 'circle-stroke-opacity'],
-        'symbol': ['icon-opacity', 'text-opacity'],
-        'raster': ['raster-opacity'],
-        'fill-extrusion': ['fill-extrusion-opacity']
-    }
-  
-    let alignments = {
-        'left': 'lefty',
-        'center': 'centered',
-        'right': 'righty'
-    }
-  
-    // function getLayerPaintType(layer) {
-    //     let layerType = map.getLayer(layer).type;
-    //     return layerTypes[layerType];
-    // }
-  
-    // function setH3Opacity(layer) {
-    //     let paintProps = getLayerPaintType(layer.layer);
-    //     paintProps.forEach(function (prop) {
-    //         map.setPaintProperty(layer.layer, prop, layer.opacity);
+    // function normalizeLayer(layer, baseAtZero = false) {
+    //     const hexagons = Object.keys(layer);
+    //     // Pass one, get max
+    //     const max = hexagons.reduce((max, hex) => Math.max(max, layer[hex]), -Infinity);
+    //     const min = baseAtZero ? hexagons.reduce((min, hex) => Math.min(min, layer[hex]), Infinity) : 0;
+    //     // Pass two, normalize
+    //     hexagons.forEach(hex => {
+    //         layer[hex] = (layer[hex] - min) / (max - min); 
     //     });
+    //     return layer;
     // }
   
     let story = document.getElementById('story');
   
-    // let header = document.createElement('div');
-    // if (config.title) {
-    //     let titleText = document.createElement('h1');
-    //     titleText.innerText = config.title;
-    //     header.appendChild(titleText);
-    // }
-  
-    // if (config.subtitle) {
-    //     let subtitleText = document.createElement('h2');
-    //     subtitleText.innerText = config.subtitle;
-    //     header.appendChild(subtitleText);
-    // }
-  
-    // if (config.byline) {
-    //     let bylineText = document.createElement('p');
-    //     bylineText.innerText = config.byline;
-    //     header.appendChild(bylineText);
-    // }
-  
-    // if (header.innerText.length > 0) {
-    //     header.classList.add(config.theme);
-    //     header.setAttribute('id', 'header');
-    //     story.appendChild(header);
-    // }
-
-    // config.chapters.forEach((record, idx) => {
-
     for (let i = 5; i < config.chapters.length; i++) {
         let features = document.createElement('div');
         features.setAttribute('class', 'features');
@@ -201,28 +132,10 @@ function init() {
             features.classList.remove('righty');
             features.classList.add('full-chapter');
 
-
-
             // chapter.classList.remove('marco');
             console.log('full chapter on')
             let imgContainer = document.createElement('div')
             imgContainer.classList.add('img-container');
-            // let imgSlots = [];
-
-
-
-            // if (Array.isArray(config.chapters[i].image)) {
-            //     for (let j = 0; j < config.chapters[i].image.length; i++)  {
-            //         imgSlots[j] = document.createElement('div');
-            //         imgSlots[j].classList.add('img-slot');
-            //         let image = new Image();
-            //         image.src = config.chapters[i].image[j];
-            //         imgSlots[j].appendChild(image);
-            //         imgContainer.appendChild(imgSlots[j]);
-            //     }
-            //     chapter.appendChild(imgContainer);
-            //     // imgContainer.parentElement.classList.remove('marco');
-            // }
         }
   
         // if (config.chapters[i].title && config.chapters[i].title != "") {
@@ -238,37 +151,7 @@ function init() {
             chapter.appendChild(story);
         }
         
-        // if (config.chapters[i].image != '') {
-        // if (Array.isArray(config.chapters[i].image)) {
-        //     chapter.classList.remove('marco');
-        //     console.log('full chapter on')
-        //     let imgContainer = document.createElement('div')
-        //     imgContainer.classList.add('img-container');
-        //     let imgSlots = [];
-        //     for (let j = 0; j < config.chapters[i].image.length; i++)  {
-        //         imgSlots[j] = document.createElement('div');
-        //         imgSlots[j].classList.add('img-slot');
-        //         let image = new Image();
-        //         image.src = config.chapters[i].image[j];
-        //         imgSlots[j].appendChild(image);
-        //         imgContainer.appendChild(imgSlots[j]);
-        //     }
-        //     chapter.appendChild(imgContainer);
-        //     // imgContainer.parentElement.classList.remove('marco');
-        // }
-
-        // container.setAttribute('id', config.chapters[i].id);
         container.classList.add('step');
-
-        // if (!config.chapters[i].full) {
-        //     // container.setAttribute('id', config.chapters[i].id);
-        //     // container.classList.add('step');
-        // } else {
-        //     // container.setAttribute('id', config.chapters[i].id);
-        //     container.classList.add('row');
-        //     // container.classList.add('step');
-
-        // }
 
         if (config.chapters[i].full) {
             // container.setAttribute('id', config.chapters[i].id);
@@ -280,7 +163,6 @@ function init() {
 
         if (i === 0) {
             container.classList.add('active');
-
         }
 
   
@@ -367,34 +249,6 @@ function init() {
     }
   
 
-    // function getLayerPaintType(layer) {
-    //     var layerType = map.getLayer(layer).type;
-    //     return layerTypes[layerType];
-    // }
-
-    // function setH3Opacity() {
-    //     if (hexesLoaded) {
-            
-    //         //     let paintProps = getLayerPaintType(layer.layer);
-    //         //     paintProps.forEach(function (prop) {
-    //         //     map.setPaintProperty(layer.layer, prop, layer.opacity);
-    //         // });
-    //             // renderHexesCsv(map, csvLayer);
-    //             // renderHexes(map, csvLayer);
-    //             renderHexes(map, hexLayers[0].min_supermercados, 'Guadalajara');
-    //             // renderHexes(map, hexLayers[0], 'Guadalajara');
-    //             hexesGenerated = true;      
-    //     }
-    // }
-
-
-    // let layerIDs = []; // Will contain a list used to filter against.
-    // let filterInput = document.getElementById('filter-input');
-
-    // function filterPlace() {
-
-    // }
-
     function renderPoints() {
         map.addSource('points', {
             'type': 'geojson',
@@ -477,90 +331,6 @@ function init() {
     }
   
   
-    // function renderHexesCsv(map, hexagons) {
-    //     // Transform the current hexagon map into a GeoJSON object
-    //     const geojson = geojson2h3.h3SetToFeatureCollection(
-    //         Object.keys(hexagons),
-    //         hex => ({value: hexagons[hex]})
-    //     );
-    //     // console.log("geojson:");
-    //     console.log("drawing hexes");
-    //     console.log(geojson);
-        
-        
-    //     const sourceId = 'h3-hexes';
-    //     const layerId = `${sourceId}-layer`;
-    //     let source = map.getSource(sourceId);
-        
-    //     // Add the source and layer if we haven't created them yet
-    //     if (!source) {
-    //         map.addSource(sourceId, {
-    //         type: 'geojson',
-    //         data: geojson
-    //         });
-    //         map.addLayer({
-    //         id: layerId,
-    //         source: sourceId,
-    //         type: 'fill',
-    //         interactive: false,
-    //         paint: {
-    //             'fill-outline-color': 'rgba(0,0,0,0)',
-    //             'fill-opacity': 0,
-    //         }
-    //         });
-    //         source = map.getSource(sourceId);
-    //     }
-  
-    //     // Update the geojson data
-    //     source.setData(geojson);
-        
-    //     // Update the layer paint properties, using the current config values
-    //     map.setPaintProperty(layerId, 'fill-color', {
-    //         property: 'value',
-    //         stops: [
-    //         [0, "red"],
-    //         [100, "orange"],
-    //         [200, "yellow"]        
-    //         // [0, config.colorScale[0]],
-    //         // [100, config.colorScale[1]],
-    //         // [200, config.colorScale[2]]
-    //         ]
-    //     });            
-    //     // map.setPaintProperty(layerId, 'fill-color', 'rgba(255,0,0,255)');
-    //     map.setPaintProperty(layerId, 'fill-opacity', config.fillOpacity);
-    // }
-  
-    // function renderAreas(map, hexagons) {
-    //     // Transform the current hexagon map into a GeoJSON object
-    //     let geojson = geojson2h3.h3SetToFeature(
-    //         Object.keys(hexagons).filter(hex => hexagons[hex] > config.areaThreshold)
-    //     );
-        
-    //     const sourceId = 'h3-hex-areas';
-    //     const layerId = `${sourceId}-layer`;
-    //     let source = map.getSource(sourceId);
-        
-    //     // Add the source and layer if we haven't created them yet
-    //     if (!source) {
-    //         map.addSource(sourceId, {
-    //         type: 'geojson',
-    //         data: geojson
-    //         });
-    //         map.addLayer({
-    //         id: layerId,
-    //         source: sourceId,
-    //         type: 'line',
-    //         interactive: false,
-    //         paint: {
-    //             'line-width': 3,
-    //             'line-color': config.colorScale[2],
-    //         }
-    //         });
-    //         source = map.getSource(sourceId);
-    //     }
-    //     // Update the geojson data
-    //     source.setData(geojson);
-    // }
 
     function renderPaths(dataset, pathName, val) {
         let pathsData;
@@ -701,15 +471,9 @@ function init() {
             
               switch(response.index) {
                 case 0: 
-                
                     portadaChapter = config.chapters.find(chap => chap.id === response.element.id);
                     map.flyTo(portadaChapter.location);
-                    // map.setLayoutProperty('h3-hexes-layer', 'visibility', 'none');
 
-                    // map.setLayoutProperty('pathA', 'visibility', 'visible');
-                    // map.setLayoutProperty('poi-labels', 'visibility', 'visible');
-
-                    // portadaChapter.onChapterEnter.forEach(setH3Opacity);
                     console.log("holiii switch");
                     let pathALayer = map.getLayer('pathA');
                     let pathBLayer = map.getLayer('pathB');
@@ -724,6 +488,9 @@ function init() {
                     if(typeof poiLabels !== 'undefined') {
                         map.setLayoutProperty('poi-labels', 'visibility', 'none');
                     }
+                    if (satOn) {
+                        setSatOpacity();
+                    }
                     break;
 
                 case 1: 
@@ -732,81 +499,33 @@ function init() {
                         renderPaths("data/edges_route_min_02.json", "pathA", 0.07);
                         pathAOn = true;
                     }
-
-                    // if(typeof pathALayer !== 'undefined' || typeof pathBLayer !== 'undefined' || typeof poiLabels !== 'undefined') {
-                        // Remove map layer & source.
-                        // map.removeLayer('pathA').removeSource('route');
-                    //     map.removeLayer('pathA');
-                    //     map.removeLayer('pathB');
-                    //     map.removeLayer('poi-labels');
-                    // }
-
-
                     break;
 
                 case 2: 
-                map.setLayoutProperty('pathA', 'visibility', 'visible');
-                // map.setLayoutProperty('pathB', 'visibility', 'visible');
-                map.setLayoutProperty('poi-labels', 'visibility', 'visible');
-                // map.setLayoutProperty('pathA', 'visibility', 'visible');
-                // map.setLayoutProperty('pathB', 'visibility', 'visible');
-                // map.setLayoutProperty('poi-labels', 'visibility', 'visible');
-
-    
-                    // map.setLayoutProperty('h3-hexes-layer', 'visibility', 'none');
-                     // map.setLayoutProperty('h3-hexes-layer', 'visibility', 'none');
-
-                    // console.log("entering", response.index);
+                    map.setLayoutProperty('pathA', 'visibility', 'visible');
+                    map.setLayoutProperty('poi-labels', 'visibility', 'visible');     
                     pathAChapter = config.chapters.find(chap => chap.id === response.element.id);
-
-
-
-
                     map.flyTo(pathAChapter.location);
                     console.log("seccion paths");
-                    // if (!pathAOn) {
-                    //     renderPaths("data/edges_route_min_02.json", "pathA", 0.7);
-                    //     pathAOn = true;
-                    // }
-                    // map.setLayoutProperty('pathA', 'visibility', 'visible');
-                    // map.setLayoutProperty('pathB', 'visibility', 'visible');
-                    // map.setLayoutProperty('poi-labels', 'visibility', 'visible');
-
-
-                
                     break;
 
                 case 3:
-                    // map.setLayoutProperty('h3-hexes-layer', 'visibility', 'none');
                     pathBChapter = config.chapters.find(chap => chap.id === response.element.id);
                     map.flyTo(pathBChapter.location);
                     if (!pathBOn) {
                         renderPaths("data/edges_route_max_02.json", "pathB", 0.37);
-                        // map.setLayoutProperty('pathB', 'visibility', 'visible');
-                        // map.setLayoutProperty('pathA', 'visibility', 'visible');
-                        // map.setLayoutProperty('poi-labels', 'visibility', 'visible');
                         pathBOn = true;
                     }
-  
-                    
                     break;
                         
                 case 4:
                     preOutroPathsChapter = config.chapters.find(chap => chap.id === response.element.id);
                     map.flyTo(preOutroPathsChapter.location);
-
-                    // if (!hexesGenerated) {
-                    //     preOutroPathsChapter.onChapterEnter.forEach(setH3Opacity);
-                    //     hexesGenerated = true;
-                    // }
                     if (hexesLoaded) {
                         renderHexes(map, hexLayers[0].min_supermercados, 'Guadalajara');  
                     }
                     console.log("h3 hexes map on");
                     console.log(map);
-                    // map.setLayoutProperty('pathA', 'visibility', 'visible');
-                    // map.setLayoutProperty('pathB', 'visibility', 'visible');
-                    // map.setLayoutProperty('poi-labels', 'visibility', 'visible');
                     break;
                 case 5:
                     outroPathsChapter = config.chapters.find(chap => chap.id === response.element.id);
@@ -833,20 +552,13 @@ function init() {
                     break;
                 case 7:
                     let chapterMtyB = config.chapters.find(chap => chap.id === response.element.id);
-                    // map.setLayoutProperty('h3-hexes-layer', 'visibility', 'none');
-                    // map.setStyle("mapbox://styles/mapbox/satellite-v9");
                     setSatOpacity();
                     map.flyTo(chapterMtyB.location);
                     satMap.flyTo(chapterMtyB.location);
 
-
                     map.setLayoutProperty('pathA', 'visibility', 'none');
                     map.setLayoutProperty('pathB', 'visibility', 'none');
                     map.setLayoutProperty('poi-labels', 'visibility', 'none');
-                    // map.setLayoutProperty('h3-hexes-layer', 'visibility', 'none');
-                    
-
-
                     break;
                 case 8:
                     let chapterMtyC = config.chapters.find(chap => chap.id === response.element.id);
@@ -861,7 +573,6 @@ function init() {
                     if (satOn) {
                         setSatOpacity();
                     }
-
                     break;
                 case 9:
                     let chapterMtyD = config.chapters.find(chap => chap.id === response.element.id);
@@ -871,10 +582,6 @@ function init() {
                     map.setLayoutProperty('pathA', 'visibility', 'none');
                     map.setLayoutProperty('pathB', 'visibility', 'none');
                     map.setLayoutProperty('poi-labels', 'visibility', 'none');
-                    // if (satOn) {
-                    //     setSatOpacity();
-                    // }
-
                     break;
                 case 10:
                     let chapterGdlA = config.chapters.find(chap => chap.id === response.element.id);
@@ -918,10 +625,6 @@ function init() {
                     map.setLayoutProperty('pathA', 'visibility', 'none');
                     map.setLayoutProperty('pathB', 'visibility', 'none');
                     map.setLayoutProperty('poi-labels', 'visibility', 'none');
-                    // if (satOn) {
-                    //     setSatOpacity();
-                    // }
-
                     break;
                 case 14:
                     let chapterQroA = config.chapters.find(chap => chap.id === response.element.id);
@@ -933,7 +636,6 @@ function init() {
                     if (hexLayers[2]) {
                         renderHexes(map, hexLayers[2].min_supermercados, 'Querétaro');
                     }
-
                     if (satOn) {
                         setSatOpacity();
                     }
@@ -970,10 +672,6 @@ function init() {
                     map.setLayoutProperty('pathA', 'visibility', 'none');
                     map.setLayoutProperty('pathB', 'visibility', 'none');
                     map.setLayoutProperty('poi-labels', 'visibility', 'none');
-                    // if (satOn) {
-                    //     setSatOpacity();
-                    // }
-
                     break;
                 case 18:
                     let chapterCDMXA = config.chapters.find(chap => chap.id === response.element.id);
@@ -1016,13 +714,9 @@ function init() {
                     let chapterCDMXD = config.chapters.find(chap => chap.id === response.element.id);
                     map.flyTo(chapterCDMXD.location);
                     satMap.flyTo(chapterCDMXD.location);
-
                     map.setLayoutProperty('pathA', 'visibility', 'none');
                     map.setLayoutProperty('pathB', 'visibility', 'none');
                     map.setLayoutProperty('poi-labels', 'visibility', 'none');
-                    // if (satOn) {
-                    //     setSatOpacity();
-                    // }
                     break;
                 case 22:
                     break;
@@ -1050,28 +744,7 @@ function init() {
                         console.log(currSelCityLabel);
                         
                         let currHexesLoaded = false; 
-                        // for (let k = 0; k < hexLayers.length; k++) {
-                        //     if (hexLayers[k].city == currSelCity) {
-                        //         console.log("already loaded");
-                        //         currHexesLoaded = true;
-                        //     } else {
-                        //         currHexesLoaded = false; 
-                        //     }
-                        // }
 
-
-                        // switch (currSelCity) {
-                        //     case "1":
-                        //         // console.log("Selected Aguascalientes");
-                        //         // loadHexData("Aguascalientes","min_supermercados");
-                        //         // if (hexLayers[2]) {
-                        //         // renderHexes(map, hexLayers[2].supermercados, 'Aguascalientes');
-                        //         // }
-                        //         changeCityHexes("Aguascalientes", "min_supermercados");
-                        //         break;
-                        //     default:
-
-                        // }
                         currLocation.center = cityCoords[event.target.value-1].center;
                         if (event.target.value-1 == 5) {
                             currLocation.zoom = 10;
@@ -1079,31 +752,8 @@ function init() {
                         map.jumpTo(currLocation);
                         satMap.jumpTo(currLocation);
                         
-                        // const result = document.querySelector('.result');
-                        // result.textContent = `You like ${event.target.value}`;
                         loadHexData(currSelCityLabel,currSelServLabel);
                         changeHexes();
-                            // for (let k = 0; k < hexLayers.length; k++) {
-                            //     if (hexLayers[k].city == currSelCityLabel) {
-                            //         let currObj = hexLayers.find(obj => obj.city == currSelCityLabel);
-                            //         console.log(`fetching ${currObj.city}`);
-
-                            //         // console.log(`rendering hexes for ${hexLayers[k].city}, ${currSelServLabel}`);
-                            //         // console.log(`rendering hexes of ${hexLayers[k]}`);
-                            //         // console.log(`rendering hexes of ${hexLayers[k][currSelServLabel]}`);
-    
-                            //         // if (hexLayers[k][currSelServLabel]) {
-                            //         // renderHexes(map, hexLayers[k].min_supermercados, currSelCityLabel);
-                            //         // renderHexes(map, hexLayers[k][currSelServLabel], currSelCityLabel);
-                            //         // }
-    
-    
-                            //         // renderHexes(map,hexLayers[k][currSelServLabel],currSelCityLabel);
-                            //     // } else {
-                            //     }
-                            // }
-
-
                       });
 
                       selectHex.addEventListener('change', (event) => {
@@ -1126,103 +776,31 @@ function init() {
                             default:                                    
                         }
 
-                        
-                    
-                        // if (!currHexesLoaded) {
-                        // console.log("loading selected hexes...")
-                
-                        // let myObject = hexLayers.filter(function(element) {
-                        //     return element.city === 'Guadalajara';
-                        // })
-
-
                         console.log("loading selected hexes...")
                         loadHexData(currSelCityLabel,currSelServLabel);
                         changeHexes();
-
-                        // for (let k = 0; k < hexLayers.length; k++) {
-                        //     if (hexLayers[k].city == currSelCityLabel) {
-                        //         console.log(`rendering hexes for ${hexLayers[k].city}, ${currSelServLabel}`);
-                        //         renderHexes(map,hexLayers[k][currSelServLabel],currSelCityLabel);
-                        //     } else {
-                        //     }
-                        // }
-                        // console.log("ready to draw hexes:");     // Prints name to console
-                        // console.log(myObject.city, currSelServLabel);     // Prints name to console
-                        // loadHexData(currSelCityLabel,currSelServLabel)
-                            // .then(renderHexes(map,hexLayers[]));
-                            // bucar valor de ciudad y serv por método find, liberar orden index
-                            // https://stackoverflow.com/questions/9907419/how-to-get-a-key-in-a-javascript-object-by-its-value
-                            // loadHexData(currSelCityLabel,"min_supermercados");
-                        // }
                     })
 
                     // map.on('click', function(e) {
                     //     map.scrollZoom.enable();
                     //     map.addControl(new mapboxgl.NavigationControl());
-
-                    //     // The event object (e) contains information like the
-                    //     // coordinates of the point on the map that was clicked.
                     //     console.log('A click event has occurred at ' + e.lngLat);
                     // });
                     break;
-
-                // case 12:
-                //     // map.setLayoutProperty('pathA', 'visibility', 'none');
-                //     // map.setLayoutProperty('pathB', 'visibility', 'none');
-                //     // map.setLayoutProperty('poi-labels', 'visibility', 'none');
-                //     // map.setStyle("mapbox://styles/haxzie/ck0cc2cdn01241eohsj4fcz5p");
-                //     // map.setStyle("mapbox://styles/mapbox/dark-v9");
-
-                //     // map.flyTo(currLocation);
-                //     // satMap.flyTo(currLocation);
-
-                //     // let selectCity = document.getElementById("h3-dash-cities");
-                //     // let selectHex = document.getElementById("h3-dash-hexes");
-
-                //     // selectCity.addEventListener('change', (event) => {
-                //     //     console.log(`Selected ${selectCity.value}`);
-                //     //     console.log(`Selected ${event.target.value}`);
-                //     //     currLocation.center = cityCoords[event.target.value-1].center;
-                //     //     map.jumpTo(currLocation);
-                //     //     satMap.jumpTo(currLocation);
-                //     //     // const result = document.querySelector('.result');
-                //     //     // result.textContent = `You like ${event.target.value}`;
-                //     //   });
-
-                //     // console.log(`Selected ${selectHex.value}`);
-                //     // console.log(`Selected ${selectCity.value}`);
-
-                //     break;
-
                 default:  
               }
-  
-  
-              
-              
       
             })
             .onStepExit(response => {
-  
+
               if (response.index > 3 && response.index < 3) {
                 response.element.classList.remove('active');
                 let chapter = config.chapters.find(chap => chap.id === response.element.id);
                 if (chapter.onChapterExit.length > 0 ) {
-                    // chapter.onChapterExit.forEach(setH3Opacity);
                 }
-              }
-  
-  
+              }  
             });
     });
-
-    // async function changeCityHexes(city, hexes) {
-    //     console.log("Selected Aguascalientes");
-    //     loadHexData(city, hexes);
-    //     console.log(await hexLayers);
-    //     renderHexes(map, await hexLayers[2].supermercados, city);
-    // }
 
     async function changeHexes() {
         for (let k = 0; k < hexLayers.length; k++) {
@@ -1230,25 +808,10 @@ function init() {
                 let currObj = hexLayers.find(obj => obj.city == currSelCityLabel);
                 console.log(`fetching ${currObj.city}`);
                 renderHexes(map,hexLayers[k][currSelServLabel],currSelCityLabel);
-
-
-                // console.log(`rendering hexes for ${hexLayers[k].city}, ${currSelServLabel}`);
-                // console.log(`rendering hexes of ${hexLayers[k]}`);
-                // console.log(`rendering hexes of ${hexLayers[k][currSelServLabel]}`);
-
-                // if (hexLayers[k][currSelServLabel]) {
-                // renderHexes(map, hexLayers[k].min_supermercados, currSelCityLabel);
-                // renderHexes(map, hexLayers[k][currSelServLabel], currSelCityLabel);
-                // }
-
-
-                // renderHexes(map,hexLayers[k][currSelServLabel],currSelCityLabel);
-            // } else {
             }
         }
     }
     
-  
     // setup resize event
     window.addEventListener('resize', scroller.resize);
   }
