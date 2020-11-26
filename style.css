@@ -753,18 +753,18 @@ p {
       width: 90vw;
       margin: 0 auto;
   }
-  #main-title {
+  /* #main-title {
     font-size: 0.8em;
-  }
+  } */
 
   #oc-logo-long {
     width: 100%;
   }
 
-  p.right, p.left {
-    font-size: 0.4em;
-    color: red;
-  }
+  /* p.right, p.left {
+    font-size: 0.8em;
+    /* color: red; */
+  } */
 }
 
 
