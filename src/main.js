@@ -332,9 +332,11 @@ function init() {
         console.log(await geojson);
         
         
-        let sourceId = `${city}-hex-source`;
+        let sourceId = `${city}-${currSelServLabel}-hex-source`;
+        // let sourceId = `${city}-hex-source`;
         // let sourceId = 'h3-hexes';
-        let layerId = `${city}-layer`;
+        // let layerId = `${city}-layer`;
+        let layerId = `${city}-${currSelServLabel}-layer`;
         let source = map.getSource(sourceId);
         let layerCheck = map.getLayer(layerId);
         
