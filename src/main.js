@@ -69,34 +69,80 @@ function init() {
 
     loadHexData("Guadalajara","min_supermercados");
 
+    // async function loadHexData(city, serv) {
+    //     let csvLayer = {};
+    //     let newHexObj = {}
+
+    //     d3.csv(`data/csv-hexes/${city}_data.csv`).then(function(csv) {
+
+    //         console.log("loading new hex data..."); 
+    //         // console.log(csv);
+    //         let csvRaw = csv;
+    //         // let csvFilter = csvRaw.filter(hex => hex.min_supermercados > 0);
+    //         let csvFilter = csvRaw.filter(hex => hex[serv] > 0);
+    //         console.log(csvFilter); 
+            
+    //         for (let i = 0; i<csvFilter.length; i++){
+    //             // csvLayer[csvFilter[i].hex_id_9] =  csvFilter[i].min_supermercados/100;
+    //             csvLayer[csvFilter[i].hex_id_9] =  csvFilter[i][serv]/100;
+    //         }
+            
+    //         hexesLoaded = true;
+
+    //         newHexObj["city"] = city;
+    //         newHexObj[serv] = csvLayer;
+    //         hexLayers.push(newHexObj);
+    //         console.log("new hex object:")
+    //         console.log(newHexObj)
+    //         });
+
+    //     return newHexObj;
+    // }
+
     async function loadHexData(city, serv) {
         let csvLayer = {};
-        let newHexObj = {}
+        let newHexObj = {};
 
-        d3.csv(`data/csv-hexes/${city}_data.csv`).then(function(csv) {
+        let responseCSV = await d3.csv(`data/csv-hexes/${city}_data.csv`);
+        console.log("loading new hex data..."); 
+        let csvRaw = await responseCSV;
+        let csvFilter = await csvRaw.filter(hex => hex[serv] > 0);
+        console.log( await csvFilter); 
+        for (let i = 0; i<csvFilter.length; i++){
+            // csvLayer[csvFilter[i].hex_id_9] =  csvFilter[i].min_supermercados/100;
+            csvLayer[csvFilter[i].hex_id_9] =  csvFilter[i][serv]/100;
+        }
+        hexesLoaded = true;
 
-            console.log("loading new hex data..."); 
-            // console.log(csv);
-            let csvRaw = csv;
-            // let csvFilter = csvRaw.filter(hex => hex.min_supermercados > 0);
-            let csvFilter = csvRaw.filter(hex => hex[serv] > 0);
-            console.log(csvFilter); 
-            
-            for (let i = 0; i<csvFilter.length; i++){
-                // csvLayer[csvFilter[i].hex_id_9] =  csvFilter[i].min_supermercados/100;
-                csvLayer[csvFilter[i].hex_id_9] =  csvFilter[i][serv]/100;
+
+        let currObj = await hexLayers.find(obj => obj.city == city);
+        // let currObj = await hexLayers.find(obj => obj.city == currSelCityLabel);
+        if (currObj) {
+            // currObj[serv] =  csvLayer;
+
+            for (let k = 0; k < hexLayers.length; k++) {
+                if (hexLayers[k].city == city) {
+                    hexLayers[k][serv] =  csvLayer;
+                    // hexLayers.push( await newHexObj);
+                    console.log("loading new hexes to existiiiiing object:");
+                    console.log(hexLayers[k]);
+                    return hexLayers[k];
+                    // return currObj;
+                }
             }
-            
-            hexesLoaded = true;
 
+
+
+
+        } else {
             newHexObj["city"] = city;
-            newHexObj[serv] = csvLayer;
-            hexLayers.push(newHexObj);
-            console.log("new hex object:")
-            console.log(newHexObj)
-            });
+            newHexObj[serv] =  csvLayer;
+            hexLayers.push(  newHexObj);
+            console.log("loading new hex object:");
+            console.log( newHexObj);
+            return newHexObj;
+        }
 
-        return newHexObj;
     }
   
   
@@ -279,11 +325,11 @@ function init() {
         // let hexColScale = d3.scaleDiverging([0.6, 0.30, 0.15, 0.1, 0.05], d3.interpolateSpectral);
 
         let geojson = geojson2h3.h3SetToFeatureCollection(
-            await Object.keys(hexagons),
+            Object.keys( await hexagons),
             hex => ({value: hexagons[hex], city:city})
         );
         console.log("drawing hexes");
-        console.log(geojson);
+        console.log(await geojson);
         
         
         let sourceId = `${city}-hex-source`;
@@ -296,7 +342,7 @@ function init() {
         if (!source && !layerCheck) {
             map.addSource(sourceId, {
             type: 'geojson',
-            data: geojson
+            data: await geojson
             });
             map.addLayer({
                 id: layerId,
@@ -310,7 +356,7 @@ function init() {
                 }
             });
             source = map.getSource(sourceId);
-            source.setData(geojson);
+            source.setData(await geojson);
         }        
         // Update the layer paint properties, using the current config values
         map.setPaintProperty(layerId, 'fill-color', {
@@ -755,8 +801,14 @@ function init() {
                         map.jumpTo(currLocation);
                         satMap.jumpTo(currLocation);
                         
-                        loadHexData(currSelCityLabel,currSelServLabel);
-                        changeHexes();
+                        loadHexData(currSelCityLabel,currSelServLabel)
+                            .then(results =>  changeHexes())
+                            .catch(err => console.log("errooooor",err));
+
+
+
+                        // loadHexData(currSelCityLabel,currSelServLabel);
+                        // changeHexes();
                       });
 
                       selectHex.addEventListener('change', (event) => {
@@ -779,8 +831,19 @@ function init() {
                             default:                                    
                         }
 
-                        console.log("loading selected hexes...")
-                        loadHexData(currSelCityLabel,currSelServLabel).then(changeHexes());
+                        console.log("loading other selected hexes...")
+                        console.log(currSelCityLabel,currSelServLabel)
+                        loadHexData(currSelCityLabel,currSelServLabel)
+                            .then(results =>  {
+                                console.log('changed hex data')
+                                if (results) {
+                                    changeHexes();
+                                }
+                            })
+                            .catch(err => console.log("errooooor",err));
+
+
+                        // loadHexData(currSelCityLabel,currSelServLabel).then(changeHexes());
                         // changeHexes();
                     })
 
@@ -807,18 +870,23 @@ function init() {
 
     async function changeHexes() {
         // let currObj = await hexLayers.find(obj => obj.city == "Mexicali");
-        // let currObj = await hexLayers.find(obj => obj.city == currSelCityLabel);
-        
+        let currObj = await hexLayers.find(obj => obj.city == currSelCityLabel);
+        console.log("changing hexes to", currObj.city, currSelServLabel);
+        // if (currObj[currSelServLabel]) {
+        renderHexes(map, currObj[currSelServLabel],currSelCityLabel);
+        // renderHexes(map, await currObj[currSelServLabel],currSelCityLabel);
+        // }
         // if (await hexLayers.find(obj => obj.city == currSelCityLabel)) {
-            for (let k = 0; k < hexLayers.length; k++) {
-                if (await hexLayers[k].city == currSelCityLabel) {
-                // if (await hexLayers[k].city == currSelCityLabel) {
-                    // let currObj = hexLayers.find(obj => obj.city == currSelCityLabel);
-                    console.log(`fetching ${hexLayers[k].city}`);
-                    // renderHexes(map, await hexLayers[k][currSelServLabel],currSelCityLabel);
-                    renderHexes(map, await hexLayers[k][currSelServLabel],currSelCityLabel);
-                }
-            }
+            // for (let k = 0; k < hexLayers.length; k++) {
+            //     if (hexLayers[k].city == currSelCityLabel) {
+            //     // if (await hexLayers[k].city == currSelCityLabel) {
+            //     // if (await hexLayers[k].city == currSelCityLabel) {
+            //         // let currObj = hexLayers.find(obj => obj.city == currSelCityLabel);
+            //         console.log(`fetching ${hexLayers[k].city}`);
+            //         // renderHexes(map, await hexLayers[k][currSelServLabel],currSelCityLabel);
+            //         renderHexes(map, hexLayers[k][currSelServLabel],currSelCityLabel);
+            //     }
+            // }
         // }
         
 
