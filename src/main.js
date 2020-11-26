@@ -71,6 +71,8 @@ function init() {
 
     async function loadHexData(city, serv) {
         let csvLayer = {};
+        let newHexObj = {}
+
         d3.csv(`data/csv-hexes/${city}_data.csv`).then(function(csv) {
 
             console.log("loading new hex data..."); 
@@ -87,13 +89,14 @@ function init() {
             
             hexesLoaded = true;
 
-            let newHexObj = {}
             newHexObj["city"] = city;
             newHexObj[serv] = csvLayer;
             hexLayers.push(newHexObj);
             console.log("new hex object:")
             console.log(newHexObj)
             });
+
+        return newHexObj;
     }
   
   
@@ -777,8 +780,8 @@ function init() {
                         }
 
                         console.log("loading selected hexes...")
-                        loadHexData(currSelCityLabel,currSelServLabel);
-                        changeHexes();
+                        loadHexData(currSelCityLabel,currSelServLabel).then(changeHexes());
+                        // changeHexes();
                     })
 
                     // map.on('click', function(e) {
@@ -803,13 +806,22 @@ function init() {
     });
 
     async function changeHexes() {
-        for (let k = 0; k < hexLayers.length; k++) {
-            if (await hexLayers[k].city == currSelCityLabel) {
-                let currObj = hexLayers.find(obj => obj.city == currSelCityLabel);
-                console.log(`fetching ${currObj.city}`);
-                renderHexes(map,hexLayers[k][currSelServLabel],currSelCityLabel);
+        // let currObj = await hexLayers.find(obj => obj.city == "Mexicali");
+        // let currObj = await hexLayers.find(obj => obj.city == currSelCityLabel);
+        
+        // if (await hexLayers.find(obj => obj.city == currSelCityLabel)) {
+            for (let k = 0; k < hexLayers.length; k++) {
+                if (await hexLayers[k].city == currSelCityLabel) {
+                // if (await hexLayers[k].city == currSelCityLabel) {
+                    // let currObj = hexLayers.find(obj => obj.city == currSelCityLabel);
+                    console.log(`fetching ${hexLayers[k].city}`);
+                    // renderHexes(map, await hexLayers[k][currSelServLabel],currSelCityLabel);
+                    renderHexes(map, await hexLayers[k][currSelServLabel],currSelCityLabel);
+                }
             }
-        }
+        // }
+        
+
     }
     
     // setup resize event
