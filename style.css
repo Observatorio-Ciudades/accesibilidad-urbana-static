@@ -31,16 +31,17 @@ a:visited {
 }
 
 #main-title {
-  font-size: 2em;
+  font-size: 2.5em;
   /* color: rgb(100, 100, 100); */
   color: #1A1919;
-  padding: 0.5em 0em;
+  padding: 0.2em 0em;
   letter-spacing: -0.01em;
-  margin: 0.5em 0;
+  margin: 0 0 0.8em 0;
 }
 
-#main-intro {
+.main-intro {
   font-weight: 550;
+  margin: 0.8em 0 0.8em 0;  
 }
 
 h2 {
@@ -222,9 +223,11 @@ p {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  flex-wrap: wrap;
   align-items: center;
   width: 100%;
-  height: 100vh;
+  padding-bottom: 2em;
+  height: 125vh;
   -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0)), linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));
   /* -webkit-mask-size: 100% 50%; */
   -webkit-mask-repeat: no-repeat;
@@ -329,14 +332,17 @@ p {
   top: 0;
   height: 100%;
   width: 100%;
+  max-width: 100vw;;
   /* width: 100%; */
   position: fixed;
   z-index: -4;
 }
 
-.mapboxgl-canary {
+.mapboxgl-canary, .mapboxgl-map {
   max-width: 100vw;;
 }
+
+
 
 /* #header {
   margin: 3vh auto;
@@ -753,18 +759,65 @@ p {
       width: 90vw;
       margin: 0 auto;
   }
-  /* #main-title {
-    font-size: 0.8em;
-  } */
+  #main-title {
+    margin: 6em 0 0 0;
+    font-size: 2em;
+  }
 
   #oc-logo-long {
     width: 100%;
   }
 
+  #oc-logo-long img {
+    /* width: 350px; */
+    width: 75px;
+    /* display: none; */
+    opacity: 0.95;
+  }
+
+  #portada {
+    padding: 0 0 10em 0;
+  }
+
+  .center {
+    width: 100%;
+  }
+
+  .marco {
+    width: 80%;
+  }
+
+  .features > div {
+    width: 80%;
+  }
+
+  .filter-ctrl {
+    width: 100%;
+  }
+
+  .h3-dash-select {
+    width: 80vw;
+  }
+
   /* p.right, p.left {
     font-size: 0.8em;
-    /* color: red; */
   } */
+
+  .img-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    padding-bottom: 2em;
+
+  }
+  
+  .img-slot {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+  }
 }
 
 
@@ -775,12 +828,23 @@ p {
     width: 40vw;
   }
 
+  .img-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    padding-bottom: 2em;
+
+  }
+
   .img-slot {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    width: 96%;
+    width: 100%;
   }
+
+  
 
 
   /* .center, .dark {
@@ -795,6 +859,8 @@ p {
   /* .note-cont {
     width: 30vw;
   } */
+
+  
 
 
 
