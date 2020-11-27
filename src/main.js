@@ -354,7 +354,9 @@ function init() {
                 interactive: false,
                 paint: {
                     'fill-outline-color': 'rgba(0,0,0,0)',
-                    'fill-opacity': 0
+                    // 'fill-opacity': 0
+                    "fill-opacity": 0,
+                    "fill-opacity-transition": {duration: 2000},
                 }
             });
             source = map.getSource(sourceId);
@@ -816,6 +818,42 @@ function init() {
                       selectHex.addEventListener('change', (event) => {
                         currSelServ = event.target.value;
                         console.log(`selected serv option ${currSelServ}`);
+
+                        // let pastSource = `${currSelCityLabel}-${currSelServLabel}-hex-source`;
+                        // // let sourceId = `${city}-hex-source`;
+                        // // let sourceId = 'h3-hexes';
+                        // // let layerId = `${city}-layer`;
+                        // let pastLayer = `${city}-${currSelServLabel}-layer`;
+
+                        // map.removeLayer(`${currSelCityLabel}-${currSelServLabel}-layer`);
+                        // map.removeSource(`${currSelCityLabel}-${currSelServLabel}-layer`);
+
+                        if (map.getLayer(`${currSelCityLabel}-${currSelServLabel}-layer`)) {
+                            map.removeLayer(`${currSelCityLabel}-${currSelServLabel}-layer`);
+                        }
+                          if (map.getSource(`${currSelCityLabel}-${currSelServLabel}-hex-source`)) {
+                            map.removeSource(`${currSelCityLabel}-${currSelServLabel}-hex-source`);
+                        }
+
+                        // let oldLayerId = `${currSelCityLabel}-${currSelServLabel}-layer`;
+                        // let oldLayerId = `${currSelCityLabel}-${currSelServLabel}-layer`;
+
+                        // function setLayerSource(layerId, source, sourceLayer) {
+                        //     var oldLayers = this.map.getStyle().layers;
+                        //     var layerIndex = oldLayers.findIndex(l => l.id === layerId);
+                        //     var layerDef = oldLayers[layerIndex];
+                        //     var before = oldLayers[layerIndex + 1] && oldLayers[layerIndex + 1].id;
+                        //     layerDef.source = source;
+                        
+                        //     if (sourceLayer) {
+                        //       layerDef['source-layer'] = sourceLayer;
+                        //     } else if (sourceLayer !== undefined) {
+                        //       delete layerDef['source-layer'];
+                        //     }
+                        
+                        //     this.map.removeLayer(layerId);
+                        //     this.mapAddLayerBefore(layerDef, before);
+                        //   }
 
                         switch(currSelServ) {
                             case "1":

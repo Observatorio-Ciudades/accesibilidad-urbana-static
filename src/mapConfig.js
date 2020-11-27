@@ -400,7 +400,8 @@ let config = {
             image: '',
             description: 'La Zona Metropolitana de Querétaro en los últimos años ha tenido un crecimiento habitacional exponencial hacia las periferias dotándolos de algunos servicios y equipamientos básicos, sin embargo la parte central de la ciudad ha trascendido como una zona concentrada, principalmente de comercios a baja escala y al mismo tiempo siendo un principal nodo de actividades y servicios a escala municipal y estatal. El efecto que trae consigo, es la pérdida de población y habitabilidad aumentando al mismo tiempo la terciarización de los inmuebles   haciendo incosteable vivir dentro de la zona del Centro Histórico por los altos costos de los inmuebles.',
             location: {
-                center: [-100.3942692,  20.5898449],
+                // center: [-100.3942692,  20.5898449],
+                center: [-100.4445,  20.645611],
                 zoom: 10.5,
                 pitch: 0,
                 bearing: 0,
@@ -433,7 +434,7 @@ let config = {
             // description: 'En el área de estudio conviven la ​vivienda popular de la década de 1970, vivienda social en formato de macromanzana de la década de 1980, y un desarrollo de reciente urbanización que aglomera varios conjuntos cerrados de vivienda privada en baja densidad y zonas comerciales y de servicios. El uso predominante en las zonas populares es el habitacional de alta densidad con usos de suelo mixto en las calles principales. Mientras que el equipamiento de escala central ocupa la mayor extensión de suelo como el hospital, teatro, un museo para niños y centros comerciales. La zona no cuenta con ningún espacio público y las áreas verdes son de carácter privado.<br><br>Zona Real<br>Municipio: Zapopan, Jalisco<br>Colonias: Los Girasoles, Jardines de Santa Margarita, La Tuzania Eijdal, Santa Margarita Poniente, La Mora, as Bóvedas, Puerta del Valle, Tramo de Valle Real<br>Extensión: 243 hectáreas<br>Población: 30, 253 habitantes<br>Densidad bruta: 124.49 habitantes / hectárea',
             description: 'El centro histórico es una colonia diversa, mixta, compacta y accesible a equipamientos y servicios. Es uno de los centros históricos declarados Patrimonio Cultural de la Humanidad por la UNESCO. En la zona existe mucha inversión pública, mejoramiento de la imagen y del mobiliario urbano, pavimentos, banquetas, etc... Sin embargo es una zona que está bajo el efecto de la terciarización del suelo perdiendo el número de habitantes y aumentando el número de viviendas deshabitadas al mismo tiempo que aumenta la existencia de comercios y servicios. Por otro lado, el Río Querétaro ha representado un borde entre la zona histórica de Querétaro y la zona del “otro lado del río”.',
             location: {
-                center: [-100.3942692,  20.5898449],
+                center: [-100.4445,  20.645611],
                 zoom: 17,
                 pitch: 0,
                 bearing: 0,
@@ -465,7 +466,7 @@ let config = {
             image: ['imgs/poligonos-qro_01.png', 'imgs/poligonos-qro_02.png'],
             description: 'En su mayor área, la zona histórica está caracterizada por una retícula rectangular, también se puede identificar una sección con una retícula de plato roto, en el área dónde vivían los pueblos indígenas. El centro histórico tiene una gran diversidad de calles, en su mayoría son angostas y algunas de ellas que han sido diseñadas dando preferencia al peatón, convirtiéndolas en andadores peatonales. \n El centro histórico de la ciudad está dotado de comercios y servicios,sirviendo a una población que no reside en esta zona, ya que el 26.82 % de los inmuebles del centro histórico no tienen ningún uso ni actividad, se encuentran en completo abandono.',
             location: {
-                center: [-100.3942692,  20.5898449],
+                center: [-100.4445,  20.645611],
                 zoom: 14,
                 pitch: 0,
                 bearing: 0,
@@ -497,7 +498,7 @@ let config = {
             image: '',
             description: 'La mayor parte del Centro Histórico se encuentra a una distancia...',
             location: {
-                center: [-100.3942692,  20.5898449],
+                center: [-100.4445,  20.645611],
                 zoom: 15,
                 pitch: 0,
                 bearing: 0,
