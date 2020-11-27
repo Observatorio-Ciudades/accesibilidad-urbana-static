@@ -194,10 +194,24 @@ function init() {
             chapter.appendChild(title);
         }
   
-        if (config.chapters[i].description ) {
+        if (config.chapters[i].description != "") {
             let story = document.createElement('p');
             story.innerHTML = config.chapters[i].description;
             chapter.appendChild(story);
+        }
+
+        if (config.chapters[i].shortInfo != "") {
+            let shortInfoCont = document.createElement('ul');
+            let shortInfoLis = [];
+
+            for (let i = 0; i < config.chapters[i].shortInfo.length; i++) {
+                shortInfoLis[i] = document.createElement('li');
+                shortInfoLis[i].innerHTML = config.chapters[i].shortInfo;
+                shortInfoCont.appendChild(shortInfoLis[i]);
+            }
+            chapter.appendChild(shortInfoCont);
+
+
         }
         
         container.classList.add('step');
@@ -794,7 +808,7 @@ function init() {
                           if (map.getSource(`${currSelCityLabel}-${currSelServLabel}-hex-source`)) {
                             map.removeSource(`${currSelCityLabel}-${currSelServLabel}-hex-source`);
                         }
-                        
+
                         currSelCity = event.target.value;
                         // let currSelHex = event.target.value;
                         console.log(`Selected ${selectCity.value}`);

@@ -35,6 +35,7 @@ let config = {
             full: false, 
             image: '',
             description: '',
+            shortInfo: '',
             location: {
                 center: [-103.3928603,  20.720328],
                 zoom: 16.5,
@@ -59,6 +60,7 @@ let config = {
             full: false, 
             image: '',
             description: '',
+            shortInfo: '',
             location: {
                 center: [-103.3928603,  20.720328],
                 // center: [-103.393551,  20.7213038],
@@ -91,6 +93,7 @@ let config = {
             full: false, 
             image: '',
             description: '',
+            shortInfo: '',
             location: {
                 center: [-103.3963082, 20.7182341],
                 zoom: 16,
@@ -118,6 +121,7 @@ let config = {
             full: false, 
             image: '',
             description: '',
+            shortInfo: '',
             location: {
                 center: [-103.3964488,  20.7180531],
                 zoom: 15,
@@ -145,6 +149,7 @@ let config = {
             full: false, 
             image: '',
             description: '',
+            shortInfo: '',
             location: {
                 center: [-103.3964488,  20.7180531],
                 zoom: 11,
@@ -172,6 +177,7 @@ let config = {
             full: false, 
             image: '',
             description: 'El polígono Campana-Altamira es una zona de grandes contrastes, a pesar de su ubicación central en la ciudad y cercanía a vialidades principales y la zona comercial de Valle Oriente, sus pobladores viven con grandes carencias en el acceso a servicios básicos y calidad de vida.<br><br>La topografía es una de las condiciones más relevantes en la zona, ya que configura la estructura urbana, haciendo difícil y costosa la provisión de servicios básicos, generando un sistema discontinuo de calles y aumentando las posibilidades de riesgo por deslaves, inundaciones y fuertes escorrentías durante la temporada de lluvias.',
+            shortInfo: '',
             location: {
                 center: [-100.3784997,  25.6989061],
                 zoom: 10.5,
@@ -221,6 +227,7 @@ let config = {
             full: true, 
             image: ['imgs/poligonos-mty_01.png'],
             description: 'El proceso de ocupación informal de la zona, aunado a la topografía con más de 40 grados de pendiente en las partes altas del cerro, han condicionado la estructura y calidad de la red vial de la zona, compuesta principalmente por calles, andadores, veredas y escalinatas. Esta red vial deficiente impide a los habitantes desplazarse al interior de la zona para acceder a servicios básicos de alimento, escuela y salud, y también hacia otros puntos de la ciudad donde se amplían las opciones de empleo.<br><br>De acuerdo al Plan Integral para el Desarrollo del Polígono Campana-Altamira, debido a la ausencia de servicios y comercios básicos de alimentación, los costos de la canasta básica son hasta 32% más elevados, en comparación con otras partes de la ciudad. En un contexto de pobreza y vulnerabilidad social, estos precios ponen una situación de mayor precariedad económica a los habitantes.',
+            shortInfo: '',
             location: {
                 center: [-100.3784997,  25.6989061],
                 zoom: 15,
@@ -274,6 +281,7 @@ let config = {
             full: false, 
             image: '',
             description: 'La Zona Real se ubica al poniente de la ciudad de Guadalajara y es producto de diversas etapas de urbanización y ofertas diversificadas. Con una traza urbana discontinua y heterogénea, se puede encontrar tanto vivienda popular y vivienda social, como fraccionamientos cerrados de alta plusvalía. Se ubican al exterior del Anillo Periférico y solo cuentan con acceso vial por Av. Servidor Público sin las características de diseño ni la capacidad de carga para absorber el intenso desarrollo de la zona.',
+            shortInfo: '',
             location: {
                 center: [-103.44416667,  20.72305556],
                 zoom: 10.5,
@@ -372,6 +380,7 @@ let config = {
             full: false, 
             image: '',
             description: 'Las zonas de mayor densidad poblacional y con una red de calles abierta son las zonas con niveles de marginación medio pero con mayor accesibilidad a tiendas de alimentos y farmacias. Una persona que vive en el fraccionamiento popular de la Tuzania Ejidal cuenta con una tienda de conveniencia a 4 minutos caminando por calles locales.<br><br>En los sectores residenciales de baja densidad y en estructura cerrada con un solo acceso vehícular,  la accesibilidad a satisfactores implica caminar distancias superiores a 1km para llegar a tiendas de alimentos y farmacias. Los residentes de Puerta Real, caminan durante 25 minutos a la tienda más cercana.',
+            shortInfo: '',
             location: {
                 center: [-103.44416667,  20.72305556],
                 zoom: 14,
@@ -404,6 +413,7 @@ let config = {
             full: false, 
             image: '',
             description: 'El crecimiento que la ciudad de Querétaro tuvo a finales del siglo XX se debió en gran medida a la llegada de nuevas industrias, impulsando el desarrollo socioeconómico y crecimiento urbano de la ciudad hasta el punto de conformarse como una Zona Metropolitana.',
+            shortInfo: '',
             location: {
                 // center: [-100.3942692,  20.5898449],
                 center: [-100.4445,  20.645611],
@@ -504,6 +514,7 @@ let config = {
             full: false, 
             image: '',
             description: 'Un habitante que vive en Jurica, tiene que caminar en promedio durante 21 minutos para acceder a un supermercado, mientras que un habitante de Lomas de Satélite tiene acceso al mismo servicio a tan solo 6 minutos caminando.',
+            shortInfo: '',
             location: {
                 center: [-100.4445,  20.645611],
                 zoom: 14,
@@ -536,6 +547,7 @@ let config = {
             full: false, 
             image: '',
             description: 'El  área se encuentra al sur de la ciudad en la alcaldía de Tlalpan y a los límites de la mancha urbana a 8 kilómetros de la zona de las pocas localidades rurales aún quedan al sur en Xochimilco. Esta zona se encuentra a menos de 5km de dos zonas catalogadas como Patrimonio de la Humanidad por parte de la UNESCO en la CDMX que son Ciudad Universitaria y el centro y zona de chinampas de Xochimilco. En la zona existe una alta mixticidad de usos de suelo desde habitacional, habitacional mixto, equipamiento, centro de barrio y espacio abierto. Por lo que existen importantes centros comerciales y educativos que brindan servicio a nivel regional y local.',
+            shortInfo: '',
             location: {
                 center: [-99.14000000, 19.28916667],
                 zoom: 10.5,
@@ -602,6 +614,7 @@ let config = {
             full: true, 
             image: ['imgs/poligonos-cdmx_01.png','imgs/poligonos-cdmx_02.png'],
             description: 'En el área predomina la retícula ortogonal y la retícula ortogonal deformada, teniendo manzanas con superficies muy diversas debido a la falta de continuidad de las calles entre ellas, y por el contrario, las vialidades principales de comunicación de la zona son las que seccionan las diferentes trazas. La movilidad está condicionada por la característica anterior ya que de la superficie de la zona, el 74,07% corresponde al área de las manzanas y solo alrededor del 26% corresponde a vialidades.<br><br>Algunas de estas  vialidades se encuentran dentro de conjuntos habitacionales cerrados o de acceso controlado por los residentes. Por lo que, lo anterior limita aún más la comunicación entre los diferentes puntos de interés y vialidades de la zona. De igual forma, existen predios que ocupan manzanas completas que van de 3 a 21 hectáreas con uso de equipamiento o comercio que prolongan los trayectos tanto vehiculares como peatonales debido a que se tiene que rodear toda la manzana a la falta de vialidades que dividan la manzana y que afecta principalmente al peatón. La mayoría de estos predios se encuentran a un costado de Periférico.',
+            shortInfo: '',
             location: {
                 center: [-99.14000000, 19.28916667],
                 zoom: 15,
@@ -635,6 +648,7 @@ let config = {
             image: '',
             description: '',
             // description: 'Narrativa de las condiciones de accesibilidad / Distancia a los satisfactores...',
+            shortInfo: '',
             location: {
                 center: [-99.14000000, 19.28916667],
                 zoom: 14,

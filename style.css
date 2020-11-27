@@ -36,12 +36,14 @@ a:visited {
   color: #1A1919;
   padding: 0.2em 0em;
   letter-spacing: -0.01em;
-  margin: 0 0 0.8em 0;
+  margin: 0.8em 0 0.8em 0;
 }
 
 .main-intro {
   font-weight: 550;
   margin: 0.8em 0 0.8em 0;  
+  width: 75%;
+  align-self: flex-end;
 }
 
 h2 {
@@ -64,6 +66,8 @@ p {
   padding: 0.5em 0em;
   letter-spacing: -0.01em;
   margin: 0.5em 0;
+  line-height: 1.2em;
+
 }
 
 .section-sub {
@@ -132,7 +136,10 @@ p {
 }
 
 .about p {
-  font-size: 1em;;
+  font-size: 1em;
+  line-height: 1.2em;
+
+
 }
 
 
@@ -234,6 +241,11 @@ p {
   -webkit-mask-position: left top, left bottom;
 }
 
+#prologue {
+  width: 75%;
+  align-self: center;
+}
+
 #pathA {
   /* height: 50vh;
   margin: 2em 0; */
@@ -271,7 +283,7 @@ p {
 
 #d3-legend-cont {
   display:flex;
-  flex-direction: column;
+  flex-direction: column !important;
   margin: 8em 0 0 0;
   /* margin: 2em 0; */
 }
@@ -390,12 +402,17 @@ p {
   /* background: #81CDE0; */
   background: #1A1919;
   margin: 0;
-  padding: 1em 0 4em 0;
+  padding: 1em 0 2em 0;
+}
 
+.charts:last-of-type {
+  padding: 1em 0 4em 0;
 }
 
 .charts p {
   color: #fafafa;
+  line-height: 1.2em;
+
 }
 
 
@@ -672,6 +689,7 @@ p {
 
 .left p {
   text-align: left;
+  line-height: 1.2em;
 }
 
 .right {
@@ -686,12 +704,14 @@ p {
 .right p {
   /* text-align: right; */
   text-align: left;
+  line-height: 1.2em;
+
 }
 
 .note-cont {
   /* width: 50%; */
-  width: 10vw;
-  /* padding: 0.5em; */
+  width: 15vw;
+  padding: 0.75em !important;
   /* background: rgba(240, 240, 240, 0.85);  */
 }
 
@@ -730,6 +750,8 @@ p {
 }
 .light > p {
   text-align: justify;
+  line-height: 1.2em;
+
 }
 
 .dark {
@@ -744,6 +766,8 @@ p {
 }
 
 .dark > p {
+  line-height: 1.2em;
+
   /* color: white; */
   /* background-color: #81CDE0; */
   /* font-size: 0.5em;
