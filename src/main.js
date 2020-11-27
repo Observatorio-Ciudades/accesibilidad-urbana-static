@@ -788,6 +788,13 @@ function init() {
                     let selectHex = document.getElementById("h3-dash-hexes");
 
                     selectCity.addEventListener('change', (event) => {
+                        if (map.getLayer(`${currSelCityLabel}-${currSelServLabel}-layer`)) {
+                            map.removeLayer(`${currSelCityLabel}-${currSelServLabel}-layer`);
+                        }
+                          if (map.getSource(`${currSelCityLabel}-${currSelServLabel}-hex-source`)) {
+                            map.removeSource(`${currSelCityLabel}-${currSelServLabel}-hex-source`);
+                        }
+                        
                         currSelCity = event.target.value;
                         // let currSelHex = event.target.value;
                         console.log(`Selected ${selectCity.value}`);

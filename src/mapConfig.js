@@ -251,7 +251,7 @@ let config = {
             location: {
                 center: [-100.3784997,  25.6989061],
                 // center: [-103.4629855,  20.7200189],
-                zoom: 13,
+                zoom: 14,
                 pitch: 0,
                 bearing: 0.00
             },
@@ -374,7 +374,7 @@ let config = {
             description: 'Las zonas de mayor densidad poblacional y con una red de calles abierta son las zonas con niveles de marginación medio pero con mayor accesibilidad a tiendas de alimentos y farmacias. Una persona que vive en el fraccionamiento popular de la Tuzania Ejidal cuenta con una tienda de conveniencia a 4 minutos caminando por calles locales.<br><br>En los sectores residenciales de baja densidad y en estructura cerrada con un solo acceso vehícular,  la accesibilidad a satisfactores implica caminar distancias superiores a 1km para llegar a tiendas de alimentos y farmacias. Los residentes de Puerta Real, caminan durante 25 minutos a la tienda más cercana.',
             location: {
                 center: [-103.44416667,  20.72305556],
-                zoom: 12,
+                zoom: 14,
                 pitch: 0,
                 bearing: 0,
                 speed: 2,
@@ -506,7 +506,7 @@ let config = {
             description: 'Un habitante que vive en Jurica, tiene que caminar en promedio durante 21 minutos para acceder a un supermercado, mientras que un habitante de Lomas de Satélite tiene acceso al mismo servicio a tan solo 6 minutos caminando.',
             location: {
                 center: [-100.4445,  20.645611],
-                zoom: 15,
+                zoom: 14,
                 pitch: 0,
                 bearing: 0,
                 speed: 2,
@@ -637,7 +637,7 @@ let config = {
             // description: 'Narrativa de las condiciones de accesibilidad / Distancia a los satisfactores...',
             location: {
                 center: [-99.14000000, 19.28916667],
-                zoom: 13,
+                zoom: 14,
                 pitch: 0,
                 bearing: 0,
                 speed: 2,
