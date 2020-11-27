@@ -75,12 +75,12 @@ let config = {
             },
             onChapterEnter: [
                 {
-                    layer: 'h3-hexes-layer',
-                    opacity: 1
+                    // layer: 'h3-hexes-layer',
+                    // opacity: 1
                 },
                 {
-                    layer: 'points',
-                    opacity: 1
+                    // layer: 'points',
+                    // opacity: 1
                 }
             ],
             onChapterExit: [
@@ -135,8 +135,8 @@ let config = {
             },
             onChapterEnter: [
                 {
-                    layer: 'h3-hexes-layer',
-                    opacity: 1
+                    // layer: 'h3-hexes-layer',
+                    // opacity: 1
                 }
             ],
             onChapterExit: [
@@ -295,13 +295,13 @@ let config = {
             },
             onChapterEnter: [
                 {
-                    layer: 'h3-hexes-layer',
-                    opacity: 1
+                    // layer: 'h3-hexes-layer',
+                    // opacity: 1
                 }
                 ,
                 {
-                    layer: 'points',
-                    opacity: 1
+                    // layer: 'points',
+                    // opacity: 1
                 }
             ],
             onChapterExit: [
@@ -328,13 +328,13 @@ let config = {
             },
             onChapterEnter: [
                 {
-                    layer: 'h3-hexes-layer',
-                    opacity: 1
+                    // layer: 'h3-hexes-layer',
+                    // opacity: 1
                 }
                 ,
                 {
-                    layer: 'points',
-                    opacity: 1
+                    // layer: 'points',
+                    // opacity: 1
                 }
             ],
             onChapterExit: [
@@ -361,13 +361,13 @@ let config = {
             },
             onChapterEnter: [
                 {
-                    layer: 'h3-hexes-layer',
-                    opacity: 1
+                    // layer: 'h3-hexes-layer',
+                    // opacity: 1
                 }
                 ,
                 {
-                    layer: 'points',
-                    opacity: 1
+                    // layer: 'points',
+                    // opacity: 1
                 }
             ],
             onChapterExit: [
@@ -394,13 +394,13 @@ let config = {
             },
             onChapterEnter: [
                 {
-                    layer: 'h3-hexes-layer',
-                    opacity: 1
+                    // layer: 'h3-hexes-layer',
+                    // opacity: 1
                 }
                 ,
                 {
-                    layer: 'points',
-                    opacity: 1
+                    // layer: 'points',
+                    // opacity: 1
                 }
             ],
             onChapterExit: [
@@ -428,13 +428,13 @@ let config = {
             },
             onChapterEnter: [
                 {
-                    layer: 'h3-hexes-layer',
-                    opacity: 1
+                    // layer: 'h3-hexes-layer',
+                    // opacity: 1
                 }
                 ,
                 {
-                    layer: 'points',
-                    opacity: 1
+                    // layer: 'points',
+                    // opacity: 1
                 }
             ],
             onChapterExit: [
@@ -462,13 +462,13 @@ let config = {
             },
             onChapterEnter: [
                 {
-                    layer: 'h3-hexes-layer',
-                    opacity: 1
+                    // layer: 'h3-hexes-layer',
+                    // opacity: 1
                 }
                 ,
                 {
-                    layer: 'points',
-                    opacity: 1
+                    // layer: 'points',
+                    // opacity: 1
                 }
             ],
             onChapterExit: [
@@ -494,15 +494,15 @@ let config = {
                 }
             },
             onChapterEnter: [
-                {
-                    layer: 'h3-hexes-layer',
-                    opacity: 1
-                }
-                ,
-                {
-                    layer: 'points',
-                    opacity: 1
-                }
+                // {
+                //     layer: 'h3-hexes-layer',
+                //     opacity: 1
+                // }
+                // ,
+                // {
+                //     layer: 'points',
+                //     opacity: 1
+                // }
             ],
             onChapterExit: [
 
@@ -527,15 +527,15 @@ let config = {
                 }
             },
             onChapterEnter: [
-                {
-                    layer: 'h3-hexes-layer',
-                    opacity: 1
-                }
-                ,
-                {
-                    layer: 'points',
-                    opacity: 1
-                }
+                // {
+                //     layer: 'h3-hexes-layer',
+                //     opacity: 1
+                // }
+                // ,
+                // {
+                //     layer: 'points',
+                //     opacity: 1
+                // }
             ],
             onChapterExit: [
 
@@ -560,15 +560,15 @@ let config = {
                 }
             },
             onChapterEnter: [
-                {
-                    layer: 'h3-hexes-layer',
-                    opacity: 1
-                }
-                ,
-                {
-                    layer: 'points',
-                    opacity: 1
-                }
+                // {
+                //     layer: 'h3-hexes-layer',
+                //     opacity: 1
+                // }
+                // ,
+                // {
+                //     layer: 'points',
+                //     opacity: 1
+                // }
             ],
             onChapterExit: [
 
@@ -594,15 +594,15 @@ let config = {
                 }
             },
             onChapterEnter: [
-                {
-                    layer: 'h3-hexes-layer',
-                    opacity: 1
-                }
-                ,
-                {
-                    layer: 'points',
-                    opacity: 1
-                }
+                // {
+                //     layer: 'h3-hexes-layer',
+                //     opacity: 1
+                // }
+                // ,
+                // {
+                //     layer: 'points',
+                //     opacity: 1
+                // }
             ],
             onChapterExit: [
 
@@ -627,15 +627,15 @@ let config = {
                 }
             },
             onChapterEnter: [
-                {
-                    layer: 'h3-hexes-layer',
-                    opacity: 1
-                }
-                ,
-                {
-                    layer: 'points',
-                    opacity: 1
-                }
+                // {
+                //     layer: 'h3-hexes-layer',
+                //     opacity: 1
+                // }
+                // ,
+                // {
+                //     layer: 'points',
+                //     opacity: 1
+                // }
             ],
             onChapterExit: [
 
@@ -661,15 +661,15 @@ let config = {
                 }
             },
             onChapterEnter: [
-                {
-                    layer: 'h3-hexes-layer',
-                    opacity: 1
-                }
-                ,
-                {
-                    layer: 'points',
-                    opacity: 1
-                }
+                // {
+                //     layer: 'h3-hexes-layer',
+                //     opacity: 1
+                // }
+                // ,
+                // {
+                //     layer: 'points',
+                //     opacity: 1
+                // }
             ],
             onChapterExit: [
 

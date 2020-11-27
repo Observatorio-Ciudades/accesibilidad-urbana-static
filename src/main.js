@@ -498,6 +498,11 @@ function init() {
     let chartsOn = false;
     // let hexesOn = false;
 
+    let pathALayer;
+    let pathBLayer;
+    let poiLabels;
+
+
     let portadaChapter;
     let pathAChapter;
     let pathBChapter;
@@ -542,9 +547,9 @@ function init() {
                     map.flyTo(portadaChapter.location);
 
                     console.log("holiii switch");
-                    let pathALayer = map.getLayer('pathA');
-                    let pathBLayer = map.getLayer('pathB');
-                    let poiLabels = map.getLayer('poi-labels');
+                    pathALayer = map.getLayer('pathA');
+                    pathBLayer = map.getLayer('pathB');
+                    poiLabels = map.getLayer('poi-labels');
 
                     if(typeof pathALayer !== 'undefined') {
                         map.setLayoutProperty('pathA', 'visibility', 'none');

@@ -159,9 +159,10 @@ const color = d3.scaleOrdinal()
     //     "#63b76b"
     //   ]     
       .range(
-      ["#4ae0ee",
-      "#f1c062",
-      "#EF9284"
+      ["#C6C6C6",
+      "#636363",
+      
+      "#E7E7E7"
       ]
      );
     //  .range(["#9d6e5d",
@@ -219,7 +220,7 @@ let slice = svg.selectAll(".slice")
         .attr("width", x1.bandwidth())
         .attr("x", function(d) { return x1(d.grpName); })
           .style("fill", function(d) { return color(d.grpName) })
-          .style("opacity","0.75")
+          .style("opacity","1")
           .attr("y", function(d) { return y(0); })
           .attr("height", function(d) { return height - y(0); })
         // .on("mouseover", function(d) {
@@ -239,7 +240,8 @@ slice.selectAll("rect")
 
   //Legend
 let legend = svg.selectAll(".legend")
-  .data(groupData[0].values.map(function(d) { return d.grpName; }).reverse())
+  // .data(groupData[0].values.map(function(d) { return d.grpName; }).reverse())
+  .data(groupData[0].values.map(function(d) { return d.grpName; }))
 .enter().append("g")
   .attr("class", "legend")
   .attr("transform", function(d,i) { return "translate(0," + i * 20 + ")"; })
