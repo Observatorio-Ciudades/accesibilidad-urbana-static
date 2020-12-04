@@ -113,7 +113,7 @@ function init() {
             if (serv != "pobtot") {
                 csvLayer[csvFilter[i].hex_id_9] =  csvFilter[i][serv]/100;
             } else {
-                csvLayer[csvFilter[i].hex_id_9] =  csvFilter[i][serv]/10.53325;
+                csvLayer[csvFilter[i].hex_id_9] =  (csvFilter[i][serv]/10.53325)/100;
             }
         }
         hexesLoaded = true;
@@ -259,6 +259,7 @@ function init() {
   
     let map; 
     let satMap;
+    
     if (!map) {
         map = new mapboxgl.Map({
         container: 'map',
@@ -381,22 +382,45 @@ function init() {
             source.setData(await geojson);
         }        
         // Update the layer paint properties, using the current config values
-        map.setPaintProperty(layerId, 'fill-color', {
-            property: 'value',
-            stops: [  
-                [0.05, config.colorScale[0]],
-                [0.10, config.colorScale[1]],
-                [0.15, config.colorScale[2]],
-                [0.30, config.colorScale[3]],
-                [0.60, config.colorScale[4]]
-                // [0.05, hexColScale(0.05)],
-                // [0.10, hexColScale(0.10)],
-                // [0.15, hexColScale(0.15)],
-                // [0.30, hexColScale(0.30)],
-                // [0.60, hexColScale(0.60)]
-            ],
-            type: 'exponential'
-        });            
+        
+        if (currSelServLabel != "pobtot") {
+            console.log('not drawing pop tot...')
+            map.setPaintProperty(layerId, 'fill-color', {
+                property: 'value',
+                stops: [  
+                    [0.05, config.colorScale[0]],
+                    [0.10, config.colorScale[1]],
+                    [0.20, config.colorScale[2]],
+                    [0.30, config.colorScale[3]],
+                    [0.50, config.colorScale[4]]
+                    // [0.05, hexColScale(0.05)],
+                    // [0.10, hexColScale(0.10)],
+                    // [0.15, hexColScale(0.15)],
+                    // [0.30, hexColScale(0.30)],
+                    // [0.60, hexColScale(0.60)]
+                ],
+                type: 'exponential'
+            });     
+        } else {
+            console.log('drawing pop tot...')
+            map.setPaintProperty(layerId, 'fill-color', {
+                property: 'value',
+                stops: [  
+                    [0.50, config.colorScale[0]],
+                    [1, config.colorScale[1]],
+                    [2, config.colorScale[2]],
+                    [3, config.colorScale[3]],
+                    [5, config.colorScale[4]]
+                    // [0.05, hexColScale(0.05)],
+                    // [0.10, hexColScale(0.10)],
+                    // [0.15, hexColScale(0.15)],
+                    // [0.30, hexColScale(0.30)],
+                    // [0.60, hexColScale(0.60)]
+                ],
+                type: 'exponential'
+            }); 
+        }
+       
         // map.setPaintProperty(layerId, 'fill-color', 'rgba(255,0,0,255)');
         map.setPaintProperty(layerId, 'fill-opacity', config.fillOpacity);
     }
@@ -539,7 +563,7 @@ function init() {
                 step: '.step',
                 offset: 0.8,
                 progress: true,
-                // debug: true
+                debug: false
             })
             .onStepEnter(response => {
               console.log(response);
@@ -805,8 +829,27 @@ function init() {
                     satMap.flyTo(currLocation);
                     // satMap.scrollZoom.enable();
                     // map.addControl(new mapboxgl.NavigationControl());
+                    document.getElementById("map").style.zIndex = -4;
+
                     break;
                 case 24:
+                    console.log('CHANGED TRIGGER TO 0.2')
+                    scroller.offsetTrigger(0.2);
+                    scroller.enable();
+                    document.getElementById("map").style.zIndex = -4;
+                    break;
+                case 25:
+                    // map.addControl(new mapboxgl.Navigation({position: 'bottom-right'}));
+                    document.getElementById("map").style.zIndex = 0;
+
+                    map.addControl(new mapboxgl.NavigationControl());
+
+                    map.doubleClickZoom.enable();
+                    map.dragPan.enable();
+                    // map.scrollZoom.enable();
+
+
+                    
                     let selectCity = document.getElementById("h3-dash-cities");
                     let selectHex = document.getElementById("h3-dash-hexes");
 
@@ -923,6 +966,9 @@ function init() {
                     //     console.log('A click event has occurred at ' + e.lngLat);
                     // });
                     break;
+                case 26:
+                    document.getElementById("map").style.zIndex = -4;
+                    break;
                 default:  
               }
       
@@ -937,6 +983,15 @@ function init() {
               }  
             });
     });
+
+    // function disableArtPointer(id, prop) {
+    //     let artNodes = document.getElementById(id).getElementsByTagName("div");
+    //     for(let i = 0; i<artNodes.length; i++) {
+    //         // artNodes[i].style.background = color;
+    //         // artNodes[i].style.background = prop;
+    //         artNodes[i].style.pointerEvents = prop;
+    //     }
+    // }
 
     async function changeHexes() {
         // let currObj = await hexLayers.find(obj => obj.city == "Mexicali");
