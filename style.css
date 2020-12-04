@@ -337,7 +337,7 @@ p {
   justify-content: flex-end !important;
   /* align-items: flex-end; */
   align-items: center;
-  /* margin: 4em 0 4em 0; */
+  margin: 0 3em 0 0;
   width: 100%;
   pointer-events: none;
   /* padding: 2em; */
@@ -372,7 +372,7 @@ p {
   align-items: flex-end;
   flex-wrap: wrap;
   width: 8vw;
-  padding: 3em 1.5em 3em 0;
+  padding: 3em 0 3em 0;
   flex-direction: column;
   /* align-items: flex-end; */
 }
@@ -529,7 +529,7 @@ p {
   /* justify-content: flex-end; */
   align-items: center;
   flex-direction: column;
-  height: 120vh;
+  height: 100vh;
   width: 100%;
   pointer-events: none;
   /* margin-top: 25vh; */

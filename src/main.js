@@ -530,7 +530,7 @@ function init() {
     let pathBLayer;
     let poiLabels;
 
-
+    let navEnabled = false;
     let portadaChapter;
     let pathAChapter;
     let pathBChapter;
@@ -856,11 +856,17 @@ function init() {
                     // map.addControl(new mapboxgl.Navigation({position: 'bottom-right'}));
                     document.getElementById("map").style.zIndex = 0;
 
-                    map.addControl(new mapboxgl.NavigationControl());
+                    if (!navEnabled) {
+                        map.addControl(new mapboxgl.NavigationControl(),'top-left');
+                        navEnabled = true;
+                    } else {
+                        map.doubleClickZoom.enable();
+                        map.dragPan.enable();
+                        // map.scrollZoom.enable();
+                    }
+                    
 
-                    map.doubleClickZoom.enable();
-                    map.dragPan.enable();
-                    // map.scrollZoom.enable();
+     
 
 
                     
