@@ -110,7 +110,11 @@ function init() {
         console.log( await csvFilter); 
         for (let i = 0; i<csvFilter.length; i++){
             // csvLayer[csvFilter[i].hex_id_9] =  csvFilter[i].min_supermercados/100;
-            csvLayer[csvFilter[i].hex_id_9] =  csvFilter[i][serv]/100;
+            if (serv != "pobtot") {
+                csvLayer[csvFilter[i].hex_id_9] =  csvFilter[i][serv]/100;
+            } else {
+                csvLayer[csvFilter[i].hex_id_9] =  csvFilter[i][serv]/10.53325;
+            }
         }
         hexesLoaded = true;
 
@@ -892,7 +896,7 @@ function init() {
                                 currSelServLabel = "min_supermercados";
                                 break;
                             case "4":
-                                currSelServLabel = "min_pobtot";
+                                currSelServLabel = "pobtot";
                                 break;
                             default:                                    
                         }

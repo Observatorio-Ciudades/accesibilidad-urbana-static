@@ -665,7 +665,8 @@ p {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 25vw;
+  width: 20vw;
+  height: 20vh;
 }
 
 .features {
