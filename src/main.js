@@ -831,6 +831,20 @@ function init() {
                     // map.addControl(new mapboxgl.NavigationControl());
                     document.getElementById("map").style.zIndex = -4;
 
+
+                    if (map.getLayer(`Monterrey-${currSelServLabel}-layer`)) {
+                        map.removeLayer(`Monterrey-${currSelServLabel}-layer`)
+                    }
+
+                    if (map.getLayer(`Queretaro-${currSelServLabel}-layer`)) {
+                        map.removeLayer(`Queretaro-${currSelServLabel}-layer`)
+                    }
+
+                    if (map.getLayer(`CDMX-${currSelServLabel}-layer`)) {
+                        map.removeLayer(`CDMX-${currSelServLabel}-layer`)
+                    }
+                    
+
                     break;
                 case 24:
                     console.log('CHANGED TRIGGER TO 0.2')
@@ -900,6 +914,7 @@ function init() {
 
                         // map.removeLayer(`${currSelCityLabel}-${currSelServLabel}-layer`);
                         // map.removeSource(`${currSelCityLabel}-${currSelServLabel}-layer`);
+                        
 
                         if (map.getLayer(`${currSelCityLabel}-${currSelServLabel}-layer`)) {
                             map.removeLayer(`${currSelCityLabel}-${currSelServLabel}-layer`);
@@ -942,6 +957,14 @@ function init() {
                                 currSelServLabel = "pobtot";
                                 break;
                             default:                                    
+                        }
+
+                        if (currSelServLabel != "pobtot") {
+                            document.getElementById("img-legend-servs").style.display = "flex";
+                            document.getElementById("img-legend-pobtot").style.display = "none";
+                        } else {
+                            document.getElementById("img-legend-servs").style.display = "none";
+                            document.getElementById("img-legend-pobtot").style.display = "flex";
                         }
 
                         console.log("loading other selected hexes...")
