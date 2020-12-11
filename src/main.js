@@ -654,6 +654,8 @@ function init() {
     let pathBLayer;
     let poiLabels;
 
+    let initialHexes;
+
     let navEnabled = false;
     let portadaChapter;
     let pathAChapter;
@@ -699,9 +701,14 @@ function init() {
                     map.flyTo(portadaChapter.location);
 
                     console.log("holiii switch");
+                    initialHexes = map.getLayer(`Guadalajara-min_supermercados-layer`);
                     pathALayer = map.getLayer('pathA');
                     pathBLayer = map.getLayer('pathB');
                     poiLabels = map.getLayer('poi-labels');
+
+                    if(typeof initialHexes !== 'undefined') {
+                        map.setLayoutProperty('Guadalajara-min_supermercados-layer', 'visibility', 'none');
+                    }
 
                     if(typeof pathALayer !== 'undefined') {
                         map.setLayoutProperty('pathA', 'visibility', 'none');
@@ -745,9 +752,9 @@ function init() {
                 case 4:
                     preOutroPathsChapter = config.chapters.find(chap => chap.id === response.element.id);
                     map.flyTo(preOutroPathsChapter.location);
-                    if (hexesLoaded) {
-                        renderHexes(map, hexLayers[0].min_supermercados, 'Guadalajara');  
-                    }
+                    // if (hexesLoaded) {
+                    //     renderHexes(map, hexLayers[0].min_supermercados, 'Guadalajara');  
+                    // }
                     console.log("h3 hexes map on");
                     console.log(map);
                     break;
@@ -757,6 +764,14 @@ function init() {
                     map.setLayoutProperty('pathA', 'visibility', 'none');
                     map.setLayoutProperty('pathB', 'visibility', 'none');
                     map.setLayoutProperty('poi-labels', 'visibility', 'none');
+                    if (hexesLoaded) {
+                        renderHexes(map, hexLayers[0].min_supermercados, 'Guadalajara');  
+                        initialHexes = map.getLayer(`Guadalajara-min_supermercados-layer`);
+                        if(typeof initialHexes !== 'undefined') {
+                            map.setLayoutProperty('Guadalajara-min_supermercados-layer', 'visibility', 'visible');
+                        }
+
+                    }
                     loadHexData("Monterrey","min_supermercados");
                     break;
                 case 6:
