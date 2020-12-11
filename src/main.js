@@ -179,17 +179,6 @@ function init() {
                 features.classList.add('lefty');
         }
 
-        if (config.chapters[i].full) {
-            features.classList.remove('features');
-            features.classList.remove('lefty');
-            features.classList.remove('righty');
-            features.classList.add('full-chapter');
-
-            // chapter.classList.remove('marco');
-            console.log('full chapter on')
-            let imgContainer = document.createElement('div')
-            imgContainer.classList.add('img-container');
-        }
   
         // if (config.chapters[i].title && config.chapters[i].title != "") {
         if (config.chapters[i].id == 'mtyA' || config.chapters[i].id == 'gdlA' || config.chapters[i].id == 'qroA' || config.chapters[i].id == 'cdmxA') {
@@ -204,18 +193,79 @@ function init() {
             chapter.appendChild(story);
         }
 
+        // if (config.chapters[i].shortInfo != "" && !config.chapters[i].full) {
         if (config.chapters[i].shortInfo != "") {
-            let shortInfoCont = document.createElement('ul');
-            let shortInfoLis = [];
+            if (config.chapters[i].shortInfo.length > 0) {
 
-            for (let i = 0; i < config.chapters[i].shortInfo.length; i++) {
-                shortInfoLis[i] = document.createElement('li');
-                shortInfoLis[i].innerHTML = config.chapters[i].shortInfo;
-                shortInfoCont.appendChild(shortInfoLis[i]);
+                let shortInfoCont;
+                let shortInfoContB;
+                if (config.chapters[i].id == "gdlC") {
+          
+
+                    shortInfoCont = document.createElement('ol');
+                    shortInfoCont.classList.add('short-info-ol-cont');
+                    chapter.appendChild(shortInfoCont);
+
+
+                    let titleFull = document.createElement('h3');
+                    chapter.appendChild(titleFull);
+                    titleFull.innerText = config.chapters[i].title;
+                    
+                } else if (config.chapters[i].id == "qroB") {
+                    shortInfoCont = document.createElement('ul');
+                    shortInfoCont.classList.add('short-info-ul-cont');
+                    chapter.appendChild(shortInfoCont);
+
+                    shortInfoContB = document.createElement('ul');
+                    shortInfoContB.classList.add('short-info-ul-cont');
+                    chapter.appendChild(shortInfoContB);
+                } else {
+                    shortInfoCont = document.createElement('ul');
+                    shortInfoCont.classList.add('short-info-ul-cont');
+                    chapter.appendChild(shortInfoCont);
+
+
+                }
+                // let shortInfoCont = document.createElement('ul');
+                // shortInfoCont.classList.add('short-info-cont');
+                let shortInfoLis = [];
+                let shortInfoLisB = [];
+    
+                for (let k = 0; k < config.chapters[i].shortInfo.length; k++) {
+                    shortInfoLis[k] = document.createElement('li');
+                    shortInfoLis[k].innerHTML = config.chapters[i].shortInfo[k];
+
+                    if (config.chapters[i].full) {
+                        shortInfoLis[k].style.color = 'white';
+                        shortInfoLis[k].style.lineHeight = '2em';
+
+                    }
+                    
+                    shortInfoCont.appendChild(shortInfoLis[k]);
+
+                    if (config.chapters[i].id == "qroB") {
+                        shortInfoLisB[k] = document.createElement('li');
+                        shortInfoLisB[k].innerHTML = config.chapters[i].shortInfoB[k];
+                        shortInfoContB.appendChild(shortInfoLisB[k]);
+
+                    }
+
+                }
+                // chapter.appendChild(shortInfoCont);
             }
-            chapter.appendChild(shortInfoCont);
+        }
 
 
+        if (config.chapters[i].full) {
+            features.classList.remove('features');
+            features.classList.remove('lefty');
+            features.classList.remove('righty');
+            features.classList.add('full-chapter');
+
+            // chapter.classList.remove('marco');
+            console.log('full chapter on')
+            let imgContainer = document.createElement('div')
+            imgContainer.classList.add('img-container');
         }
         
         container.classList.add('step');
@@ -342,6 +392,8 @@ function init() {
         // Transform the current hexagon map into a GeoJSON object
         // d3.schemeSpectral[7];
         // let hexColScale = d3.scaleDiverging([0.6, 0.30, 0.15, 0.1, 0.05], d3.interpolateSpectral);
+        // console.log('draw this hexes');
+        // console.log(hexagons);
 
         let geojson = geojson2h3.h3SetToFeatureCollection(
             Object.keys( await hexagons),
@@ -425,51 +477,77 @@ function init() {
         map.setPaintProperty(layerId, 'fill-opacity', config.fillOpacity);
     }
 
-    // function renderHexPaths(map, hexagons) {
+    function renderHexPaths(map, hexagons, label) {
+        // 8948a202973ffff
   
-    //     // Transform the current hexagon map into a GeoJSON object
-    //     const geojson = geojson2h3.h3SetToFeatureCollection(
-    //       Object.keys(hexagons),
-    //       hex => ({value: hexagons[hex]})
-    //     );
+        // Transform the current hexagon map into a GeoJSON object
+        const geojson = geojson2h3.h3SetToFeatureCollection(
+          Object.keys(hexagons),
+          hex => ({value: hexagons[hex]})
+        );
         
-    //     const sourceId = 'h3-hexes';
-    //     const layerId = `${sourceId}-layer`;
-    //     let source = map.getSource(sourceId);
+        const sourceId = `h3-${label}-source`;
+        const layerId = `$h3-${label}-layer`;
+        let source = map.getSource(sourceId);
         
-    //     // Add the source and layer if we haven't created them yet
-    //     if (!source) {
-    //       map.addSource(sourceId, {
-    //         type: 'geojson',
-    //         data: geojson
-    //       });
-    //       map.addLayer({
-    //         id: layerId,
-    //         source: sourceId,
-    //         type: 'fill',
-    //         interactive: false,
-    //         paint: {
-    //           'fill-outline-color': 'rgba(0,0,0,0)',
-    //         }
-    //       });
-    //       source = map.getSource(sourceId);
-    //     }
+        // Add the source and layer if we haven't created them yet
+        if (!source) {
+          map.addSource(sourceId, {
+            type: 'geojson',
+            data: geojson
+          });
+          map.addLayer({
+            id: layerId,
+            source: sourceId,
+            type: 'line',
+            interactive: false,
+            paint: {
+            //   'fill-outline-color': 'rgba(0,0,0,1)',
+            //   'fill-color': 'rgba(0,0,0,1)'
+              'line-color': 'rgba(0,0,0,1)',
+              'line-width': 5
+            }
+          });
+          source = map.getSource(sourceId);
+        }
+
+        let animationStep = 100;
+        enableLineAnimation(layerId);
+
+        function enableLineAnimation(hexPathLayerId) {
+            var dashStep = 0;
+            let dashArraySeq = [
+              [0, 4, 3],
+              [1, 4, 2],
+              [2, 4, 1],
+              [3, 4, 0],
+              [0, 1, 3, 3],
+              [0, 2, 3, 2],
+              [0, 3, 3, 1]
+            ];
+            setInterval(() => {
+                dashStep = (dashStep + 1) % dashArraySeq.length;
+                map.setPaintProperty(hexPathLayerId, 'line-dasharray', dashArraySeq[dashStep]);
+              }, animationStep);
+          }
+
+        
       
-    //     // Update the geojson data
-    //     source.setData(geojson);
+        // Update the geojson data
+        source.setData(geojson);
         
-    //     // Update the layer paint properties, using the current config values
-    //     map.setPaintProperty(layerId, 'fill-color', {
-    //       property: 'value',
-    //       stops: [
-    //         [0, config.colorScale[0]],
-    //         [0.5, config.colorScale[1]],
-    //         [1, config.colorScale[2]]
-    //       ]
-    //     });
+        // Update the layer paint properties, using the current config values
+        // map.setPaintProperty(layerId, 'fill-color', {
+        //   property: 'value',
+        //   stops: [
+        //     [0, config.colorScale[0]],
+        //     [0.5, config.colorScale[1]],
+        //     [1, config.colorScale[2]]
+        //   ]
+        // });
         
     //     map.setPaintProperty(layerId, 'fill-opacity', config.fillOpacity);
-    //   }
+      }
   
   
 
@@ -682,6 +760,9 @@ function init() {
                     loadHexData("Monterrey","min_supermercados");
                     break;
                 case 6:
+                    renderHexPaths(map, { '8948a202973ffff': 409.37995833333343 }, "qroHexPath01");
+                    renderHexPaths(map, { '8948a20297bffff': 409.37995833333343 }, "qroHexPath02");
+
                     map.setLayoutProperty('pathA', 'visibility', 'none');
                     map.setLayoutProperty('pathB', 'visibility', 'none');
                     map.setLayoutProperty('poi-labels', 'visibility', 'none');

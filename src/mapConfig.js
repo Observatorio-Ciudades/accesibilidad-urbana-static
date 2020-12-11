@@ -179,7 +179,8 @@ let config = {
             description: 'El polígono Campana-Altamira es una zona de grandes contrastes, a pesar de su ubicación central en la ciudad y cercanía a vialidades principales y la zona comercial de Valle Oriente, sus pobladores viven con grandes carencias en el acceso a servicios básicos y calidad de vida.<br><br>La topografía es una de las condiciones más relevantes en la zona, ya que configura la estructura urbana, haciendo difícil y costosa la provisión de servicios básicos, generando un sistema discontinuo de calles y aumentando las posibilidades de riesgo por deslaves, inundaciones y fuertes escorrentías durante la temporada de lluvias.',
             shortInfo: '',
             location: {
-                center: [-100.3784997,  25.6989061],
+                // center: [-100.3784997,  25.6989061],
+                center: [-100.3060218384377, 25.63671823966798],
                 zoom: 10.5,
                 pitch: 0,
                 bearing: 0
@@ -202,7 +203,7 @@ let config = {
             description: 'La zona comenzó a urbanizarse con asentamientos informales durante la década de 1960 con migrantes originarios de zonas rurales del estado de Nuevo León y de otras partes del país, que llegaron en busca de oportunidades de empleo principalmente en la construcción y la industria.<br><br>El uso de suelo en la parte de los lomeríos es predominantemente habitacional, con viviendas construidas progresivamente por los habitantes. El 33% de las viviendas en la zona presentan irregularidades en la tenencia de propiedad.<br><br>En las partes bajas del polígono, se encuentran las calles que conectan la zona con avenidas principales de la ciudad, y en ellas se da la mayor concentración de comercios, servicios y equipamientos educativos y de salud. Esto provoca que las personas que viven en los cerros tengan que desplazarse hasta las partes bajas para acceder a estos servicios.',
             shortInfo: ['Polígono Campana-Altamira','Municipio: Monterrey, Nuevo León','Extensión: 170 hectáreas ','Población: 19,543 habitantes','Densidad bruta: 114.95 habitantes / hectárea'],
             location: {
-                center: [-100.3784997,  25.6989061],
+                center: [-100.3060218384377, 25.63671823966798],
                 zoom: 14,
                 pitch: 0,
                 // pitch: 50,
@@ -229,7 +230,7 @@ let config = {
             description: 'El proceso de ocupación informal de la zona, aunado a la topografía con más de 40 grados de pendiente en las partes altas del cerro, han condicionado la estructura y calidad de la red vial de la zona, compuesta principalmente por calles, andadores, veredas y escalinatas. Esta red vial deficiente impide a los habitantes desplazarse al interior de la zona para acceder a servicios básicos de alimento, escuela y salud, y también hacia otros puntos de la ciudad donde se amplían las opciones de empleo.<br><br>De acuerdo al Plan Integral para el Desarrollo del Polígono Campana-Altamira, debido a la ausencia de servicios y comercios básicos de alimentación, los costos de la canasta básica son hasta 32% más elevados, en comparación con otras partes de la ciudad. En un contexto de pobreza y vulnerabilidad social, estos precios ponen una situación de mayor precariedad económica a los habitantes.',
             shortInfo: '',
             location: {
-                center: [-100.3784997,  25.6989061],
+                center: [-100.3060218384377, 25.63671823966798],
                 zoom: 15,
                 pitch: 0,
                 // pitch: 50,
@@ -256,7 +257,7 @@ let config = {
             description: 'El 85 % de los viajes en la zona son a pie, y de estos el 40% se realizan a la escuela, por lo que la calidad de calles y escalinatas es necesaria para mejorar la accesibilidad de la población a servicios básicos.<br><br>A pesar de contar con la presencia de comercios de abarrotes o farmacia en un radio de 500 metros caminando, en comparación con los habitantes de las zonas planas, los habitantes del Cerro de la Campana requieren hasta 70 minutos para realizar un viaje completo (subir y bajar).',
             shortInfo: ['Referencias:','Consejo Interinstitucional Campana-Altamira. (2016).','Plan Integral para el Desarrollo del Polígono Campana-Altamira. Monterrey, N.L.'],
             location: {
-                center: [-100.3784997,  25.6989061],
+                center: [-100.3060218384377, 25.63671823966798],
                 // center: [-103.4629855,  20.7200189],
                 zoom: 14,
                 pitch: 0,
@@ -343,11 +344,11 @@ let config = {
         },
         {
             id: 'gdlC',
-            title: '',
+            title: 'Las tres distintas formas urbanas identificadas son:',
             full: true, 
             image: ['​imgs/poligonos-gdl_01.png', 'imgs/poligonos-gdl_02.png', 'imgs/poligonos-gdl_03.png', 'imgs/poligonos-gdl_04.png'],
             description: 'La zona es producto de un crecimiento discontinuo a partir de iniciativas inmobiliarias desarticuladas que obedecen a lógicas muy distintas. Además se ubican enclaves funcionales de gran escala de tipo cultural, salud, administrativo y educativo, como el campus del Tec de Monterrey ubicado a 3 kilómetros al poniente. Los diferentes fragmentos funcionales, socioeconómicos y morfológicos no permiten la continuidad de la traza vial saturando las únicas tres avenidas que estructuran la zona.',
-            shortInfo: ['Las tres distintas formas urbanas identificadas son::','1. Manzanas rectangulares de 1 hectárea, con una red de calles continua y parcelas de aproximadamente 120m2. Con una densidad de 335 habitantes/ha','2. Macromanzanas de 19 hectáreas, subdivididas por andadores peatonales y calles locales, con parcelas de 100m2 o bloques de vivienda de 4 niveles y con una densidad de 300 habitantes/ha','3. Fraccionamientos cerrados de tamaño medio con un solo acceso controlado de 8-15 hectáreas aproximadamente y tamaño de parcela entre 250-300m2 con una densidad de 85 habitantes/ha','4. Macro lotes con alta capacidad de estacionamientos para equipamiento y zonas comerciales.'],
+            shortInfo: ['1. Manzanas rectangulares de 1 hectárea, con una red de calles continua y parcelas de aproximadamente 120m2. Con una densidad de 335 habitantes/ha','2. Macromanzanas de 19 hectáreas, subdivididas por andadores peatonales y calles locales, con parcelas de 100m2 o bloques de vivienda de 4 niveles y con una densidad de 300 habitantes/ha','3. Fraccionamientos cerrados de tamaño medio con un solo acceso controlado de 8-15 hectáreas aproximadamente y tamaño de parcela entre 250-300m2 con una densidad de 85 habitantes/ha','4. Macro lotes con alta capacidad de estacionamientos para equipamiento y zonas comerciales.'],
             location: {
                 center: [-103.44416667,  20.72305556],
                 zoom: 12,
@@ -416,7 +417,8 @@ let config = {
             shortInfo: '',
             location: {
                 // center: [-100.3942692,  20.5898449],
-                center: [-100.4445,  20.645611],
+                // center: [-100.4445,  20.645611],
+                center: [-100.4442188,  20.6431689],
                 zoom: 10.5,
                 pitch: 0,
                 bearing: 0,
@@ -448,10 +450,13 @@ let config = {
             image: '',
             // description: 'En el área de estudio conviven la ​vivienda popular de la década de 1970, vivienda social en formato de macromanzana de la década de 1980, y un desarrollo de reciente urbanización que aglomera varios conjuntos cerrados de vivienda privada en baja densidad y zonas comerciales y de servicios. El uso predominante en las zonas populares es el habitacional de alta densidad con usos de suelo mixto en las calles principales. Mientras que el equipamiento de escala central ocupa la mayor extensión de suelo como el hospital, teatro, un museo para niños y centros comerciales. La zona no cuenta con ningún espacio público y las áreas verdes son de carácter privado.<br><br>Zona Real<br>Municipio: Zapopan, Jalisco<br>Colonias: Los Girasoles, Jardines de Santa Margarita, La Tuzania Eijdal, Santa Margarita Poniente, La Mora, as Bóvedas, Puerta del Valle, Tramo de Valle Real<br>Extensión: 243 hectáreas<br>Población: 30, 253 habitantes<br>Densidad bruta: 124.49 habitantes / hectárea',
             description: 'En la zona de destacan características de la vivienda que surgió a partir del desarrollo industrial. Por un lado, Lomas de Satélite, una colonia de vivienda popular subsidiada por organismos productores de vivienda y por el otro Jurica, una zona residencial-campestre con grandes parcelas.<br><br>Así mismo, se encuentran los grandes macrolotes con enfoque industrial, que limitan la conexión de Jurica con el resto de las colonias que la rodean, por lo cual la convivencia entre los habitantes de ambas colonias es nula.<br><br>Jurica es un desarrollo principalmente habitacional con una densidad baja. En contraste, Lomas de Satélite, una colonia popular desarrollada a mitad de los 70’s cuenta con una mayor densidad de habitantes y con mayor mezcla de usos y presencia de servicios en las calles principales.',
-            shortInfo: ['Jurica (Colonia completa)','Colonia residencial/campestre','Municipio: Querétaro, Querétaro','Extensión: 278 ha','Población: 5,300 habitantes','Densidad bruta: 19.06 habitantes / hectárea','','Lomas de Satélite (Colonia completa)','Colonia popular','Municipio: Querétaro, Querétaro','Extensión: 13 ha','Población:  642 habitantes','Densidad bruta: 49.38 habitantes / hectárea'],
+            // shortInfo: ['Jurica (Colonia completa)','Colonia residencial/campestre','Municipio: Querétaro, Querétaro','Extensión: 278 ha','Población: 5,300 habitantes','Densidad bruta: 19.06 habitantes / hectárea','','Lomas de Satélite (Colonia completa)','Colonia popular','Municipio: Querétaro, Querétaro','Extensión: 13 ha','Población:  642 habitantes','Densidad bruta: 49.38 habitantes / hectárea'],
+            shortInfo: ['Jurica (Colonia completa)','Colonia residencial/campestre','Municipio: Querétaro, Querétaro','Extensión: 278 ha','Población: 5,300 habitantes','Densidad bruta: 19.06 habitantes / hectárea'],
+            shortInfoB: ['Lomas de Satélite (Colonia completa)','Colonia popular','Municipio: Querétaro, Querétaro','Extensión: 13 ha','Población:  642 habitantes','Densidad bruta: 49.38 habitantes / hectárea'],
             location: {
-                center: [-100.4445,  20.645611],
-                zoom: 17,
+                // center: [-100.4445,  20.645611],
+                center: [-100.4442188,  20.6431689],            
+                zoom: 13,
                 pitch: 0,
                 bearing: 0,
                 speed: 2,
@@ -477,13 +482,15 @@ let config = {
         },
         {
             id: 'qroC',
-            title: '​',
+            title: 'Macrolotes con actividad industrial​',
             full: true, 
             image: ['imgs/poligonos-qro_01.png', 'imgs/poligonos-qro_02.png'],
-            description: '',
-            shortInfo: ['Macrolotes con actividad industrial','Extensión promedio de manzanas: 9.80 ha','','Jurica','Extensión promedio de manzanas: 5.54 ha','','Lomas de Satelite','Extensión promedio de manzanas: 0.80 ha'],
+            description: 'Extensión promedio de manzanas: 9.80 ha',
+            // shortInfo: ['Macrolotes con actividad industrial','Extensión promedio de manzanas: 9.80 ha','','Jurica','Extensión promedio de manzanas: 5.54 ha','','Lomas de Satelite','Extensión promedio de manzanas: 0.80 ha'],
+            shortInfo: "",
             location: {
-                center: [-100.4445,  20.645611],
+                // center: [-100.4445,  20.645611],
+                center: [-100.4442188,  20.6431689],                
                 zoom: 14,
                 pitch: 0,
                 bearing: 0,
@@ -516,7 +523,8 @@ let config = {
             description: 'Un habitante que vive en Jurica, tiene que caminar en promedio durante 21 minutos para acceder a un supermercado, mientras que un habitante de Lomas de Satélite tiene acceso al mismo servicio a tan solo 6 minutos caminando.',
             shortInfo: '',
             location: {
-                center: [-100.4445,  20.645611],
+                // center: [-100.4445,  20.645611],
+                center: [-100.4442188,  20.6431689],                
                 zoom: 14,
                 pitch: 0,
                 bearing: 0,
@@ -581,7 +589,7 @@ let config = {
             image: '',
             // description: 'En el área de estudio conviven la ​vivienda popular de la década de 1970, vivienda social en formato de macromanzana de la década de 1980, y un desarrollo de reciente urbanización que aglomera varios conjuntos cerrados de vivienda privada en baja densidad y zonas comerciales y de servicios. El uso predominante en las zonas populares es el habitacional de alta densidad con usos de suelo mixto en las calles principales. Mientras que el equipamiento de escala central ocupa la mayor extensión de suelo como el hospital, teatro, un museo para niños y centros comerciales. La zona no cuenta con ningún espacio público y las áreas verdes son de carácter privado.<br><br>Zona Real<br>Municipio: Zapopan, Jalisco<br>Colonias: Los Girasoles, Jardines de Santa Margarita, La Tuzania Eijdal, Santa Margarita Poniente, La Mora, as Bóvedas, Puerta del Valle, Tramo de Valle Real<br>Extensión: 243 hectáreas<br>Población: 30, 253 habitantes<br>Densidad bruta: 124.49 habitantes / hectárea',
             description: 'En el área de estudio existen 27 equipamientos educativos, desde nivel preescolar hasta universitario, tanto públicos como privados lo cual constituye una importante población jóven que se traslada a esta zona debido al impacto regional que tienen los equipamientos de educación media superior y superior. Sin embargo, la población de la zona tiene un nivel de escolaridad promedio correspondiente a 11.4 años y solamente el 51.22% de la población mayor de 18 años cuenta con educación pos-básica.<br><br>',
-            shortInfo: ['Distrito Tlalpan','','Municipio: Tlalpan, Cdmx','Extensión: 260 hectáreas ','Población: 26,544 habitantes','Densidad bruta: 102.09 habitantes / hectárea'],
+            shortInfo: ['Distrito Tlalpan','Municipio: Tlalpan, Cdmx','Extensión: 260 hectáreas ','Población: 26,544 habitantes','Densidad bruta: 102.09 habitantes / hectárea'],
             location: {
                 center: [-99.14000000, 19.28916667],
                 zoom: 16,
@@ -651,10 +659,10 @@ let config = {
             shortInfo: '',
             location: {
                 center: [-99.14000000, 19.28916667],
-                zoom: 14,
+                zoom: 6,
                 pitch: 0,
                 bearing: 0,
-                speed: 2,
+                speed: 0.75,
                 curve: 0.8,
                 easing: function (t) {
                     return t;
