@@ -24,6 +24,7 @@ function init() {
     let currSelServLabel = "min_supermercados";
 
     let hexesLoaded = false;
+    let mapOn = true;
     let satOn = false;
     let dashOn = false;
     let hexLayers = [];
@@ -376,7 +377,20 @@ function init() {
 
     let satMapContainer = document.getElementById("satMap");
     let dashMapContainer = document.getElementById("dashMap");
-
+    let mapContainer = document.getElementById("map");
+    
+    
+    function setMapOpacity() {
+        if (!mapOn) {
+            mapContainer.classList.remove('fade-out');
+            mapContainer.classList.add('fade-in');
+            mapOn = true;
+        } else {
+            mapContainer.classList.remove('fade-in');
+            mapContainer.classList.add('fade-out');
+            mapOn = false;
+        }
+    }
     
 
     function setSatOpacity() {
@@ -1042,6 +1056,10 @@ function init() {
                     if (dashOn) {
                         setDashOpacity();
                     }
+                    if (!mapOn) {
+                        setMapOpacity();
+                    }
+                    
 
 
                     if (map.getLayer(`Monterrey-${currSelServLabel}-layer`)) {
@@ -1074,17 +1092,27 @@ function init() {
                     console.log('CHANGED TRIGGER TO 0.2')
                     scroller.offsetTrigger(0.2);
                     scroller.enable();
-                    document.getElementById("map").style.zIndex = -4;
+                    document.getElementById("map").style.zIndex = -10;
                     // document.getElementById("map").style.zIndex = -4;
                     document.getElementById("dashMap").style.zIndex = -4;
                     if (!dashOn) {
                         setDashOpacity();
+                    }
+                    if (satOn) {
+                        setSatOpacity();
+
+                    }
+                    if (mapOn) {
+                        setMapOpacity();
                     }
                     loadHexData('Guadalajara','min_supermercados')
                         .then(results =>  changeHexes())
                         .catch(err => console.log("errooooor",err));
                     break;
                 case 25:
+                    if (!dashOn) {
+                        setDashOpacity();
+                    }
                     // map.addControl(new mapboxgl.Navigation({position: 'bottom-right'}));
                     // document.getElementById("map").style.zIndex = 0;
                     document.getElementById("dashMap").style.zIndex = 0;

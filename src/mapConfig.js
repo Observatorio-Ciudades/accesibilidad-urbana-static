@@ -65,7 +65,7 @@ let config = {
             location: {
                 center: [-103.3928603,  20.720328],
                 // center: [-103.393551,  20.7213038],
-                zoom: 17.5,
+                zoom: 16,
                 pitch: 0,
                 bearing: 0,
                 speed: 0.8,
@@ -96,8 +96,9 @@ let config = {
             description: '',
             shortInfo: '',
             location: {
-                center: [-103.3963082, 20.7182341],
-                zoom: 16,
+                // center: [-103.3963082, 20.7182341],
+                center: [-103.3943082, 20.7182341],
+                zoom: 15,
                 pitch: 0,
                 bearing: 0,
                 speed: 0.7,
