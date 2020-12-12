@@ -3,6 +3,7 @@
   /* background: rgba(200, 100, 200, 0.5); */
 }
 
+
 body {
   background: #FFFFFF;
   font-family: 'Arimo', sans-serif;
@@ -11,7 +12,8 @@ body {
   font-size: 32px;
   /* color: black; */
   /* color: rgb(100, 100, 100); */
-  color: #1A1919;
+  color: #000000;
+  /* color: #1A1919; */
   letter-spacing: -0.01em;
 
 }
@@ -36,7 +38,8 @@ a:visited {
 #main-title {
   font-size: 2.5em;
   /* color: rgb(100, 100, 100); */
-  color: #1A1919;
+  /* color: #1A1919; */
+  color: #000000;
   padding: 0.2em 0em;
   letter-spacing: -0.01em;
   margin: 0.8em 0 0.8em 0;
@@ -53,7 +56,8 @@ h2 {
   font-size: 1em;
   text-align: center;
   /* color: rgb(100, 100, 100); */
-  color: #1A1919;
+  /* color: #1A1919; */
+  color: #000000;
   padding: 0.5em 0em;
   letter-spacing: -0.01em;
   margin: 2em 0 1em 0;
@@ -64,7 +68,8 @@ h2 {
 p {
   font-size: 0.7em;
   /* color: rgb(45, 45, 45); */
-  color: #1A1919;
+  color: #000000;
+  /* color: #1A1919; */
   /* color: rgb(100, 100, 100); */
   padding: 0.5em 0em;
   letter-spacing: -0.01em;
@@ -75,7 +80,8 @@ p {
 }
 
 .section-sub {
-  color: #1A1919;
+  color: #000000;
+  /* color: #1A1919; */
   /* color: rgb(100, 100, 100); */
   
 }
@@ -107,7 +113,8 @@ p {
 
 .solid-dark {
   /* background-color: rgb(100,100,100); */
-  background-color: #1A1919;
+  background-color: #000000;
+  /* background-color: #1A1919; */
   width: 100%;
   /* height: 100vh; */
   display: flex;
@@ -256,7 +263,10 @@ p {
 
 #pathA > .note-cont {
   /* background: rgba(117, 177, 193, 0.75);  */
-  background: #94F9F7; 
+  /* background: #94F9F7;  */
+  background: #FAE300; 
+  /* opacity: 0.75; */
+
 }
 
 /* #pathA  {
@@ -273,7 +283,9 @@ p {
 
 #pathB > .note-cont {
   /* background: rgba(228, 209, 101, 0.75);  */
-  background: #F9E492; 
+  /* background: #F9E492;  */
+  background: #CF1750; 
+  /* opacity: 0.75; */
 
 }
 
@@ -365,7 +377,8 @@ p {
   font-size: 0.65em;
   text-align: left;
   /* color: rgb(100, 100, 100); */
-  color: #1A1919;
+  /* color: #1A1919; */
+  color: #000000;
   padding: 0em 0em;
   letter-spacing: -0.01em;
   margin: 2em 0 0 0;
@@ -379,7 +392,8 @@ p {
 }
 
 .short-info-ul-cont, .short-info-ol-cont > li {
-  color: #1A1919;
+  /* color: #1A1919; */
+  color: #000000;
   font-size: 0.55em;
   list-style-position: inside;
   line-height: 1.2em;
@@ -500,7 +514,7 @@ p {
 }
 
 
-#map, #satMap {
+#map, #satMap, #dashMap {
   top: 0;
   height: 100%;
   width: 100%;
@@ -668,7 +682,8 @@ p {
   border: 0;
   background-color: #fff;
   /* color: rgba(0, 0, 0, 0.6); */
-  color: #1A1919;
+  /* color: #1A1919; */
+  color: #000000;
   font-weight: 450;
   /* line-height: 1.2em; */
   padding: 10px;
@@ -683,14 +698,16 @@ p {
 
 .h3-dash-select:hover {
 	/* border-color: #888; */
-	border-color: #1A1919;
+	border-color: #000000;
+	/* border-color: #1A1919; */
 }
 
 .h3-dash-select:focus {
 	border-color: #aaa;
 	box-shadow: 0 0 1px 3px rgba(59, 153, 252, .7);
 	box-shadow: 0 0 0 3px -moz-mac-focusring;
-	color: #1A1919;
+	color: #000000;
+	/* color: #1A1919; */
 	/* color: #222; */
 	outline: none;
 }
@@ -754,7 +771,8 @@ p {
   /* padding-top: 10vh;
   padding-bottom: 10vh; */
   z-index: 10;
-  color: #1A1919;
+  color: #000000;
+  /* color: #1A1919; */
   /* color: rgb(100, 100, 100); */
   /* color: white; */
   height: 100vh;
@@ -768,7 +786,7 @@ p {
   font-size: 0.55em;
   /* line-height: 1.2em; */
   line-height: 1.5em;  
-  color: black;
+  color: #000000;
 }
 .features  h3 {
   font-size: 1em;
@@ -786,7 +804,8 @@ p {
   transform: translateX(-50%);
   /* position: absolute; */
   /* background-color: rgb(100,100,100); */
-  background-color: #1A1919;
+  /* background-color: #1A1919; */
+  background-color: #000000;
 
   z-index: 10;
   padding: 2em 0;
@@ -905,7 +924,8 @@ p {
 }
 
 .note-text {
-  color: #1A1919;
+  color: #000000;
+  /* color: #1A1919; */
   /* color: rgb(100, 100, 100); */
   font-size: 0.55em;
   /* line-height: 1.2em; */
@@ -1060,6 +1080,9 @@ p {
     width: 85%;
   }
 
+
+
+  
   
 
 
@@ -1088,3 +1111,10 @@ p {
 @media (min-width: 1200px) {
 
  }
+
+
+ /* @media ( min-resolution: 2dppx) {
+  body, html {
+      font-size: 110%;
+  }
+} */

@@ -1,8 +1,9 @@
 let config = {
     // fillOpacity: 1,
-    fillOpacity: 0.3,
+    fillOpacity: 0.50,
     // colorScale: ['#4990A6', '#EBC255', '#BDC066','#E4904A', '#CA3B2E'],
-    colorScale: ['#00FDFB', '#F6FA00', '#FED300','#FEA700', '#FF0200'],
+    colorScale: ['#FAE300', '#FD7900', '#CF1750','#7A0DA6', '#2C51BE'],
+    // colorScale: ['#00FDFB', '#F6FA00', '#FED300','#FEA700', '#FF0200'],
     
     // colorScale: ['#6FAFBF', '#EDD13B', '#D51D1D','#CA3A2D'],
     // colorScale: ['#6FAFBF', '#EDD13B', '#D51D1D'],

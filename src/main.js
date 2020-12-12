@@ -25,6 +25,7 @@ function init() {
 
     let hexesLoaded = false;
     let satOn = false;
+    let dashOn = false;
     let hexLayers = [];
 
 
@@ -309,11 +310,13 @@ function init() {
   
     let map; 
     let satMap;
+    let dashMap;
     
     if (!map) {
         map = new mapboxgl.Map({
         container: 'map',
         style: config.style,
+        // style: "mapbox://styles/mapbox/dark-v9",
         center: config.chapters[0].location.center,
         zoom: 12,
         bearing: config.chapters[0].location.bearing,
@@ -336,6 +339,22 @@ function init() {
     });
     }
 
+    if (!dashMap) {
+        dashMap = new mapboxgl.Map({
+        container: 'dashMap',
+        // style: 'mapbox://styles/haxzie/ck0cc2cdn01241eohsj4fcz5p',
+        // style: "mapbox://styles/mapbox/dark-v8",
+        style: "mapbox://styles/mapbox/dark-v9",
+        // style: "mapbox://styles/mapbox/night-v2",
+        center: [-103.344,20.6736],
+        zoom: 10,
+        bearing: 0,
+        pitch: 0,
+        scrollZoom: false,
+        transformRequest: transformRequest
+    });
+    }
+
     Promise.resolve().then(function() {
     if (map.loaded()) {
             resolve(map);
@@ -346,10 +365,17 @@ function init() {
         if (satMap.loaded()) {
                 resolve(satMap);
          }
-        });
+    });
+
+    Promise.resolve().then(function() {
+        if (dashMap.loaded()) {
+                resolve(dashMap);
+         }
+    });
     
 
     let satMapContainer = document.getElementById("satMap");
+    let dashMapContainer = document.getElementById("dashMap");
 
     
 
@@ -363,6 +389,18 @@ function init() {
             satMapContainer.classList.add('fade-out');
             satOn = false;
 
+        }
+    }
+
+    function setDashOpacity() {
+        if (!dashOn) {
+            dashMapContainer.classList.remove('fade-out');
+            dashMapContainer.classList.add('fade-in');
+            dashOn = true;
+        } else {
+            dashMapContainer.classList.remove('fade-in');
+            dashMapContainer.classList.add('fade-out');
+            dashOn = false;
         }
     }
   
@@ -556,11 +594,11 @@ function init() {
         let pathsCoords = [];
         
 
-        let pathColScale = d3.scaleQuantile()
-        // let pathColScale = d3.scaleQuantize()
-            .domain([0.05,0.10,0.3])
-            .range(config.colorScale);
-            // .range(config.colorScale.reverse());
+        // let pathColScale = d3.scaleQuantile()
+        // // let pathColScale = d3.scaleQuantize()
+        //     .domain([0.05,0.10,0.3])
+        //     .range(config.colorScale);
+        //     // .range(config.colorScale.reverse());
 
         d3.json(dataset).then(function(json) {
             // console.log(json.features); 
@@ -612,9 +650,10 @@ function init() {
                     'paint': {
                         // 'line-color': pathColScale(val),
                         // 'line-color': '#6FAFBF',
-                        'line-color': '#94F9F7',
+                        // 'line-color': '#CF1750',
+                        'line-color': '#FAE300',
                         'line-width': 5,
-                        'line-opacity': 0.75
+                        'line-opacity': 0.5
                         // 'line-dasharray': [2, 1]
                     }
                 });
@@ -631,9 +670,10 @@ function init() {
                     'paint': {
                         // 'line-color': pathColScale(val),
                         // 'line-color': '#EBC639',
-                        'line-color': '#F9E492',
+                        // 'line-color': '#F9E492',
+                        'line-color': '#CF1750',
                         'line-width': 5,
-                        'line-opacity': 0.75
+                        'line-opacity': 0.5
                         // 'line-dasharray': [2, 1]
                     }
                 });
@@ -702,6 +742,7 @@ function init() {
 
                     console.log("holiii switch");
                     initialHexes = map.getLayer(`Guadalajara-min_supermercados-layer`);
+                    finalHexes = dashMap.getLayer(`Guadalajara-min_supermercados-layer`);
                     pathALayer = map.getLayer('pathA');
                     pathBLayer = map.getLayer('pathB');
                     poiLabels = map.getLayer('poi-labels');
@@ -709,6 +750,14 @@ function init() {
                     if(typeof initialHexes !== 'undefined') {
                         map.setLayoutProperty('Guadalajara-min_supermercados-layer', 'visibility', 'none');
                     }
+
+                    if(typeof finalHexes !== 'undefined') {
+                        dashMap.setLayoutProperty('Guadalajara-min_supermercados-layer', 'visibility', 'none');
+                    }
+
+                    // if (initialHexes) {
+                    //     map.removeLayer(`Guadalajara-${currSelServLabel}-layer`)
+                    // }
 
                     if(typeof pathALayer !== 'undefined') {
                         map.setLayoutProperty('pathA', 'visibility', 'none');
@@ -761,9 +810,9 @@ function init() {
                 case 5:
                     outroPathsChapter = config.chapters.find(chap => chap.id === response.element.id);
                     map.flyTo(outroPathsChapter.location);
-                    map.setLayoutProperty('pathA', 'visibility', 'none');
-                    map.setLayoutProperty('pathB', 'visibility', 'none');
-                    map.setLayoutProperty('poi-labels', 'visibility', 'none');
+                    // map.setLayoutProperty('pathA', 'visibility', 'none');
+                    // map.setLayoutProperty('pathB', 'visibility', 'none');
+                    // map.setLayoutProperty('poi-labels', 'visibility', 'none');
                     if (hexesLoaded) {
                         renderHexes(map, hexLayers[0].min_supermercados, 'Guadalajara');  
                         initialHexes = map.getLayer(`Guadalajara-min_supermercados-layer`);
@@ -775,8 +824,9 @@ function init() {
                     loadHexData("Monterrey","min_supermercados");
                     break;
                 case 6:
-                    renderHexPaths(map, { '8948a202973ffff': 409.37995833333343 }, "qroHexPath01");
-                    renderHexPaths(map, { '8948a20297bffff': 409.37995833333343 }, "qroHexPath02");
+                    
+                    // renderHexPaths(map, { '8948a202973ffff': 409.37995833333343 }, "qroHexPath01");
+                    // renderHexPaths(map, { '8948a20297bffff': 409.37995833333343 }, "qroHexPath02");
 
                     map.setLayoutProperty('pathA', 'visibility', 'none');
                     map.setLayoutProperty('pathB', 'visibility', 'none');
@@ -804,6 +854,10 @@ function init() {
                     break;
                 case 8:
                     let chapterMtyC = config.chapters.find(chap => chap.id === response.element.id);
+
+                    renderHexPaths(map, { '8948a202973ffff': 100 }, "mtyHexPath01");
+                    renderHexPaths(map, { '8948a20297bffff': 100 }, "mtyHexPath02");
+
                     console.log("mtyc debug step", response.element.id)
                     console.log("mtyc bug chapter", chapterMtyC.id)
                     map.flyTo(chapterMtyC.location);
@@ -848,6 +902,10 @@ function init() {
                     if (satOn) {
                         setSatOpacity();
                     }
+
+                    // renderHexPaths(map, { '894983cac23ffff': 100 }, "gdlHexPath01");
+                    // renderHexPaths(map, { '894983caca3ffff': 100 }, "gdlHexPath02");
+
                     let chapterGdlC = config.chapters.find(chap => chap.id === response.element.id);
                     map.flyTo(chapterGdlC.location);
                     satMap.flyTo(chapterGdlC.location);
@@ -897,6 +955,10 @@ function init() {
                     if (satOn) {
                         setSatOpacity();
                     }
+
+                    renderHexPaths(map, { '894983cac23ffff': 100 }, "qroHexPath01");
+                    renderHexPaths(map, { '894983caca3ffff': 100 }, "qroHexPath02");
+                    
                     let chapterQroC = config.chapters.find(chap => chap.id === response.element.id);
                     map.flyTo(chapterQroC.location);
                     satMap.flyTo(chapterQroC.location);
@@ -945,6 +1007,10 @@ function init() {
                     if (satOn) {
                         setSatOpacity();
                     }
+
+                    // renderHexPaths(map, { '894983cac23ffff': 100 }, "cdmxHexPath01");
+                    // renderHexPaths(map, { '894983caca3ffff': 100 }, "cdmxHexPath02");
+
                     let chapterCDMXC = config.chapters.find(chap => chap.id === response.element.id);
                     map.flyTo(chapterCDMXC.location);
                     satMap.flyTo(chapterCDMXC.location);
@@ -972,18 +1038,34 @@ function init() {
                     // satMap.scrollZoom.enable();
                     // map.addControl(new mapboxgl.NavigationControl());
                     document.getElementById("map").style.zIndex = -4;
+                    document.getElementById("dashMap").style.zIndex = -4;
+                    if (dashOn) {
+                        setDashOpacity();
+                    }
 
 
                     if (map.getLayer(`Monterrey-${currSelServLabel}-layer`)) {
-                        map.removeLayer(`Monterrey-${currSelServLabel}-layer`)
+                        // map.removeLayer(`Monterrey-${currSelServLabel}-layer`)
+                        map.setLayoutProperty('Monterrey-min_supermercados-layer', 'visibility', 'none');
+
                     }
 
                     if (map.getLayer(`Queretaro-${currSelServLabel}-layer`)) {
-                        map.removeLayer(`Queretaro-${currSelServLabel}-layer`)
+                        // map.removeLayer(`Queretaro-${currSelServLabel}-layer`)
+                        map.setLayoutProperty('Queretaro-min_supermercados-layer', 'visibility', 'none');
+
                     }
 
                     if (map.getLayer(`CDMX-${currSelServLabel}-layer`)) {
-                        map.removeLayer(`CDMX-${currSelServLabel}-layer`)
+                        // map.removeLayer(`CDMX-${currSelServLabel}-layer`)
+                        map.setLayoutProperty('CDMX-min_supermercados-layer', 'visibility', 'none');
+
+                    }
+
+                    if (map.getLayer(`Guadalajara-${currSelServLabel}-layer`)) {
+                        // map.removeLayer(`Guadalajara-${currSelServLabel}-layer`)
+                        map.setLayoutProperty('Guadalajara-min_supermercados-layer', 'visibility', 'none');
+
                     }
                     
 
@@ -993,17 +1075,36 @@ function init() {
                     scroller.offsetTrigger(0.2);
                     scroller.enable();
                     document.getElementById("map").style.zIndex = -4;
+                    // document.getElementById("map").style.zIndex = -4;
+                    document.getElementById("dashMap").style.zIndex = -4;
+                    if (!dashOn) {
+                        setDashOpacity();
+                    }
+                    loadHexData('Guadalajara','min_supermercados')
+                        .then(results =>  changeHexes())
+                        .catch(err => console.log("errooooor",err));
                     break;
                 case 25:
                     // map.addControl(new mapboxgl.Navigation({position: 'bottom-right'}));
-                    document.getElementById("map").style.zIndex = 0;
+                    // document.getElementById("map").style.zIndex = 0;
+                    document.getElementById("dashMap").style.zIndex = 0;
+                    document.getElementById("map").style.zIndex = -10;
+
+
+                    // if (!dashOn) {
+                    //     setDashOpacity();
+                    // }
 
                     if (!navEnabled) {
-                        map.addControl(new mapboxgl.NavigationControl(),'top-left');
+                        // map.addControl(new mapboxgl.NavigationControl(),'top-left');
+                        dashMap.addControl(new mapboxgl.NavigationControl(),'top-left');
                         navEnabled = true;
                     } else {
-                        map.doubleClickZoom.enable();
-                        map.dragPan.enable();
+                        dashMap.doubleClickZoom.enable();
+                        dashMap.dragPan.enable();   
+                        // map.doubleClickZoom.enable();
+                        // map.dragPan.enable();
+
                         // map.scrollZoom.enable();
                     }
                     
@@ -1016,12 +1117,19 @@ function init() {
                     let selectHex = document.getElementById("h3-dash-hexes");
 
                     selectCity.addEventListener('change', (event) => {
-                        if (map.getLayer(`${currSelCityLabel}-${currSelServLabel}-layer`)) {
-                            map.removeLayer(`${currSelCityLabel}-${currSelServLabel}-layer`);
+                        if (dashMap.getLayer(`${currSelCityLabel}-${currSelServLabel}-layer`)) {
+                            dashMap.removeLayer(`${currSelCityLabel}-${currSelServLabel}-layer`);
                         }
-                          if (map.getSource(`${currSelCityLabel}-${currSelServLabel}-hex-source`)) {
-                            map.removeSource(`${currSelCityLabel}-${currSelServLabel}-hex-source`);
+                          if (dashMap.getSource(`${currSelCityLabel}-${currSelServLabel}-hex-source`)) {
+                            dashMap.removeSource(`${currSelCityLabel}-${currSelServLabel}-hex-source`);
                         }
+
+                        // if (map.getLayer(`${currSelCityLabel}-${currSelServLabel}-layer`)) {
+                        //     map.removeLayer(`${currSelCityLabel}-${currSelServLabel}-layer`);
+                        // }
+                        //   if (map.getSource(`${currSelCityLabel}-${currSelServLabel}-hex-source`)) {
+                        //     map.removeSource(`${currSelCityLabel}-${currSelServLabel}-hex-source`);
+                        // }
 
                         currSelCity = event.target.value;
                         // let currSelHex = event.target.value;
@@ -1039,6 +1147,7 @@ function init() {
                         }
                         map.jumpTo(currLocation);
                         satMap.jumpTo(currLocation);
+                        dashMap.jumpTo(currLocation);
                         
                         loadHexData(currSelCityLabel,currSelServLabel)
                             .then(results =>  changeHexes())
@@ -1064,12 +1173,20 @@ function init() {
                         // map.removeSource(`${currSelCityLabel}-${currSelServLabel}-layer`);
                         
 
-                        if (map.getLayer(`${currSelCityLabel}-${currSelServLabel}-layer`)) {
-                            map.removeLayer(`${currSelCityLabel}-${currSelServLabel}-layer`);
+                        if (dashMap.getLayer(`${currSelCityLabel}-${currSelServLabel}-layer`)) {
+                            dashMap.removeLayer(`${currSelCityLabel}-${currSelServLabel}-layer`);
                         }
-                          if (map.getSource(`${currSelCityLabel}-${currSelServLabel}-hex-source`)) {
-                            map.removeSource(`${currSelCityLabel}-${currSelServLabel}-hex-source`);
+                          if (dashMap.getSource(`${currSelCityLabel}-${currSelServLabel}-hex-source`)) {
+                            dashMap.removeSource(`${currSelCityLabel}-${currSelServLabel}-hex-source`);
                         }
+
+
+                        // if (map.getLayer(`${currSelCityLabel}-${currSelServLabel}-layer`)) {
+                        //     map.removeLayer(`${currSelCityLabel}-${currSelServLabel}-layer`);
+                        // }
+                        //   if (map.getSource(`${currSelCityLabel}-${currSelServLabel}-hex-source`)) {
+                        //     map.removeSource(`${currSelCityLabel}-${currSelServLabel}-hex-source`);
+                        // }
 
                         // let oldLayerId = `${currSelCityLabel}-${currSelServLabel}-layer`;
                         // let oldLayerId = `${currSelCityLabel}-${currSelServLabel}-layer`;
@@ -1139,6 +1256,7 @@ function init() {
                     break;
                 case 26:
                     document.getElementById("map").style.zIndex = -4;
+                    document.getElementById("dashMap").style.zIndex = -4;
                     break;
                 default:  
               }
@@ -1169,7 +1287,7 @@ function init() {
         let currObj = await hexLayers.find(obj => obj.city == currSelCityLabel);
         console.log("changing hexes to", currObj.city, currSelServLabel);
         // if (currObj[currSelServLabel]) {
-        renderHexes(map, currObj[currSelServLabel],currSelCityLabel);
+        renderHexes(dashMap, currObj[currSelServLabel],currSelCityLabel);
         // renderHexes(map, await currObj[currSelServLabel],currSelCityLabel);
         // }
         // if (await hexLayers.find(obj => obj.city == currSelCityLabel)) {
