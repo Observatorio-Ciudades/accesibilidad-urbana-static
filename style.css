@@ -142,8 +142,14 @@ p {
 }
 
 .about h2, .about p, .about li {
-  text-align: right;
+  text-align: left;
   color: #EDF0F3;
+}
+
+.about h2 {
+  font-size: 2em;
+  /* margin-bottom: 0em !important; */
+  margin: 0;
 }
 
 .about p {
@@ -1103,6 +1109,15 @@ p {
     width: 100%;
   }
 }
+
+
+.about .main-col {
+  align-items: flex-start !important; 
+}
+
+
+
+
 
 
 /* // Small devices (landscape phones, 576px and up) */

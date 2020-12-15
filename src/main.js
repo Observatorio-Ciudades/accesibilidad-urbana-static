@@ -69,6 +69,57 @@ function init() {
         ]
     };
 
+    let pointA = {
+        'type': 'FeatureCollection',
+        'features': [
+            {
+                'type': 'Feature',
+                'properties': {
+                    'description': "Juan",
+                    'icon': 'marker'
+                },
+                'geometry': {
+                    'type': 'Point',
+                    'coordinates': [-103.3943851,  20.7213538]
+                }
+            }
+        ]
+    };
+
+    let pointTarget = {
+        'type': 'FeatureCollection',
+        'features': [
+            {
+                'type': 'Feature',
+                'properties': {
+                    'description': 'Tienda de comida',
+                    'icon': 'grocery'
+                },
+                'geometry': {
+                    'type': 'Point',
+                    'coordinates': [-103.3918757, 20.7202675]
+                }
+            }
+        ]
+    };
+
+    let pointB = {
+        'type': 'FeatureCollection',
+        'features': [
+            {
+                'type': 'Feature',
+                'properties': {
+                    'description': 'Elisa',
+                    'icon': 'marker'
+                },
+                'geometry': {
+                    'type': 'Point',
+                    'coordinates': [-103.397106,  20.7194]
+                }
+            }
+        ]
+    };
+
     loadHexData("Guadalajara","min_supermercados");
 
     // async function loadHexData(city, serv) {
@@ -420,24 +471,197 @@ function init() {
   
 
     function renderPoints() {
-        map.addSource('points', {
-            'type': 'geojson',
-            'data': points
-        });
-             
-        map.addLayer({
-            'id': 'poi-labels',
-            'type': 'symbol',
-            'source': 'points',
-            'layout': {
-                'icon-size': 4,
-                'text-field': ['get', 'description'],
-                'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
-                // 'text-radial-offset': 0.5,
-                'text-justify': 'auto',
-                'icon-image': ['concat', ['get', 'icon'], '-15'],
+        // map.addSource('points', {
+        //     'type': 'geojson',
+        //     'data': points
+        // });
+
+        map.loadImage(
+            'https://upload.wikimedia.org/wikipedia/commons/7/7c/201408_cat.png',
+            function (error, image) {
+                if (error) throw error;
+                map.addImage('cat', image);
+
+                map.addSource('points', {
+                    'type': 'geojson',
+                    'data': points
+                });
+                // map.addLayer({
+                //     'id': 'points',
+                //     'type': 'symbol',
+                //     'source': 'point',
+                //     'layout': {
+                //         'icon-image': 'cat',
+                //         'icon-size': 0.25
+                //     }
+                // });
+                map.addLayer({
+                    'id': 'poi-labels',
+                    'type': 'symbol',
+                    'source': 'points',
+                    'layout': {
+                        'icon-image': 'cat',
+                        'icon-size': 0.25,
+                        // 'icon-size': 4,
+                        // 'text-field': ['get', 'description'],
+                        // 'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
+                        // 'text-radial-offset': 0.5,
+                        'text-justify': 'auto',
+                        // 'icon-image': ['concat', ['get', 'icon'], '-15'],
+                    }
+                });
             }
-        });
+        );
+             
+        // map.addLayer({
+        //     'id': 'poi-labels',
+        //     'type': 'symbol',
+        //     'source': 'points',
+        //     'layout': {
+        //         'icon-image': 'cat',
+        //         'icon-size': 0.25
+        //         'icon-size': 4,
+        //         'text-field': ['get', 'description'],
+        //         'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
+        //         // 'text-radial-offset': 0.5,
+        //         'text-justify': 'auto',
+        //         'icon-image': ['concat', ['get', 'icon'], '-15'],
+        //     }
+        // });
+    }
+
+    function renderEachPoint() {
+        // map.addSource('points', {
+        //     'type': 'geojson',
+        //     'data': points
+        // });
+
+        map.loadImage(
+            'imgs/noun_Walking_1757932.png',
+            function (error, image) {
+                if (error) throw error;
+                map.addImage('walkA', image);
+
+                map.addSource('pointA', {
+                    'type': 'geojson',
+                    'data': pointA
+                });
+                // map.addLayer({
+                //     'id': 'points',
+                //     'type': 'symbol',
+                //     'source': 'point',
+                //     'layout': {
+                //         'icon-image': 'cat',
+                //         'icon-size': 0.25
+                //     }
+                // });
+                map.addLayer({
+                    'id': 'poi-labelsA',
+                    'type': 'symbol',
+                    'source': 'pointA',
+                    'layout': {
+                        'icon-image': 'walkA',
+                        'icon-size': 0.10,
+                        // 'icon-size': 4,
+                        // 'text-field': ['get', 'description'],
+                        // 'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
+                        // 'text-radial-offset': 0.5,
+                        'text-justify': 'auto',
+                        // 'icon-image': ['concat', ['get', 'icon'], '-15'],
+                    }
+                });
+            }
+        );
+
+        map.loadImage(
+            'imgs/noun_Walking_1757932.png',
+            function (error, image) {
+                if (error) throw error;
+                map.addImage('walkB', image);
+
+                map.addSource('pointB', {
+                    'type': 'geojson',
+                    'data': pointB
+                });
+                // map.addLayer({
+                //     'id': 'points',
+                //     'type': 'symbol',
+                //     'source': 'point',
+                //     'layout': {
+                //         'icon-image': 'cat',
+                //         'icon-size': 0.25
+                //     }
+                // });
+                map.addLayer({
+                    'id': 'poi-labelsB',
+                    'type': 'symbol',
+                    'source': 'pointB',
+                    'layout': {
+                        'icon-image': 'walkB',
+                        'icon-size': 0.10,
+                        // 'icon-size': 4,
+                        // 'text-field': ['get', 'description'],
+                        // 'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
+                        // 'text-radial-offset': 0.5,
+                        'text-justify': 'auto',
+                        // 'icon-image': ['concat', ['get', 'icon'], '-15'],
+                    }
+                });
+            }
+        );
+
+        map.loadImage(
+            'imgs/noun_Shopping Cart_658220.png',
+            function (error, image) {
+                if (error) throw error;
+                map.addImage('groceries', image);
+
+                map.addSource('pointTarget', {
+                    'type': 'geojson',
+                    'data': pointTarget
+                });
+                // map.addLayer({
+                //     'id': 'points',
+                //     'type': 'symbol',
+                //     'source': 'point',
+                //     'layout': {
+                //         'icon-image': 'cat',
+                //         'icon-size': 0.25
+                //     }
+                // });
+                map.addLayer({
+                    'id': 'poi-labelsTarget',
+                    'type': 'symbol',
+                    'source': 'pointTarget',
+                    'layout': {
+                        'icon-image': 'groceries',
+                        'icon-size': 0.15,
+                        // 'icon-size': 4,
+                        // 'text-field': ['get', 'description'],
+                        // 'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
+                        // 'text-radial-offset': 0.5,
+                        'text-justify': 'auto',
+                        // 'icon-image': ['concat', ['get', 'icon'], '-15'],
+                    }
+                });
+            }
+        );
+             
+        // map.addLayer({
+        //     'id': 'poi-labels',
+        //     'type': 'symbol',
+        //     'source': 'points',
+        //     'layout': {
+        //         'icon-image': 'cat',
+        //         'icon-size': 0.25
+        //         'icon-size': 4,
+        //         'text-field': ['get', 'description'],
+        //         'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
+        //         // 'text-radial-offset': 0.5,
+        //         'text-justify': 'auto',
+        //         'icon-image': ['concat', ['get', 'icon'], '-15'],
+        //     }
+        // });
     }
   
     async function renderHexes(map, hexagons, city) {
@@ -736,6 +960,7 @@ function init() {
     map.on("load", function () {
         console.log("objeto mapbox:")
         console.log(map)
+
         
         // setup the instance, pass callback functions
         scroller
@@ -759,14 +984,31 @@ function init() {
                     finalHexes = dashMap.getLayer(`Guadalajara-min_supermercados-layer`);
                     pathALayer = map.getLayer('pathA');
                     pathBLayer = map.getLayer('pathB');
-                    poiLabels = map.getLayer('poi-labels');
+                    poiLabels = map.getLayer('poi-labelsA');
+                    poiLabels = map.getLayer('poi-labelsB');
+                    poiLabels = map.getLayer('poi-labelsTarget');
+                    // poiLabels = map.getLayer('poi-labels');
 
                     if(typeof initialHexes !== 'undefined') {
                         map.setLayoutProperty('Guadalajara-min_supermercados-layer', 'visibility', 'none');
                     }
 
+                    
+
                     if(typeof finalHexes !== 'undefined') {
                         dashMap.setLayoutProperty('Guadalajara-min_supermercados-layer', 'visibility', 'none');
+                    }
+                    if (dashMap.getLayer(`Guadalajara-min_hospitales-layer`)) {
+                        // map.removeLayer(`Guadalajara-${currSelServLabel}-layer`)
+                        dashMap.setLayoutProperty('Guadalajara-min_hospitales-layer', 'visibility', 'none');
+                    }
+                    if (dashMap.getLayer(`Guadalajara-min_farmacias-layer`)) {
+                        // map.removeLayer(`Guadalajara-${currSelServLabel}-layer`)
+                        dashMap.setLayoutProperty('Guadalajara-min_farmacias-layer', 'visibility', 'none');
+                    }
+                    if (dashMap.getLayer(`Guadalajara-pobtot-layer`)) {
+                        // map.removeLayer(`Guadalajara-${currSelServLabel}-layer`)
+                        dashMap.setLayoutProperty('Guadalajara-pobtot-layer', 'visibility', 'none');
                     }
 
                     // if (initialHexes) {
@@ -780,7 +1022,10 @@ function init() {
                         map.setLayoutProperty('pathB', 'visibility', 'none');
                     }
                     if(typeof poiLabels !== 'undefined') {
-                        map.setLayoutProperty('poi-labels', 'visibility', 'none');
+                        // map.setLayoutProperty('poi-labels', 'visibility', 'none');
+                        map.setLayoutProperty('poi-labelsA', 'visibility', 'none');
+                        map.setLayoutProperty('poi-labelsB', 'visibility', 'none');
+                        map.setLayoutProperty('poi-labelsTarget', 'visibility', 'none');
                     }
                     if (satOn) {
                         setSatOpacity();
@@ -789,7 +1034,8 @@ function init() {
 
                 case 1: 
                     if (!pathAOn) {
-                        renderPoints();
+                        // renderPoints();
+                        renderEachPoint();
                         renderPaths("data/edges_route_min_02.json", "pathA", 0.07);
                         pathAOn = true;
                     }
@@ -797,7 +1043,10 @@ function init() {
 
                 case 2: 
                     map.setLayoutProperty('pathA', 'visibility', 'visible');
-                    map.setLayoutProperty('poi-labels', 'visibility', 'visible');     
+                    // map.setLayoutProperty('poi-labels', 'visibility', 'visible');     
+                    map.setLayoutProperty('poi-labelsA', 'visibility', 'visible');     
+                    map.setLayoutProperty('poi-labelsB', 'visibility', 'visible');     
+                    map.setLayoutProperty('poi-labelsTarget', 'visibility', 'visible');     
                     pathAChapter = config.chapters.find(chap => chap.id === response.element.id);
                     map.flyTo(pathAChapter.location);
                     console.log("seccion paths");
@@ -844,7 +1093,10 @@ function init() {
 
                     map.setLayoutProperty('pathA', 'visibility', 'none');
                     map.setLayoutProperty('pathB', 'visibility', 'none');
-                    map.setLayoutProperty('poi-labels', 'visibility', 'none');
+                    // map.setLayoutProperty('poi-labels', 'visibility', 'none');
+                    map.setLayoutProperty('poi-labelsA', 'visibility', 'none');
+                    map.setLayoutProperty('poi-labelsB', 'visibility', 'none');
+                    map.setLayoutProperty('poi-labelsTarget', 'visibility', 'none');
                     let chapterMtyA = config.chapters.find(chap => chap.id === response.element.id);
                     map.flyTo(chapterMtyA.location);
                     satMap.flyTo(chapterMtyA.location);
@@ -864,7 +1116,10 @@ function init() {
 
                     map.setLayoutProperty('pathA', 'visibility', 'none');
                     map.setLayoutProperty('pathB', 'visibility', 'none');
-                    map.setLayoutProperty('poi-labels', 'visibility', 'none');
+                    // map.setLayoutProperty('poi-labels', 'visibility', 'none');
+                    map.setLayoutProperty('poi-labelsA', 'visibility', 'none');
+                    map.setLayoutProperty('poi-labelsB', 'visibility', 'none');
+                    map.setLayoutProperty('poi-labelsTarget', 'visibility', 'none');
                     break;
                 case 8:
                     let chapterMtyC = config.chapters.find(chap => chap.id === response.element.id);
@@ -879,7 +1134,10 @@ function init() {
 
                     map.setLayoutProperty('pathA', 'visibility', 'none');
                     map.setLayoutProperty('pathB', 'visibility', 'none');
-                    map.setLayoutProperty('poi-labels', 'visibility', 'none');
+                    // map.setLayoutProperty('poi-labels', 'visibility', 'none');
+                    map.setLayoutProperty('poi-labelsA', 'visibility', 'none');
+                    map.setLayoutProperty('poi-labelsB', 'visibility', 'none');
+                    map.setLayoutProperty('poi-labelsTarget', 'visibility', 'none');
                     if (satOn) {
                         setSatOpacity();
                     }
@@ -891,7 +1149,10 @@ function init() {
 
                     map.setLayoutProperty('pathA', 'visibility', 'none');
                     map.setLayoutProperty('pathB', 'visibility', 'none');
-                    map.setLayoutProperty('poi-labels', 'visibility', 'none');
+                    // map.setLayoutProperty('poi-labels', 'visibility', 'none');
+                    map.setLayoutProperty('poi-labelsA', 'visibility', 'none');
+                    map.setLayoutProperty('poi-labelsB', 'visibility', 'none');
+                    map.setLayoutProperty('poi-labelsTarget', 'visibility', 'none');
                     break;
                 case 10:
                     let chapterGdlA = config.chapters.find(chap => chap.id === response.element.id);
@@ -899,7 +1160,10 @@ function init() {
                     satMap.flyTo(chapterGdlA.location);
                     map.setLayoutProperty('pathA', 'visibility', 'none');
                     map.setLayoutProperty('pathB', 'visibility', 'none');
-                    map.setLayoutProperty('poi-labels', 'visibility', 'none');
+                    // map.setLayoutProperty('poi-labels', 'visibility', 'none');
+                    map.setLayoutProperty('poi-labelsA', 'visibility', 'none');
+                    map.setLayoutProperty('poi-labelsB', 'visibility', 'none');
+                    map.setLayoutProperty('poi-labelsTarget', 'visibility', 'none');
                     break;
                 case 11:
                     if (!satOn) {
@@ -910,7 +1174,10 @@ function init() {
                     satMap.flyTo(chapterGdlB.location);
                     map.setLayoutProperty('pathA', 'visibility', 'none');
                     map.setLayoutProperty('pathB', 'visibility', 'none');
-                    map.setLayoutProperty('poi-labels', 'visibility', 'none');
+                    // map.setLayoutProperty('poi-labels', 'visibility', 'none');
+                    map.setLayoutProperty('poi-labelsA', 'visibility', 'none');
+                    map.setLayoutProperty('poi-labelsB', 'visibility', 'none');
+                    map.setLayoutProperty('poi-labelsTarget', 'visibility', 'none');
                     break;
                 case 12:
                     if (satOn) {
@@ -925,7 +1192,10 @@ function init() {
                     satMap.flyTo(chapterGdlC.location);
                     map.setLayoutProperty('pathA', 'visibility', 'none');
                     map.setLayoutProperty('pathB', 'visibility', 'none');
-                    map.setLayoutProperty('poi-labels', 'visibility', 'none');
+                    // map.setLayoutProperty('poi-labels', 'visibility', 'none');
+                    map.setLayoutProperty('poi-labelsA', 'visibility', 'none');
+                    map.setLayoutProperty('poi-labelsB', 'visibility', 'none');
+                    map.setLayoutProperty('poi-labelsTarget', 'visibility', 'none');
                     loadHexData("Queretaro","min_supermercados");
                     if (satOn) {
                         setSatOpacity();
@@ -938,7 +1208,10 @@ function init() {
 
                     map.setLayoutProperty('pathA', 'visibility', 'none');
                     map.setLayoutProperty('pathB', 'visibility', 'none');
-                    map.setLayoutProperty('poi-labels', 'visibility', 'none');
+                    // map.setLayoutProperty('poi-labels', 'visibility', 'none');
+                    map.setLayoutProperty('poi-labelsA', 'visibility', 'none');
+                    map.setLayoutProperty('poi-labelsB', 'visibility', 'none');
+                    map.setLayoutProperty('poi-labelsTarget', 'visibility', 'none');
                     break;
                 case 14:
                     let chapterQroA = config.chapters.find(chap => chap.id === response.element.id);
@@ -946,7 +1219,10 @@ function init() {
                     satMap.flyTo(chapterQroA.location);
                     map.setLayoutProperty('pathA', 'visibility', 'none');
                     map.setLayoutProperty('pathB', 'visibility', 'none');
-                    map.setLayoutProperty('poi-labels', 'visibility', 'none');
+                    // map.setLayoutProperty('poi-labels', 'visibility', 'none');
+                    map.setLayoutProperty('poi-labelsA', 'visibility', 'none');
+                    map.setLayoutProperty('poi-labelsB', 'visibility', 'none');
+                    map.setLayoutProperty('poi-labelsTarget', 'visibility', 'none');
                     if (hexLayers[2]) {
                         renderHexes(map, hexLayers[2].min_supermercados, 'Querétaro');
                     }
@@ -963,7 +1239,10 @@ function init() {
                     satMap.flyTo(chapterQroB.location);
                     map.setLayoutProperty('pathA', 'visibility', 'none');
                     map.setLayoutProperty('pathB', 'visibility', 'none');
-                    map.setLayoutProperty('poi-labels', 'visibility', 'none');
+                    // map.setLayoutProperty('poi-labels', 'visibility', 'none');
+                    map.setLayoutProperty('poi-labelsA', 'visibility', 'none');
+                    map.setLayoutProperty('poi-labelsB', 'visibility', 'none');
+                    map.setLayoutProperty('poi-labelsTarget', 'visibility', 'none');
                     break;
                 case 16:
                     if (satOn) {
@@ -978,7 +1257,10 @@ function init() {
                     satMap.flyTo(chapterQroC.location);
                     map.setLayoutProperty('pathA', 'visibility', 'none');
                     map.setLayoutProperty('pathB', 'visibility', 'none');
-                    map.setLayoutProperty('poi-labels', 'visibility', 'none');
+                    // map.setLayoutProperty('poi-labels', 'visibility', 'none');
+                    map.setLayoutProperty('poi-labelsA', 'visibility', 'none');
+                    map.setLayoutProperty('poi-labelsB', 'visibility', 'none');
+                    map.setLayoutProperty('poi-labelsTarget', 'visibility', 'none');
                     loadHexData("CDMX","min_supermercados");
                     break;
                 case 17:
@@ -989,7 +1271,10 @@ function init() {
 
                     map.setLayoutProperty('pathA', 'visibility', 'none');
                     map.setLayoutProperty('pathB', 'visibility', 'none');
-                    map.setLayoutProperty('poi-labels', 'visibility', 'none');
+                    // map.setLayoutProperty('poi-labels', 'visibility', 'none');
+                    map.setLayoutProperty('poi-labelsA', 'visibility', 'none');
+                    map.setLayoutProperty('poi-labelsB', 'visibility', 'none');
+                    map.setLayoutProperty('poi-labelsTarget', 'visibility', 'none');
                     break;
                 case 18:
                     let chapterCDMXA = config.chapters.find(chap => chap.id === response.element.id);
@@ -997,7 +1282,10 @@ function init() {
                     satMap.flyTo(chapterCDMXA.location);
                     map.setLayoutProperty('pathA', 'visibility', 'none');
                     map.setLayoutProperty('pathB', 'visibility', 'none');
-                    map.setLayoutProperty('poi-labels', 'visibility', 'none');
+                    // map.setLayoutProperty('poi-labels', 'visibility', 'none');
+                    map.setLayoutProperty('poi-labelsA', 'visibility', 'none');
+                    map.setLayoutProperty('poi-labelsB', 'visibility', 'none');
+                    map.setLayoutProperty('poi-labelsTarget', 'visibility', 'none');
                     if (hexLayers[3]) {
                         renderHexes(map, hexLayers[3].min_supermercados, 'CDMX');
                     }
@@ -1015,7 +1303,10 @@ function init() {
                     satMap.flyTo(chapterCDMXB.location);
                     map.setLayoutProperty('pathA', 'visibility', 'none');
                     map.setLayoutProperty('pathB', 'visibility', 'none');
-                    map.setLayoutProperty('poi-labels', 'visibility', 'none');
+                    // map.setLayoutProperty('poi-labels', 'visibility', 'none');
+                    map.setLayoutProperty('poi-labelsA', 'visibility', 'none');
+                    map.setLayoutProperty('poi-labelsB', 'visibility', 'none');
+                    map.setLayoutProperty('poi-labelsTarget', 'visibility', 'none');
                     break;
                 case 20:
                     if (satOn) {
@@ -1030,7 +1321,10 @@ function init() {
                     satMap.flyTo(chapterCDMXC.location);
                     map.setLayoutProperty('pathA', 'visibility', 'none');
                     map.setLayoutProperty('pathB', 'visibility', 'none');
-                    map.setLayoutProperty('poi-labels', 'visibility', 'none');
+                    // map.setLayoutProperty('poi-labels', 'visibility', 'none');
+                    map.setLayoutProperty('poi-labelsA', 'visibility', 'none');
+                    map.setLayoutProperty('poi-labelsB', 'visibility', 'none');
+                    map.setLayoutProperty('poi-labelsTarget', 'visibility', 'none');
                     break;
                 case 21:
                     let chapterCDMXD = config.chapters.find(chap => chap.id === response.element.id);
@@ -1038,7 +1332,10 @@ function init() {
                     satMap.flyTo(chapterCDMXD.location);
                     map.setLayoutProperty('pathA', 'visibility', 'none');
                     map.setLayoutProperty('pathB', 'visibility', 'none');
-                    map.setLayoutProperty('poi-labels', 'visibility', 'none');
+                    // map.setLayoutProperty('poi-labels', 'visibility', 'none');
+                    map.setLayoutProperty('poi-labelsA', 'visibility', 'none');
+                    map.setLayoutProperty('poi-labelsB', 'visibility', 'none');
+                    map.setLayoutProperty('poi-labelsTarget', 'visibility', 'none');
                     break;
                 case 22:
                     break;
