@@ -215,6 +215,7 @@ function init() {
     //     return layer;
     // }
   
+    let bodyAcc = document.getElementById('body-accesibilidad');
     let story = document.getElementById('story');
   
     for (let i = 5; i < config.chapters.length; i++) {
@@ -960,6 +961,9 @@ function init() {
     map.on("load", function () {
         console.log("objeto mapbox:")
         console.log(map)
+        bodyAcc.classList.remove('scroll-off');
+
+
 
         
         // setup the instance, pass callback functions
@@ -1069,13 +1073,25 @@ function init() {
                     // }
                     console.log("h3 hexes map on");
                     console.log(map);
+                    // if (hexesLoaded) {
+                    //     renderHexes(map, hexLayers[0].min_supermercados, 'Guadalajara');  
+                    //     initialHexes = map.getLayer(`Guadalajara-min_supermercados-layer`);
+                    //     if(typeof initialHexes !== 'undefined') {
+                    //         map.setLayoutProperty('Guadalajara-min_supermercados-layer', 'visibility', 'visible');
+                    //     }
+
+                    // }
+                    // loadHexData("Monterrey","min_supermercados");
                     break;
                 case 5:
                     outroPathsChapter = config.chapters.find(chap => chap.id === response.element.id);
                     map.flyTo(outroPathsChapter.location);
-                    // map.setLayoutProperty('pathA', 'visibility', 'none');
-                    // map.setLayoutProperty('pathB', 'visibility', 'none');
-                    // map.setLayoutProperty('poi-labels', 'visibility', 'none');
+                    map.setLayoutProperty('pathA', 'visibility', 'none');
+                    map.setLayoutProperty('pathB', 'visibility', 'none');
+                    // map.setLayoutProperty('poi-labels', 'visibility', 'visible');     
+                    map.setLayoutProperty('poi-labelsA', 'visibility', 'none');     
+                    map.setLayoutProperty('poi-labelsB', 'visibility', 'none');     
+                    map.setLayoutProperty('poi-labelsTarget', 'visibility', 'none'); 
                     if (hexesLoaded) {
                         renderHexes(map, hexLayers[0].min_supermercados, 'Guadalajara');  
                         initialHexes = map.getLayer(`Guadalajara-min_supermercados-layer`);
