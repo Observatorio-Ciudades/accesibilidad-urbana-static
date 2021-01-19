@@ -98,7 +98,7 @@ let config = {
             location: {
                 // center: [-103.3963082, 20.7182341],
                 center: [-103.3943082, 20.7182341],
-                zoom: 15,
+                zoom: 16,
                 pitch: 0,
                 bearing: 0,
                 speed: 0.7,
@@ -394,7 +394,11 @@ let config = {
             description: ' Las zonas de mayor densidad poblacional y con una red de calles abierta son las zonas con niveles de marginación medio pero con mayor accesibilidad a tiendas de alimentos y farmacias. Una persona que vive en el fraccionamiento popular de la Tuzania Ejidal cuenta con una tienda de conveniencia a 4 minutos caminando por calles locales.<br/><br/>En los sectores residenciales de baja densidad y en estructura cerrada con un solo acceso vehícular,  la accesibilidad a satisfactores implica caminar distancias superiores a 1km para llegar a tiendas de alimentos y farmacias. Los residentes de Puerta Real, caminan durante 25 minutos a la tienda más cercana, por lo que generalmente no caminan, y al depender del vehículo propio se generan consecuencias adversas vinculadas a la movilidad motorizada.',
             shortInfo: '',
             location: {
-                center: [-103.44416667,  20.72305556],
+                // center: [-103.44416667,  20.72305556],
+                // center: [-103.41316667,  20.72305556],
+                // center: [-103.41366667,  20.72305556],
+                // center: [-103.41366667,  20.72305556],
+                center: [-103.41566667,  20.72305556],
                 zoom: 14,
                 pitch: 0,
                 bearing: 0,
