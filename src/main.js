@@ -27,45 +27,6 @@ function init() {
     let dashOn = false;
     let hexLayers = [];
 
-    // let points = {
-    //     'type': 'FeatureCollection',
-    //     'features': [
-    //         {
-    //             'type': 'Feature',
-    //             'properties': {
-    //                 'description': "Juan",
-    //                 'icon': 'marker'
-    //             },
-    //             'geometry': {
-    //                 'type': 'Point',
-    //                 'coordinates': [-103.3943851,  20.7213538]
-    //             }
-    //         },
-    //         {
-    //             'type': 'Feature',
-    //             'properties': {
-    //                 'description': 'Tienda de comida',
-    //                 'icon': 'grocery'
-    //             },
-    //             'geometry': {
-    //                 'type': 'Point',
-    //                 'coordinates': [-103.3918757, 20.7202675]
-    //             }
-    //         },
-    //         {
-    //             'type': 'Feature',
-    //             'properties': {
-    //                 'description': 'Elisa',
-    //                 'icon': 'marker'
-    //             },
-    //             'geometry': {
-    //                 'type': 'Point',
-    //                 'coordinates': [-103.397106,  20.7194]
-    //             }
-    //         }
-    //     ]
-    // };
-
     let pointA = {
         'type': 'FeatureCollection',
         'features': [
@@ -773,7 +734,7 @@ function init() {
 
 
                     if(typeof pathALayer !== 'undefined') {
-                        map.setLayoutProperty('pathA', 'visibility', 'none');
+                        map.setLayoutProperty('pathA', 'visibility', 'visible');
                     }
                     if(typeof pathBLayer !== 'undefined') {
                         map.setLayoutProperty('pathB', 'visibility', 'none');
@@ -788,15 +749,21 @@ function init() {
                     if (satOn) {
                         setSatOpacity();
                     }
-                    break;
-
-                case 1: 
                     if (!pathAOn) {
                         // renderPoints();
                         renderEachPoint();
                         renderPaths("data/edges_route_min_02.json", "pathA", 0.07);
                         pathAOn = true;
                     }
+                    break;
+
+                case 1: 
+                    // if (!pathAOn) {
+                    //     // renderPoints();
+                    //     renderEachPoint();
+                    //     renderPaths("data/edges_route_min_02.json", "pathA", 0.07);
+                    //     pathAOn = true;
+                    // }
                     break;
 
                 case 2: 
