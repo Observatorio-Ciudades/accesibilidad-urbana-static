@@ -221,7 +221,7 @@ let config = {
             // description: 'La zona es producto de un crecimiento discontinuo a partir de iniciativas inmobiliarias desarticuladas que obedecen a lógicas muy distintas. Además se ubican enclaves funcionales de gran escala de tipo cultural, salud, administrativo y educativo, como el campus del Tec de Monterrey ubicado a 3 kilómetros al poniente. Los diferentes fragmentos funcionales, socioeconómicos y morfológicos no permiten la continuidad de la traza vial saturando las únicas tres avenidas que estructuran la zona.',
             // description: 'La zona es producto de un crecimiento discontinuo a partir de iniciativas inmobiliarias desarticuladas que obedecen a lógicas muy distintas. Además se ubican enclaves funcionales de gran escala de tipo cultural, salud, administrativo y educativo, como el campus del Tec de Monterrey ubicado a 3 kilómetros al poniente. Los diferentes fragmentos funcionales, socioeconómicos y morfológicos no permiten la continuidad de la traza vial saturando las únicas tres avenidas que estructuran la zona. ',
             // description: 'Las zonas de mayor densidad poblacional y con una red de calles abierta son las zonas con niveles de marginación medio pero con mayor accesibilidad a tiendas de alimentos y farmacias. Una persona que vive en el fraccionamiento popular de la Tuzania Ejidal cuenta con una tienda de conveniencia a 4 minutos caminando por calles locales.<br><br>En los sectores residenciales de baja densidad y en estructura cerrada con un solo acceso vehícular,  la accesibilidad a satisfactores implica caminar distancias superiores a 1km para llegar a tiendas de alimentos y farmacias. Los residentes de Puerta Real, caminan durante 25 minutos a la tienda más cercana, por lo que generalmente no caminan, y al depender del vehículo propio se generan consecuencias adversas vinculadas a la movilidad motorizada.',
-            description: '',
+            description: 'La zona es producto de un crecimiento discontinuo a partir de iniciativas inmobiliarias desarticuladas que obedecen a lógicas muy distintas. Además se ubican enclaves funcionales de gran escala de tipo cultural, salud, administrativo y educativo, como el campus del Tec de Monterrey ubicado a 3 kilómetros al poniente. Los diferentes fragmentos funcionales, socioeconómicos y morfológicos no permiten la continuidad de la traza vial saturando las únicas tres avenidas que estructuran la zona.',
             shortInfo: ['Manzanas rectangulares de 1 hectárea, con una red de calles continua y parcelas de aproximadamente 120m2. Con una densidad de 335 habitantes/ha','Macromanzanas de 19 hectáreas, subdivididas por andadores peatonales y calles locales, con parcelas de 100m2 o bloques de vivienda de 4 niveles y con una densidad de 300 habitantes/ha','Fraccionamientos cerrados de tamaño medio con un solo acceso controlado de 8-15 hectáreas aproximadamente y tamaño de parcela entre 250-300m2 con una densidad de 85 habitantes/ha','Macro lotes con alta capacidad de estacionamientos para equipamiento y zonas comerciales.'],
             location: {
                 center: [-103.4212626,  20.7271943],
@@ -301,9 +301,10 @@ let config = {
             id: 'qroC',
             title: 'Macrolotes con actividad industrial​',
             full: true, 
-            image: ['imgs/poligonos-qro_01.png', 'imgs/poligonos-qro_02.png'],
-            description: 'Macrolotes con actividad industrial:<br/>Extensión promedio de manzanas: 9.80 ha<br/><br/>Jurica:<br/>Extensión promedio de manzanas: 5.54 ha<br/><br/>Lomas de Satelite<br/>Extensión promedio de manzanas: 0.80 ha',
-            shortInfo: '',
+            image: ['imgs/poligonos-qro_01.png', 'imgs/poligonos-qro_02.png', 'imgs/poligonos-qro_03.png'],
+            description: '',
+            // description: 'Macrolotes con actividad industrial:<br/>Extensión promedio de manzanas: 9.80 ha<br/><br/>Jurica:<br/>Extensión promedio de manzanas: 5.54 ha<br/><br/>Lomas de Satelite<br/>Extensión promedio de manzanas: 0.80 ha',
+            shortInfo: ['Macrolotes con actividad industrial: Extensión promedio de manzanas: 9.80 ha','Jurica: Extensión promedio de manzanas: 5.54 ha','Lomas de Satelite: Extensión promedio de manzanas: 0.80 ha'],
             location: {
                 center: [-100.4442188,  20.6431689],                
                 zoom: 14,
@@ -398,6 +399,25 @@ let config = {
             full: false, 
             image: '',
             description: 'Las zonas con menor accesibilidad ubicadas al sur del área y a un costado de Periférico se deben a las barreras físicas como son avenidas difíciles de cruzar, calles cerradas y equipamientos a lado uno del otro con perímetros cerrados a través de muros ciegos,  a pesar de la proximidad a avenidas principales Periférico, estaciones de tren ligero del mismo, así como de tener en la cercanía supermercados, farmacias y hospitales a no más de 1km en ningún caso pero cuyo trayectos pueden ir de 5 a 15min caminando.<br/><br/>Las zonas con mayor accesibilidad ubicadas al norte del área tienen esta condición por tener una traza urbana ortogonal con manzanas de 135m de largo, sin calles cerradas y cuya proximidad de menos de 300 metros  a supermercados, farmacias y hospitales facilita los trayectos hacia los mismos que toma menos de 5 min llegar alguno de ellos caminando.<br><br>Los casos presentados en estas cuatro  ciudades, no son tan distintos de lo que ocurre en las principales ciudades mexicanas, el mismo estudio se aplicó en otras nueve  ciudades, identificando la proximidad a estos servicios desde la condición territorial como la densidad poblacional en él.',
+            shortInfo: '',
+            location: {
+                center: [-99.14000000, 19.28916667],
+                zoom: 14,
+                pitch: 0,
+                bearing: 0,
+                speed: 0.75,
+                curve: 0.8,
+                easing: function (t) {
+                    return t;
+                }
+            }
+        },
+        {
+            id: 'mxOut',
+            title: '​',
+            full: false, 
+            image: '',
+            description: 'Los casos presentados en estas cuatro ciudades, no son tan distintos de lo que ocurre en las principales ciudades mexicanas, el mismo estudio se aplicó en otras nueve ciudades, identificando la proximidad a estos servicios desde la condición territorial como la densidad poblacional en él.',
             shortInfo: '',
             location: {
                 center: [-99.14000000, 19.28916667],

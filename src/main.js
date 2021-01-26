@@ -145,6 +145,9 @@ function init() {
         features.setAttribute('class', 'features');
         let container = document.getElementById(config.chapters[i].id);
         let chapter = document.createElement('div');
+        if (config.chapters[i].id == 'gdlC') {
+            chapter.classList.add('chapter-gdlC');
+        }
   
         if (i%2 != 0) {
                 features.classList.remove('lefty');
@@ -163,7 +166,11 @@ function init() {
         if (config.chapters[i].description != "") {
             let story = document.createElement('p');
             story.innerHTML = config.chapters[i].description;
+            // if (config.chapters[i].id == 'gdlC') {
+            //     story.classList.add('gdlC-description');
+            // }
             chapter.appendChild(story);
+  
         }
 
         if (config.chapters[i].shortInfo != "") {
@@ -171,7 +178,7 @@ function init() {
 
                 let shortInfoCont;
                 let shortInfoContB;
-                if (config.chapters[i].id == "gdlC") {
+                if (config.chapters[i].id == "gdlC" || config.chapters[i].id == "qroC") {
                     shortInfoCont = document.createElement('ol');
                     shortInfoCont.classList.add('short-info-ol-cont');
                     chapter.appendChild(shortInfoCont);
@@ -237,11 +244,13 @@ function init() {
         }
 
         chapter.classList.add(config.theme);
-        if (!config.chapters[i].full) {
-            chapter.classList.add("marco");
-        } else {
-            chapter.classList.add("main-col");
-        }
+        // if (config.chapters[i].id != "mxOut") {
+            if (!config.chapters[i].full) {
+                chapter.classList.add("marco");
+            } else {
+                chapter.classList.add("main-col");
+            }
+        // }
         container.appendChild(chapter);
         features.appendChild(container);
         story.appendChild(features);
@@ -270,7 +279,8 @@ function init() {
         bearing: config.chapters[0].location.bearing,
         pitch: config.chapters[0].location.pitch,
         scrollZoom: false,
-        transformRequest: transformRequest
+        transformRequest: transformRequest,
+        fadeDuration: 500
     });
     }
 
@@ -491,7 +501,7 @@ function init() {
                 paint: {
                     'fill-outline-color': 'rgba(0,0,0,0)',
                     "fill-opacity": 0,
-                    "fill-opacity-transition": {duration: 2000},
+                    "fill-opacity-transition": {duration: 2000}
                 }
             });
             source = map.getSource(sourceId);
@@ -536,7 +546,8 @@ function init() {
         );
         
         const sourceId = `h3-${label}-source`;
-        const layerId = `$h3-${label}-layer`;
+        const layerId = `h3-${label}-layer`;
+        // const layerId = `$h3-${label}-layer`;
         let source = map.getSource(sourceId);
         
         // Add the source and layer if we haven't created them yet
@@ -789,47 +800,54 @@ function init() {
                     break;
                         
                 case 4:
-                    mtyHexPath01 = map.getLayer('mtyHexPath01');
-                    mtyHexPath02 = map.getLayer('mtyHexPath02');
-                    gdlHexPath01 = map.getLayer('gdlHexPath01');
-                    gdlHexPath02 = map.getLayer('gdlHexPath02');
-                    qroHexPath01 = map.getLayer('qroHexPath01');
-                    qroHexPath01 = map.getLayer('qroHexPath01');
-                    cdmxHexPath01 = map.getLayer('cdmxHexPath01');
-                    cdmxHexPath02 = map.getLayer('cdmxHexPath02');
+                    mtyHexPath01 = map.getLayer('h3-mtyHexPath01-layer');
+                    mtyHexPath02 = map.getLayer('h3-mtyHexPath02-layer');
+                    gdlHexPath01 = map.getLayer('h3-gdlHexPath01-layer');
+                    gdlHexPath02 = map.getLayer('h3-gdlHexPath02-layer');
+                    qroHexPath01 = map.getLayer('h3-qroHexPath01-layer');
+                    qroHexPath01 = map.getLayer('h3-qroHexPath01-layer');
+                    cdmxHexPath01 = map.getLayer('h3-cdmxHexPath01-layer');
+                    cdmxHexPath02 = map.getLayer('h3-cdmxHexPath02-layer');
 
                     if (typeof mtyHexPath01 !== 'undefined') {
-                        map.setLayoutProperty('mtyHexPath01', 'visibility', 'none');
+                        map.setLayoutProperty('h3-mtyHexPath01-layer', 'visibility', 'none');
                     }
                     if (typeof mtyHexPath02 !== 'undefined') {
-                        map.setLayoutProperty('mtyHexPath02', 'visibility', 'none');
+                        map.setLayoutProperty('h3-mtyHexPath02-layer', 'visibility', 'none');
                     }
                     if (typeof gdlHexPath01 !== 'undefined') {
-                        map.setLayoutProperty('gdlHexPath01', 'visibility', 'none');
+                        map.setLayoutProperty('h3-gdlHexPath01-layer', 'visibility', 'none');
                     }
                     if (typeof gdlHexPath02 !== 'undefined') {
-                        map.setLayoutProperty('gdlHexPath02', 'visibility', 'none');
+                        map.setLayoutProperty('h3-gdlHexPath02-layer', 'visibility', 'none');
                     }
                     if (typeof qroHexPath01 !== 'undefined') {
-                        map.setLayoutProperty('qroHexPath01', 'visibility', 'none');
+                        map.setLayoutProperty('h3-qroHexPath01-layer', 'visibility', 'none');
                     }
                     if (typeof qroHexPath02 !== 'undefined') {
-                        map.setLayoutProperty('qroHexPath02', 'visibility', 'none');
+                        map.setLayoutProperty('h3-qroHexPath02-layer', 'visibility', 'none');
                     }
                     if (typeof cdmxHexPath01 !== 'undefined') {
-                        map.setLayoutProperty('cdmxHexPath01', 'visibility', 'none');
+                        map.setLayoutProperty('h3-cdmxHexPath01-layer', 'visibility', 'none');
                     }
                     if (typeof cdmxHexPath02 !== 'undefined') {
-                        map.setLayoutProperty('cdmxHexPath02', 'visibility', 'none');
+                        map.setLayoutProperty('h3-cdmxHexPath02-layer', 'visibility', 'none');
                     }
 
                     preOutroPathsChapter = config.chapters.find(chap => chap.id === response.element.id);
                     map.flyTo(preOutroPathsChapter.location);
                     console.log(map);
-                    map.setLayoutProperty('poi-labelsA', 'visibility', 'visible');     
-                    map.setLayoutProperty('poi-labelsB', 'visibility', 'visible');     
-                    map.setLayoutProperty('poi-labelsTargetA', 'visibility', 'visible');     
-                    map.setLayoutProperty('poi-labelsTargetB', 'visibility', 'visible');     
+                    // map.setLayoutProperty('poi-labelsA', 'visibility', 'visible');     
+                    // map.setLayoutProperty('poi-labelsB', 'visibility', 'visible');     
+                    // map.setLayoutProperty('poi-labelsTargetA', 'visibility', 'visible');     
+                    // map.setLayoutProperty('poi-labelsTargetB', 'visibility', 'visible');     
+                    
+                    map.setLayoutProperty('pathA', 'visibility', 'none');
+                    map.setLayoutProperty('pathB', 'visibility', 'none');
+                    map.setLayoutProperty('poi-labelsA', 'visibility', 'none');     
+                    map.setLayoutProperty('poi-labelsB', 'visibility', 'none');     
+                    map.setLayoutProperty('poi-labelsTargetA', 'visibility', 'none'); 
+                    map.setLayoutProperty('poi-labelsTargetB', 'visibility', 'none'); 
                     if (hexesLoaded) {
                         renderHexes(map, hexLayers[0].min_supermercados, 'Guadalajara');  
                         initialHexes = map.getLayer(`Guadalajara-min_supermercados-layer`);
@@ -840,6 +858,8 @@ function init() {
                     break;
 
                 case 5:
+                    renderHexPaths(map, { '8648a202fffffff': 100 }, "mtyHexZone");
+
                     outroPathsChapter = config.chapters.find(chap => chap.id === response.element.id);
                     map.flyTo(outroPathsChapter.location);
                     map.setLayoutProperty('pathA', 'visibility', 'none');
@@ -857,6 +877,7 @@ function init() {
                     map.setLayoutProperty('poi-labelsB', 'visibility', 'none');
                     map.setLayoutProperty('poi-labelsTargetA', 'visibility', 'none');
                     map.setLayoutProperty('poi-labelsTargetB', 'visibility', 'none');
+                    // renderHexPaths(map, { '8648a202fffffff': 100 }, "mtyHexZone");
                     let chapterMtyA = config.chapters.find(chap => chap.id === response.element.id);
                     map.flyTo(chapterMtyA.location);
                     satMap.flyTo(chapterMtyA.location);
@@ -873,6 +894,14 @@ function init() {
                     setSatOpacity();
                     map.flyTo(chapterMtyB.location);
                     satMap.flyTo(chapterMtyB.location);
+                    
+                    // map.removeLayer(`h3-mtyHexZone-layer`)
+
+                    // let mtyHexZone = map.getLayer('mtyHexZone');
+                    map.setLayoutProperty('h3-mtyHexZone-layer', 'visibility', 'none');
+
+
+
                     map.setLayoutProperty('pathA', 'visibility', 'none');
                     map.setLayoutProperty('pathB', 'visibility', 'none');
                     map.setLayoutProperty('poi-labelsA', 'visibility', 'none');
@@ -899,6 +928,8 @@ function init() {
                     }
                     break;
                 case 9:
+                    renderHexPaths(map, { '8749ab4b0ffffff': 100 }, "gdlHexZone");
+
                     let chapterMtyD = config.chapters.find(chap => chap.id === response.element.id);
                     map.flyTo(chapterMtyD.location);
                     satMap.flyTo(chapterMtyD.location);
@@ -910,6 +941,7 @@ function init() {
                     map.setLayoutProperty('poi-labelsTargetB', 'visibility', 'none');
                     break;
                 case 10:
+                    // renderHexPaths(map, { '8749ab4b0ffffff': 100 }, "gdlHexZone");
                     let chapterGdlA = config.chapters.find(chap => chap.id === response.element.id);
                     map.flyTo(chapterGdlA.location);
                     satMap.flyTo(chapterGdlA.location);
@@ -921,6 +953,9 @@ function init() {
                     map.setLayoutProperty('poi-labelsTargetB', 'visibility', 'none');
                     break;
                 case 11:
+
+                    map.setLayoutProperty('h3-gdlHexZone-layer', 'visibility', 'none');
+
                     if (!satOn) {
                         setSatOpacity();
                     }
@@ -939,8 +974,10 @@ function init() {
                         setSatOpacity();
                     }
                     let chapterGdlC = config.chapters.find(chap => chap.id === response.element.id);    
-                    renderHexPaths(map, { '8949ab4b00bffff': 100 }, "gdlHexPath01");
+                    renderHexPaths(map, { '8949ab4b013ffff': 100 }, "gdlHexPath01");
                     renderHexPaths(map, { '8949ab4b097ffff': 100 }, "gdlHexPath02");
+                    // renderHexPaths(map, { '8949ab4b00bffff': 100 }, "gdlHexPath01");
+                    // renderHexPaths(map, { '8949ab4b097ffff': 100 }, "gdlHexPath02");
                     map.flyTo(chapterGdlC.location);
                     satMap.flyTo(chapterGdlC.location);
                     map.setLayoutProperty('pathA', 'visibility', 'none');
@@ -955,6 +992,8 @@ function init() {
                     }
                     break;
                 case 13:
+                    renderHexPaths(map, { '874983cacffffff': 100 }, "qroHexZone");
+
                     let chapterGdlD = config.chapters.find(chap => chap.id === response.element.id);
                     map.flyTo(chapterGdlD.location);
                     satMap.flyTo(chapterGdlD.location);
@@ -966,6 +1005,8 @@ function init() {
                     map.setLayoutProperty('poi-labelsTargetB', 'visibility', 'none');
                     break;
                 case 14:
+                    // renderHexPaths(map, { '874983cacffffff': 100 }, "qroHexZone");
+
                     let chapterQroA = config.chapters.find(chap => chap.id === response.element.id);
                     map.flyTo(chapterQroA.location);
                     satMap.flyTo(chapterQroA.location);
@@ -984,6 +1025,8 @@ function init() {
                     }
                     break;
                 case 15:
+                    map.setLayoutProperty('h3-qroHexZone-layer', 'visibility', 'none');
+
                     if (!satOn) {
                         setSatOpacity();
                     }
@@ -1084,6 +1127,9 @@ function init() {
                     map.setLayoutProperty('poi-labelsTargetB', 'visibility', 'none');
                     break;
                 case 22:
+                    let chapterMxOut = config.chapters.find(chap => chap.id === response.element.id);
+                    map.flyTo(chapterMxOut.location);
+                    satMap.flyTo(chapterMxOut.location);
                     break;
                 case 23:
                     if (!chartsOn) {
