@@ -149,13 +149,18 @@ function init() {
             chapter.classList.add('chapter-gdlC');
         }
   
-        if (i%2 != 0) {
-                features.classList.remove('lefty');
-                features.classList.add('righty');
-            } else if (i%2 == 0) {
-                features.classList.remove('righty');
-                features.classList.add('lefty');
+        if (config.chapters[i].id != "mxOut") {
+            if (i%2 != 0) {
+                    features.classList.remove('lefty');
+                    features.classList.add('righty');
+                } else if (i%2 == 0) {
+                    features.classList.remove('righty');
+                    features.classList.add('lefty');
+            }
+        } else {
+            features.classList.add('center');
         }
+
   
         if (config.chapters[i].id == 'mtyA' || config.chapters[i].id == 'gdlA' || config.chapters[i].id == 'qroA' || config.chapters[i].id == 'cdmxA') {
             let title = document.createElement('h3');

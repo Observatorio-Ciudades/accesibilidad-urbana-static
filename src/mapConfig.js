@@ -118,7 +118,7 @@ let config = {
         },
         {
             id: 'mtyA',
-            title: 'Polígono Campana-Altamira, Monterrey, N.L.',
+            title: 'Polígono Campana-Altamira, Monterrey, N.L.\ncaso 1/4',
             full: false, 
             image: '',
             description: 'El polígono Campana-Altamira es una zona de grandes contrastes, a pesar de su ubicación central en la ciudad y cercanía a vialidades principales y la zona comercial de Valle Oriente, sus pobladores viven con grandes carencias en el acceso a servicios básicos y con mala calidad de vida.<br/><br/>La topografía es una de las condiciones más relevantes en la zona, ya que configura la estructura urbana, haciendo difícil y costosa la provisión de servicios básicos, generando un sistema discontinuo de calles y aumentando las posibilidades de riesgo por deslaves, inundaciones y fuertes escorrentías durante la temporada de lluvias.',
@@ -175,7 +175,7 @@ let config = {
         },
         {
             id: 'gdlA',
-            title: '​Zona Real, Zapopan',
+            title: 'Zona Real, Zapopan\ncaso 2/4',
             full: false, 
             image: '',
             description: 'La Zona Real se ubica al poniente de la ciudad de Guadalajara y es producto de diversas etapas de urbanización y ofertas diversificadas. Con una traza urbana discontinua y heterogénea, se puede encontrar tanto vivienda popular y vivienda social, como fraccionamientos cerrados de alta plusvalía. Se ubican al exterior del Anillo Periférico y solo cuentan con acceso vial por Av. Servidor Público sin las características de diseño ni la capacidad de carga para absorber el intenso desarrollo de la zona.',
@@ -260,7 +260,7 @@ let config = {
         },
         {
             id: 'qroA',
-            title: '​Periferias de la ciudad de Querétaro',
+            title: 'Periferias de la ciudad de Querétaro\ncaso 3/4',
             full: false, 
             image: '',
             description: 'Las colonias residenciales que surgieron a partir del desarrollo industrial, como Lomas de Satélite, una colonia de vivienda popular subsidiada por organismos productores de vivienda y así como Jurica, una zona residencial-campestre con grandes parcelas<br/><br/>Así mismo, se encuentran los grandes macrolotes con uso de suelo industrial, que limitan la conexión de Jurica con el resto de las colonias que la rodean, por lo cual la convivencia entre los habitantes de ambas colonias es nula.<br/><br/>Jurica es un desarrollo en su mayoría habitacional con una densidad baja. En contraste, Lomas de Satélite, es una colonia popular desarrollada a mitad de los 70’s que cuenta con una mayor densidad de habitantes, mayor mezcla de usos y presencia de servicios en las calles principales.',
@@ -338,7 +338,7 @@ let config = {
         },
         {
             id: 'cdmxA',
-            title: '​Distrito Tlalpan, Ciudad de México.',
+            title: '​Distrito Tlalpan, Ciudad de México.\ncaso 4/4',
             full: false, 
             image: '',
             description: 'El  área se encuentra al sur de la ciudad en la alcaldía de Tlalpan y a los límites de la mancha urbana a 8 kilómetros de la zona de las pocas localidades rurales aún quedan al sur en Xochimilco. Esta zona se encuentra a menos de 5km de dos zonas catalogadas como Patrimonio de la Humanidad por parte de la UNESCO en la CDMX que son Ciudad Universitaria y el centro y zona de chinampas de Xochimilco. En la zona existe una alta mixticidad de usos de suelo desde habitacional, habitacional mixto, equipamiento, centro de barrio y espacio abierto. Por lo que existen importantes centros comerciales y educativos que brindan servicio a nivel regional y local.',
