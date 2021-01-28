@@ -43,10 +43,10 @@
   width: 100%;
 }
 
-h2 {
+#main-art h2 {
   font-size: 1em;
   text-align: center;
-  color: #000000;
+  /* color: #000000; */
   padding: 0.5em 0em;
   letter-spacing: -0.01em;
   margin: 2em 0 1em 0;
@@ -54,10 +54,28 @@ h2 {
   align-self: flex-start;
 }
 
-p {
+#main-art .center p, #mx-out p {
+  font-size: 0.7em !important;
+  /* color: #000000; */
+  /* padding: 0.5em 0em; */
+  letter-spacing: -0.01em;
+  margin: 0.5em 0;
+  line-height: 1.5em;
+}
+
+#main-art .marco p, #portada p {
+  font-size: 0.55em;
+  /* color: #000000; */
+  /* padding: 0.5em 0em; */
+  letter-spacing: -0.01em;
+  margin: 0.5em 0;
+  line-height: 1.5em;
+}
+
+#intro-acc p, #mtyC p, #gdlC p, #qroC p, #cdmxC p,  .charts p {
   font-size: 0.7em;
-  color: #000000;
-  padding: 0.5em 0em;
+  /* color: #000000; */
+  /* padding: 0.5em 0em; */
   letter-spacing: -0.01em;
   margin: 0.5em 0;
   line-height: 1.5em;
@@ -110,7 +128,7 @@ p {
   display: flex;
   justify-content: center;
   padding: 2em 0;
-  font-size: 0.5em;
+  font-size: 0.55em;
   text-align: right;
 }
 
@@ -126,7 +144,7 @@ p {
 
 .about p {
   font-size: 1em;
-  line-height: 1.2em;
+  line-height: 1.5em;
 }
 
 /* scrollama css */
@@ -337,21 +355,21 @@ p {
 }
 
 .short-info-cont {
-  line-height: 1.2em;
+  line-height: 1.5em;
 }
 
 .short-info-ul-cont, .short-info-ol-cont > li {
   color: #000000;
   font-size: 0.55em;
   list-style-position: inside;
-  line-height: 1.2em;
+  line-height: 1.5em;
 }
 
 .short-info-ul-cont > li:first-of-type {
   font-weight: 800;
   font-size: 1.25em;
   list-style-type: none;
-  line-height: 1.2em;
+  line-height: 1.5em;
   margin-bottom: 1em;
 }
 
@@ -660,14 +678,14 @@ p {
 
 .features  p {
   font-size: 0.55em;
-  /* line-height: 1.2em; */
+  /* line-height: 1.5em; */
   line-height: 1.5em;  
   color: #000000;
 }
 
 .features  h3 {
   font-size: 1em;
-  /* line-height: 1.2em; */
+  /* line-height: 1.5em; */
   line-height: 1.5em;
 }
 
@@ -770,11 +788,11 @@ p {
 
 .note-text {
   color: #000000;
-  font-size: 0.55em;
+  /* font-size: 0.55em; */
   line-height: 1.5em;  
   margin-bottom: 0.85em;
   padding: 0;
-  font-size: 0.5em !important;
+  font-size: 0.55em !important;
 }
 
 .light {
@@ -808,6 +826,7 @@ p {
 .marco {
   border: 1.5px solid #1A1919;
   padding: 1em 1em;
+  /* padding: 1em 1em; */
   /* background-color: rgba(240,240,240,0.85); */
   background-color: rgba(240,240,240,0.95);
 }
@@ -852,7 +871,7 @@ p {
   }
 
   .dark .short-info-ul-cont, .short-info-ol-cont > li {
-    font-size: 0.5em !important;
+    font-size: 0.55em !important;
   }
 
   #gdlC > .img-container > .img-slot {
@@ -876,7 +895,7 @@ p {
 
   .marco {
     width: 75%;
-    font-size: 0.5em;
+    font-size: 0.55em;
   }
 
   .features > div {
@@ -938,7 +957,7 @@ p {
 
   .marco {
     /* width: 75%; */
-    font-size: 0.5em;
+    font-size: 0.55em;
   }
  }
 
@@ -946,7 +965,7 @@ p {
 @media (max-width: 992px) { 
   .marco {
     width: 75%;
-    font-size: 0.5em;
+    font-size: 0.55em;
   }
 
  }
