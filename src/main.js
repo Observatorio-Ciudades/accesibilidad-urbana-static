@@ -285,9 +285,12 @@ function init() {
         pitch: config.chapters[0].location.pitch,
         scrollZoom: false,
         transformRequest: transformRequest,
-        fadeDuration: 500
+        fadeDuration: 500,
+        attributionControl: true
     });
+    // map.addControl(new mapboxgl.AttributionControl(), 'top-left');
     }
+
 
     if (!satMap) {
         satMap = new mapboxgl.Map({

@@ -1,6 +1,7 @@
 #body-accesibilidad {
   background: #FFFFFF;
-  font-family: 'Arimo', sans-serif;
+  /* font-family: 'Arimo', sans-serif; */
+  font-family: 'Helvetica Neue','Helvetica','Roboto','Arial',sans-serif;
   margin: 0;
   padding: 0;
   font-size: 28px;
@@ -489,7 +490,8 @@ p {
 
 .axis text {
   font-size: 12px;
-  font-family: 'Arimo', sans-serif;
+  /* font-family: 'Arimo', sans-serif; */
+  font-family: 'Helvetica Neue','Helvetica','Roboto','Arial',sans-serif;
   fill: white;
   stroke: none;
 }
@@ -573,7 +575,8 @@ p {
 	background-position: right .7em top 50%, 0 0;
   background-size: .65em auto, 100%;
   font-size: 0.65em;
-  font-family: 'Arimo', sans-serif;
+  font-family: 'Helvetica Neue','Helvetica','Roboto','Arial',sans-serif;
+  /* font-family: 'Arimo', sans-serif; */
   letter-spacing: -0.01em;
   border: 0;
   background-color: #fff;
@@ -805,7 +808,8 @@ p {
 .marco {
   border: 1.5px solid #1A1919;
   padding: 1em 1em;
-  background-color: rgba(240,240,240,0.85);
+  /* background-color: rgba(240,240,240,0.85); */
+  background-color: rgba(240,240,240,0.95);
 }
 
 
