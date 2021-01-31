@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <title>Observatorio de Ciudades - Accesibilidad Urbana</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,400;1,500;1,700&display=swap" rel="stylesheet"> 
+
+    <!-- <link href="style.css" rel="stylesheet"> -->
+    <link href="style.css" rel="stylesheet">
+
+    <!-- CDN libs-->
+    <script src="https://unpkg.com/h3-js@3.6.3/dist/h3-js.umd.js"></script>
+    <script src="https://bundle.run/geojson2h3@1.0.1"></script>
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.5.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.5.0/mapbox-gl.css' rel='stylesheet' />
+    <script src="https://unpkg.com/intersection-observer@0.5.1/intersection-observer.js"></script>
+    <script src="https://unpkg.com/scrollama"></script>
+
+    <!-- <script src="https://d3js.org/d3.v5.min.js"></script> -->
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+
+    <script src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+    <script src="https://d3js.org/d3-color.v1.min.js"></script>
+    <script src="https://d3js.org/d3-interpolate.v1.min.js"></script>
+    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+
+
+</head>
+
+<body id="body-accesibilidad" class="scroll-off">
+    <div id="map"></div>
+    <div id="satMap" class="fade-out"></div>
+    <div id="dashMap" class="fade-out"></div>
+    <div class="box-full" id="portada">
+        <div class="main-col">
+            <h1 id="main-title">Ciudades accesibles en tiempos de pandemia</h1>
+            <p class="main-intro">
+                La situación actual a la que nos enfrentamos por la pandemia del COVID19, además de poner una
+                especial atención en la salud y el bienestar de las personas, ha replanteado la forma en que nos
+                relacionamos en las ciudades. Como medida preventiva, nos han pedido reducir nuestra movilidad,
+                limitando los recorridos a las necesidades más básicas como son el abastecimiento de alimentos, las
+                actividades productivas y en caso de ser necesario, las farmacias y hospitales.
+            </p>
+            <p class="main-intro">
+                Estas condiciones aumentan la relevancia de la caminabilidad en las ciudades, así como la diversidad de
+                usos con las que cuenta un barrio. Tomando como referencia la idea de proximidad y el concepto de
+                ciudades de 15 minutos, el cual destaca la necesidad de cubrir las actividades diarias en este tiempo ya
+                sea caminando o en bicicleta, resulta importante identificar las zonas de las ciudades que logran este
+                objetivo y aquellas que necesitan implementar acciones orientadas a convertirse en zonas accesibles.
+            </p>
+            <p class="main-intro">
+                Es por esto, que desde el Observatorio de Ciudades del Tec de Monterrey, hemos generado algoritmos que
+                nos permiten calcular, considerando la traza urbana, las distancias que se deben recorrer desde
+                cualquier punto de la ciudad, para acceder a las tiendas de alimentos, así como para recibir atención
+                médica. La metodología aplicada consideró dividir la ciudad en hexágonos para identificar las
+                características de la estructura urbana y las condiciones de accesibilidad en cada uno. Calculamos las
+                distancias y tiempos desde todas las intersecciones al interior de los hexágonos, para tomar el promedio
+                por hexágono y ofrecer un comparativo de las diferentes áreas de la ciudad.
+            </p>
+
+        </div>
+    </div>
+
+    <article id="main-art">
+        <div class="row">
+            <div class="main-col">
+                <div id="prologue" class="step">
+                    <h2 class="section-sub h2-acc">
+                        Ubicaciones similares, accesos desiguales.
+                        <br>
+                        ¿Quién puede sobrellevar la contingencia caminando?
+                    </h2>
+                </div>
+                <div class="step box-full">
+                    <div class="center">
+                        <p class="marco">
+                            Usando la red vial existente, calculamos el camino más corto para acceder, desde cualquier
+                            intersección del hexágono, a servicios como tiendas de abarrotes y farmacias.
+                        </p>
+                    </div>
+                </div>
+                <div class="right col step box-full" id="pathA">
+                    <!-- <div class="right col step box-full"> -->
+                    <div class="note-cont marco">
+                        <!-- <p class="note-label" id="pathA"> -->
+                        <p class="note-label">
+                            Juan, 17 años
+                        </p>
+                        <p class="note-text">
+                            Tarda 7 minutos en caminar 375 metros a la tienda más cercana.
+                        </p>
+                    </div>
+                </div>
+                <!-- <div id="d3-hexintro-cont">
+                            <polyline id="hexagon" transform="
+                                translate(250 150)
+                                rotate(-10 50 100)
+                                scale(0.75 0.75)
+                                " 
+                                points="87,0 174,50 174,150 87,200 0,150 0,50 87,0"
+                            />
+                            <polyline id="hexagon" transform="
+                            translate(335 250)
+                            rotate(-10 50 100)
+                            scale(0.75 0.75)
+                            " 
+                            points="87,0 174,50 174,150 87,200 0,150 0,50 87,0"
+                            />
+                    </div> -->
+                <div class="left col step box-full" id="pathB">
+                    <div class="note-cont marco">
+                        <p class="note-label">
+                            Elisa, 67 años
+                        </p>
+                        <p class="note-text">
+                            Desde una zona vecina (condominio cerrado), tiene que recorrer 1.8 km y caminar 37 minutos
+                            para llegar a la misma tienda, y la más cercana.
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="step box-med" id="preOutroPaths">
+
+                    <div class="center">
+
+                        <p class="marco">
+                            Zonas que son vecinas cuentan con diferentes estructuras de calles y manzanas de zonas
+                            abiertas y cerradas, que pueden generar recorridos más cortos o trayectos más largos y poco
+                            accesibles, generando inequidad en acceso a servicios básicos.
+                        </p>
+                    </div>
+
+
+                </div>
+
+                <div class="box-med">
+                    <div class="center">
+                        <p class="marco">
+                            Usamos hexágonos para agrupar las intersecciones, calcular el tiempo promedio por área y
+                            poder comparar diferentes zonas de la ciudad, así, calculamos el tiempo promedio caminando y
+                            coloreamos los hexágonos (operativos) de acuerdo al tiempo que toman los recorridos a
+                            tiendas de abarrotes, mercados, supermercados, farmacias y hospitales.
+                        </p>
+                    </div>
+                </div>
+
+                <div id="d3-legend-cont">
+                    <div id="img-legend-cont">
+                        <div class="img-legend-slot">
+                            <!-- <img src="imgs/hexleg_5min.png" /> -->
+                            <img src="hexleg_5min.png" />
+                        </div>
+                        <div class="img-legend-slot">
+                            <!-- <img src="imgs/hexleg_10min.png" /> -->
+                            <img src="hexleg_10min.png" />
+                        </div>
+                        <div class="img-legend-slot">
+                            <!-- <img src="imgs/hexleg_15min.png" /> -->
+                            <img src="hexleg_15min.png" />
+                        </div>
+                        <div class="img-legend-slot">
+                            <!-- <img src="imgs/hexleg_30min.png" /> -->
+                            <img src="hexleg_30min.png" />
+                        </div>
+                        <div class="img-legend-slot">
+                            <!-- <img src="imgs/hexleg_60min.png" /> -->
+                            <img src="hexleg_60min.png" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step box-med" id="outroPaths">
+                </div>
+            </div>
+        </div>
+        <div class="row solid-dark">
+            <div class="main-col" id="intro-acc">
+                <h2 class="h2-acc">Acceso a servicios de primera necesidad en cuatro ciudades mexicanas</h2>
+                <p class="left">
+                    Gran parte de la población en México se concentra en entornos periurbanos, ubicándose tanto en zonas
+                    residenciales en enclaves cerrados, como en asentamientos informales con déficit de servicios
+                    básicos.
+                </p>
+                <p class="left">
+                    Medimos el acceso a servicios de primera necesidad, a partir de la distancia caminable utilizando la
+                    red de calles existentes, obteniendo información más cercana a la experiencia de las personas y no a
+                    la distancia lineal sobre la cartografía.
+                </p>
+                <p class="left">
+                    Evaluamos 13 ciudades mexicanas, para contrastar las condiciones urbanas que condicionan la
+                    proximidad y la eficiencia. Se presenta un análisis de zonas específicas en cuatro de ellas
+                    (Monterrey, Guadalajara, Querétaro y Ciudad de México) haciendo uso de la información obtenida para
+                    generar evidencias de las condiciones de desigualdad en cuanto al acceso a estos servicios básicos
+                    en tiempos donde la proximidad a estos puede ser la diferencia en el cuidado de la salud.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="main-col">
+                <div id="story">
+                    <div id="mtyA" class="step-city"></div>
+                    <div id="mtyB" class="step-city"></div>
+                    <div id="mtyC" class="step-city">
+                        <div class="img-container">
+                            <div class="img-slot">
+                                <!-- <img src="imgs/poligonos-mty_01.png" /> -->
+                                <img src="poligonos-mty_01.png" />
+                            </div>
+                        </div>
+                    </div>
+                    <div id="mtyD" class="step-city"></div>
+                    <div id="gdlA" class="step-city"></div>
+                    <div id="gdlB" class="step-city"></div>
+                    <div id="gdlC" class="step-city">
+                        <div class="img-container">
+                            <div class="img-slot">
+                                <img src="poligonos-gdl_01.png" />
+                                <!-- <img src="imgs/poligonos-gdl_01.png" /> -->
+                            </div>
+                            <div class="img-slot">
+                                <img src="poligonos-gdl_02.png" />
+                                <!-- <img src="imgs/poligonos-gdl_02.png" /> -->
+                            </div>
+                            <div class="img-slot">
+                                <img src="poligonos-gdl_03.png" />
+                                <!-- <img src="imgs/poligonos-gdl_03.png" /> -->
+                            </div>
+                            <div class="img-slot">
+                                <img src="poligonos-gdl_04.png" />
+                                <!-- <img src="imgs/poligonos-gdl_04.png" /> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div id="gdlD" class="step-city"></div>
+                    <div id="qroA" class="step-city"></div>
+                    <div id="qroB" class="step-city"></div>
+                    <div id="qroC" class="step-city">
+                        <div class="img-container">
+                            <div class="img-slot">
+                                <img src="poligonos-qro_01.png" />
+                                <!-- <img src="imgs/poligonos-qro_01.png" /> -->
+                            </div>
+                            <div class="img-slot">
+                                <img src="poligonos-qro_02.png" />
+                                <!-- <img src="imgs/poligonos-qro_02.png" /> -->
+                            </div>
+                            <div class="img-slot">
+                                <img src="poligonos-qro_03.png" />
+                                <!-- <img src="imgs/poligonos-qro_03.png" /> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div id="qroD" class="step-city"></div>
+                    <div id="cdmxA" class="step-city"></div>
+                    <div id="cdmxB" class="step-city"></div>
+                    <div id="cdmxC" class="step-city">
+                        <div class="img-container">
+                            <div class="img-slot">
+                                <img src="poligonos-cdmx_01.png" />
+                                <!-- <img src="imgs/poligonos-cdmx_01.png" /> -->
+                            </div>
+                            <div class="img-slot">
+                                <img src="poligonos-cdmx_02.png" />
+                                <!-- <img src="imgs/poligonos-cdmx_02.png" /> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div id="cdmxD" class="step-city"></div>
+                    <div id="mxOut" class="step-city"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row charts">
+            <div class="main-col">
+                <div class="step">
+                    <h2 class="h2-acc">
+                        La ciudad se ha urbanizado sin garantizar el acceso a servicios básicos.
+                    </h2>
+                    <p class="left">
+                        El 52% de la zona urbana de las ciudades no tienen acceso a servicios básicos a menos de 500
+                        metros, mientras que en términos de población el porcentaje de cobertura incrementa a un 80%.
+                        Esto se explica por la baja densidad con la que se han desarrollado la mayoría de las ciudades y
+                        resalta la importancia de incrementar la densidad poblacional en las zonas con mejor cobertura
+                        de servicios, o en su defecto, dotar de servicios a las zonas más desprotegidas.
+                    </p>
+                    <h2 class="left h2-acc">
+                        Accesibilidad a servicios básicos por ciudad
+                    </h2>
+                </div>
+                <svg id="d3-b" class="step"> chart </svg>
+
+            </div>
+        </div>
+        <div class="row charts">
+            <div class="main-col">
+                <p class="left">
+                    El estudio permite identificar que para generar condiciones de mayor proximidad en la ciudades de
+                    cara a los retos que la pandemia ha generado así como a las condiciones de normalidad que tendremos
+                    que asumir en el futuro próximo, se deberá revisar y ser mucho más severos en la necesidad de contar
+                    con las condiciones de estructura urbana y de servicios adecuada y suficiente, sólo así se podrá
+                    contar con las condiciones adecuadas para garantizar el derecho de vivir en la ciudad.
+                </p>
+
+                <p class="left">
+                    En el siguiente visor se puede tener acceso al mapa de cada una de las trece ciudades analizadas
+                    hasta el momento y la accesibilidad a los servicios (supermercados, farmacia, hospital) y el layer
+                    de densidad de población para identificar el contraste de territorio vs población.
+                </p>
+            </div>
+        </div>
+        <div class="row step" id="h3-dash-trigger"></div>
+
+        <div class="row step" id="h3-dash">
+            <div id="d3-legend-dash-cont">
+                <div class="img-legend-dash-cont" id='img-legend-servs'>
+                    <div class="img-legend-slot">
+                        <img src="hexleg_5min.png" />
+                        <!-- <img src="imgs/hexleg_5min.png" /> -->
+                    </div>
+                    <div class="img-legend-slot">
+                        <img src="hexleg_10min.png" />
+                        <!-- <img src="imgs/hexleg_10min.png" /> -->
+                    </div>
+                    <div class="img-legend-slot">
+                        <img src="hexleg_15min.png" />
+                        <!-- <img src="imgs/hexleg_15min.png" /> -->
+                    </div>
+                    <div class="img-legend-slot">
+                        <img src="hexleg_30min.png" />
+                        <!-- <img src="imgs/hexleg_30min.png" /> -->
+                    </div>
+                    <div class="img-legend-slot">
+                        <img src="hexleg_60min.png" />
+                        <!-- <img src="imgs/hexleg_60min.png" /> -->
+                    </div>
+                </div>
+                <div class="img-legend-dash-cont" id='img-legend-pobtot'>
+                    <div class="img-legend-slot">
+                        <img src="hexleg_pop50.png" />
+                        <!-- <img src="imgs/hexleg_pop50.png" /> -->
+                    </div>
+                    <div class="img-legend-slot">
+                        <img src="hexleg_pop100.png" />
+                        <!-- <img src="imgs/hexleg_pop100.png" /> -->
+                    </div>
+                    <div class="img-legend-slot">
+                        <img src="hexleg_pop200.png" />
+                        <!-- <img src="imgs/hexleg_pop200.png" /> -->
+                    </div>
+                    <div class="img-legend-slot">
+                        <img src="hexleg_pop300.png" />
+                        <!-- <img src="imgs/hexleg_pop300.png" /> -->
+                    </div>
+                    <div class="img-legend-slot">
+                        <img src="hexleg_pop500.png" />
+                        <!-- <img src="imgs/hexleg_pop500.png" /> -->
+                    </div>
+                </div>
+            </div>
+            <div class="filter-ctrl">
+                <div class="h3-dash-select-cont">
+                    <select id="h3-dash-hexes" class="h3-dash-select">
+                        <option value="1">Ver acceso a farmacias en</option>
+                        <option value="2">Ver acceso a hospitales en</option>
+                        <option value="3" selected>Ver acceso a supermercados en</option>
+                        <option value="4">Ver densidad poblacional en</option>
+                    </select>
+                </div>
+
+                <div class="h3-dash-select-cont">
+                    <select id="h3-dash-cities" class="h3-dash-select" value="3">
+                        <option value="1">Aguascalientes</option>
+                        <option value="2">Cuernavaca</option>
+                        <option value="3" selected>Guadalajara</option>
+                        <option value="4">Mérida</option>
+                        <option value="5">Mexicali</option>
+                        <option value="6">CDMX</option>
+                        <option value="7">Monterrey</option>
+                        <option value="8">Puebla</option>
+                        <option value="9">Querétaro</option>
+                        <option value="10">Saltillo</option>
+                        <option value="11">San Luis Potosí</option>
+                    </select>
+                </div>
+
+
+            </div>
+        </div>
+    </article>
+    <div class="step"></div>
+    <div class="about">
+        <div class="main-col">
+            <h2 class="h2-acc">Metodología</h2>
+            <p>
+                Para realizar el estudio se modeló la ciudad como una red partiendo de la infraestructura peatonal. Los
+                cálculos de accesibilidad se realizaron siguiendo los caminos más cortos entre las amenidades de interés
+                y todas las intersecciones de la ciudad analizada. Para realizar el cálculo, consideramos una velocidad
+                promedio peatonal de 3km/hr. Para una explicación más detallada de la metodología se sugiere consultar
+                el artículo “Quantifying Life Quality as Walkability on Urban Networks: The Case of Budapest” (Natera et
+                al 2020) el cual se utilizó como base para el cálculo de accesibilidad peatonal.
+                <br><br>
+                La información que se utilizó para la elaboración del presente estudio corresponde a los datos del INEGI 2010, DENUE 2020, OpenStreetMap y Mapbox.
+            </p>
+
+            <h2 class="h2-acc">Sobre el Observatorio de Ciudades</h2>
+            <p>
+                Este estudio sobre accesibilidad se desarrolla desde el Observatorio de Ciudades, como una respuesta a
+                las dudas sobre el futuro urbano que ha generado la pandemia del COVID-19, con el objetivo de compartir
+                información nueva y relevante que acerque evidencias sobre el estado de nuestras ciudades a
+                investigadores, autoridades, tomadores de decisión e interesados en general. El Observatorio de Ciudades
+                comparte la información con la finalidad de sumar datos y reflexiones a la discusión actual.
+            </p>
+
+            <h2 class="h2-acc">Créditos</h2>
+            <ul>
+                <li>Alfredo Hidalgo. Coordinación de contenido</li>
+                <li>Rossana Valdivia. Coordinación ejecutiva</li>
+                <li>Luis Natera. Ciencia de redes y análisis de datos</li>
+                <li>Edgar Egurrola. Análisis de datos</li>
+                <li>Diego Arredondo. Diseño y visualización de datos</li>
+                <li>María Elena de la Torre. Análisis urbano en Zapopan</li>
+                <li>Nélida Escobedo. Análisis urbano en Monterrey</li>
+                <li>María Guadalupe Morales. Análisis urbano en CDMX</li>
+                <li>Monserrat Loyola. Análisis urbano en Querétaro</li>
+            </ul>
+
+            <h2 class="h2-acc">Agradecimientos</h2>
+            <p>
+                Se agradece el apoyo del C+ Lab y el Grupo de Investigación de la Escuela de Arquitectura, Arte y Diseño
+                del Tecnológico de Monterrey.
+            </p>
+
+
+        </div>
+    </div>
+
+    <script src="mapConfig.js"></script>
+    <!-- <script src="./src/mapConfig.js"></script> -->
+    <script src="main.js"></script>
+    <!-- <script src="./src/main.js"></script> -->
+    <script src="d3Charts.js"></script>
+    <!-- <script src="./src/d3Charts.js"></script> -->
+</body>
+
+</html>
